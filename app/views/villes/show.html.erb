@@ -1,0 +1,185 @@
+<div class="main-card-sm">
+  <div class="sticky-side">
+    <div>
+      <button type="button" class="btn btn-default sticky-btn active">Finances</button>
+    </div>
+    <div>
+      <button type="button" class="btn btn-default sticky-btn">Réseaux sociaux</button>
+    </div>
+    <div>
+      <button type="button" class="btn btn-default sticky-btn">Discussions</button>
+    </div>
+  </div>
+  <ul class="nav nav-tabs">
+    <li role="presentation" class="active"><a href="#">Commune</a></li>
+    <li role="presentation"><a href="#">Agglomération</a></li>
+    <li role="presentation"><a href="#">Département</a></li>
+    <li role="presentation"><a href="#">Région</a></li>
+  </ul>
+  <div class="entity-title">
+    <h1>
+      <%= @ville[:nom].downcase.capitalize %>
+    </h1>
+  </div>
+  <div class="card">
+    <div class="card-title">
+      <h3>Principaux indicateurs</h3>
+    </div>
+    <div class="card-tab">
+      <table>
+        <tr>
+          <th class="top-left"></th>
+          <th>
+            <%= @ville[:nom].downcase.capitalize %>
+          </th>
+          <th>
+            Moyenne <br>Yonne
+            <i class="fa fa-question-circle to-explain" aria-hidden="true"><span class="explanation">Communes entre 10 000 et 50 000 habitants</span></i>
+          </th>
+          <th>
+            Moyenne <br>France
+            <i class="fa fa-question-circle to-explain" aria-hidden="true"><span class="explanation">Communes entre 10 000 et 50 000 habitants</span></i>
+          </th>
+          <th class="top-right"></th>
+        </tr>
+        <tr>
+          <td>Taxe foncière / habitant (2015)</td>
+          <td>
+            <%= @comptes_2015[:recette_taxe_fonciere_bati] / @comptes_2015[:population] %> €
+          </td>
+          <td>dummy</td>
+          <td>dummy</td>
+          <td><i class="fa fa-circle red" aria-hidden="true"></i></td>
+        </tr>
+        <tr>
+          <td>Taxe d'habitation / habitant (2015)</td>
+          <td>dummy</td>
+          <td>dummy</td>
+          <td>dummy</td>
+          <td><i class="fa fa-circle orange" aria-hidden="true"></i></td>
+        </tr>
+        <tr>
+          <td>Budget (2015)</td>
+          <td>dummy</td>
+          <td>-</td>
+          <td>-</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>Dépenses fonctionnement / habitant (2015)</td>
+          <td>dummy</td>
+          <td>dummy</td>
+          <td>dummy</td>
+          <td><i class="fa fa-circle orange" aria-hidden="true"></i></td>
+        </tr>
+        <tr>
+          <td>Endettement / habitant (2015)</td>
+          <td>dummy</td>
+          <td>dummy</td>
+          <td>dummy</td>
+          <td><i class="fa fa-circle green" aria-hidden="true"></i></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <br>
+  <br>
+  <br>
+  <div class="card">
+    <div class="card-title">
+      <h3>Historique - Impôts locaux</h3>
+    </div>
+    <div class="card-tab">
+      <table>
+        <tr>
+          <th class="top-left"></th>
+          <th>2002</th>
+          <th>2008</th>
+          <th>2014</th>
+          <th class="top-right">2015</th>
+        </tr>
+        <tr>
+          <td>Taxe foncière</td>
+          <td>1,1 M€</td>
+          <td>1,6 €</td>
+          <td>2,2 M€</td>
+          <td>2,3 M€</td>
+        </tr>
+        <tr>
+          <td>Taxe foncière / habitant</td>
+          <td>275 €</td>
+          <td>355 €</td>
+          <td>480 €</td>
+          <td>500 €</td>
+        </tr>
+        <tr>
+          <td>Taxe d'habitation</td>
+          <td>1,1 M€</td>
+          <td>1,6 €</td>
+          <td>2,2 M€</td>
+          <td>2,3 M€</td>
+        </tr>
+        <tr>
+          <td>Taxe d'habitation / habitant</td>
+          <td>275 €</td>
+          <td>355 €</td>
+          <td>480 €</td>
+          <td>500 €</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <br>
+  <br>
+  <br>
+  <div class="card">
+    <div class="card-title">
+      <h3>Historique - Comptes communaux</h3>
+    </div>
+    <div class="card-tab">
+      <table>
+        <tr>
+          <th class="top-left"></th>
+          <th>2002</th>
+          <th>2008</th>
+          <th>2014</th>
+          <th class="top-right">2015</th>
+        </tr>
+        <tr>
+          <td>Recettes</td>
+          <td>5,7 M€</td>
+          <td>7,3 M€</td>
+          <td>9,8 M€</td>
+          <td>10,0 M€</td>
+        </tr>
+        <tr>
+          <td>Dépenses de fonctionnement</td>
+          <td>3,4 M€</td>
+          <td>6,1 M€</td>
+          <td>8,0 M€</td>
+          <td>8,1 M€</td>
+        </tr>
+        <tr>
+          <td>Dépenses d'investissement</td>
+          <td>1,0 M€</td>
+          <td>1,8 M€</td>
+          <td>0,8 M€</td>
+          <td>2,0 M€</td>
+        </tr>
+        <tr>
+          <td>Endettement</td>
+          <td>1,7 M€</td>
+          <td>3,1 M€</td>
+          <td>3,2 M€</td>
+          <td>3,0 M€</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+
+</div>

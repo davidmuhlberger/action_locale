@@ -1,0 +1,105 @@
+.main-card-sm {
+  background: white;
+  width: 800px;
+  margin-left: 20%;
+  margin-top: 0px;
+  min-height: 1000px;
+}
+
+.main-card-xs {
+  background: white;
+  width: 90%;
+}
+
+.entity-title {
+  height: 50px;
+  margin-top: 50px;
+  text-align: center;
+  color: #808080;
+}
+
+.card {
+  position: relative;
+  height: 400px;
+  background: white;
+  border-radius: 10px;
+  margin: 20px;
+  border-style: solid;
+  border-color: #DCDCDC;
+  border-width: 1px;
+
+}
+
+.card:hover {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.card-title {
+  top: 10px;
+  color: black;
+  padding-left: 50px;
+}
+
+.card-tab {
+  padding: 30px;
+  margin: auto;
+}
+
+.card-tab td {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.card-tab th {
+  padding-top: 20px;
+  padding-bottom: 20px;
+  background: #FFE4B2;
+  text-align: center;
+}
+
+.top-right {
+  border-radius: 0 10px 0 0;
+}
+
+.top-left {
+  border-radius: 10px 0 0 0;
+}
+
+.green {
+  color: #6ed61d;
+}
+
+.orange {
+  color: #ffa500;
+}
+
+.red {
+  color: #ff323d;
+}
+
+i.to-explain {
+    position:relative;
+    cursor:pointer;
+}
+
+i.to-explain span.explanation{
+  display: none;
+}
+
+i.to-explain:hover span.explanation{ /*the span will display just on :hover state*/
+    display:block;
+    position:absolute;
+    border-radius: 4px;
+    width: 90px;
+    top:-40px;
+    border:2px solid #ffb732;
+    background-color:#ffedcc;
+    color: black;
+    text-align: center;
+    padding:10px;
+    font-family: "Montserrat", "sans-serif";
+    font-size: 10px;
+    transition: all 0.3s ease;
+  }

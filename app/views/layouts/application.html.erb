@@ -10,6 +10,23 @@
     <%= stylesheet_link_tag    'application', media: 'all' %>
   </head>
   <body>
+    <div class="navbar">
+      <a href="" class="logo">
+        <img src="http://placehold.it/40x40" />
+      </a>
+      <div class="navbar-right hidden-xs hidden-sm">
+        <form class="navbar-form navbar-left" role="search">
+          <div class="form-group">
+            <input type="text" class="form-control" placeholder="Ma commune">
+          </div>
+          <button type="submit" class="btn btn-default">
+            <i class="fa fa-search"></i>
+          </button>
+        </form>
+        <a href="" class="navbar-link navbar-item">Projet</a>
+        <a href="" class="navbar-link navbar-item">Blog</a>
+      </div>
+    </div>
     <%= yield %>
     <%= javascript_include_tag 'application' %>
   </body>
