@@ -1,3 +1,40 @@
+<% content_for :head do %>
+  <!--Load the AJAX API-->
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+google.charts.load('current', {packages: ['corechart', 'bar']});
+google.charts.setOnLoadCallback(drawMaterial);
+
+function drawMaterial() {
+      var data = new google.visualization.DataTable();
+      data.addColumn('string', 'Année');
+      data.addColumn('number', 'Taxe foncière');
+      data.addColumn('number', "Taxe d'habitation");
+
+      data.addRows([
+        ["2008", <%= @comptes_2008[:recette_taxe_fonciere_bati] / @comptes_2008[:population] %>, <%= @comptes_2008[:recette_taxe_habitation] / @comptes_2008[:population] %>],
+        ["2009", <%= @comptes_2009[:recette_taxe_fonciere_bati] / @comptes_2009[:population] %>, <%= @comptes_2009[:recette_taxe_habitation] / @comptes_2009[:population] %>],
+        ["2010", <%= @comptes_2010[:recette_taxe_fonciere_bati] / @comptes_2010[:population] %>, <%= @comptes_2010[:recette_taxe_habitation] / @comptes_2010[:population] %>],
+        ["2011", <%= @comptes_2011[:recette_taxe_fonciere_bati] / @comptes_2011[:population] %>, <%= @comptes_2011[:recette_taxe_habitation] / @comptes_2011[:population] %>],
+        ["2012", <%= @comptes_2012[:recette_taxe_fonciere_bati] / @comptes_2012[:population] %>, <%= @comptes_2012[:recette_taxe_habitation] / @comptes_2012[:population] %>],
+        ["2013", <%= @comptes_2013[:recette_taxe_fonciere_bati] / @comptes_2013[:population] %>, <%= @comptes_2013[:recette_taxe_habitation] / @comptes_2013[:population] %>],
+        ["2014", <%= @comptes_2014[:recette_taxe_fonciere_bati] / @comptes_2014[:population] %>, <%= @comptes_2014[:recette_taxe_habitation] / @comptes_2014[:population] %>],
+        ["2015", <%= @comptes_2015[:recette_taxe_fonciere_bati] / @comptes_2015[:population] %>, <%= @comptes_2015[:recette_taxe_habitation] / @comptes_2015[:population] %>],
+      ]);
+
+      var options = {
+        'title' : 'Motivation and Energy Level Throughout the Day',
+        'width' : 600,
+        'height' : 300,
+      };
+
+      var materialChart = new google.charts.Bar(document.getElementById('chart_div'));
+      materialChart.draw(data, options);
+    }
+    </script>
+<% end %>
+
+
 <div class="main-card-sm">
   <div class="sticky-side">
     <div>
@@ -88,45 +125,10 @@
   <div class="card">
     <div class="card-title">
       <h3>Historique - Impôts locaux</h3>
+    <!--Div that will hold the pie chart-->
+    <div id="chart_div"></div>
     </div>
     <div class="card-tab">
-      <table>
-        <tr>
-          <th class="top-left"></th>
-          <th>2002</th>
-          <th>2008</th>
-          <th>2014</th>
-          <th class="top-right">2015</th>
-        </tr>
-        <tr>
-          <td>Taxe foncière</td>
-          <td>1,1 M€</td>
-          <td>1,6 €</td>
-          <td>2,2 M€</td>
-          <td>2,3 M€</td>
-        </tr>
-        <tr>
-          <td>Taxe foncière / habitant</td>
-          <td>275 €</td>
-          <td>355 €</td>
-          <td>480 €</td>
-          <td>500 €</td>
-        </tr>
-        <tr>
-          <td>Taxe d'habitation</td>
-          <td>1,1 M€</td>
-          <td>1,6 €</td>
-          <td>2,2 M€</td>
-          <td>2,3 M€</td>
-        </tr>
-        <tr>
-          <td>Taxe d'habitation / habitant</td>
-          <td>275 €</td>
-          <td>355 €</td>
-          <td>480 €</td>
-          <td>500 €</td>
-        </tr>
-      </table>
     </div>
   </div>
   <br>
@@ -137,43 +139,6 @@
       <h3>Historique - Comptes communaux</h3>
     </div>
     <div class="card-tab">
-      <table>
-        <tr>
-          <th class="top-left"></th>
-          <th>2002</th>
-          <th>2008</th>
-          <th>2014</th>
-          <th class="top-right">2015</th>
-        </tr>
-        <tr>
-          <td>Recettes</td>
-          <td>5,7 M€</td>
-          <td>7,3 M€</td>
-          <td>9,8 M€</td>
-          <td>10,0 M€</td>
-        </tr>
-        <tr>
-          <td>Dépenses de fonctionnement</td>
-          <td>3,4 M€</td>
-          <td>6,1 M€</td>
-          <td>8,0 M€</td>
-          <td>8,1 M€</td>
-        </tr>
-        <tr>
-          <td>Dépenses d'investissement</td>
-          <td>1,0 M€</td>
-          <td>1,8 M€</td>
-          <td>0,8 M€</td>
-          <td>2,0 M€</td>
-        </tr>
-        <tr>
-          <td>Endettement</td>
-          <td>1,7 M€</td>
-          <td>3,1 M€</td>
-          <td>3,2 M€</td>
-          <td>3,0 M€</td>
-        </tr>
-      </table>
     </div>
   </div>
   <br>
