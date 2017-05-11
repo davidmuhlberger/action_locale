@@ -2,35 +2,69 @@
   <!--Load the AJAX API-->
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript">
-google.charts.load('current', {packages: ['corechart', 'bar']});
-google.charts.setOnLoadCallback(drawMaterial);
+      google.charts.load('current', {packages: ['corechart', 'bar']});
+      google.charts.setOnLoadCallback(drawImpots);
+      google.charts.setOnLoadCallback(drawFonctionnement);
 
-function drawMaterial() {
-      var data = new google.visualization.DataTable();
-      data.addColumn('string', 'Année');
-      data.addColumn('number', 'Taxe foncière');
-      data.addColumn('number', "Taxe d'habitation");
+      function drawImpots() {
+        var data = google.visualization.arrayToDataTable([
+          ['', 'Taxe foncière / habitant', "Taxe d'habitation / habitant", { role: 'annotation' } ],
+          ["2008", <%= @comptes_2008[:recette_taxe_fonciere_bati] / @comptes_2008[:population] %>, <%= @comptes_2008[:recette_taxe_habitation] / @comptes_2008[:population] %>, ''],
+          ["2009", <%= @comptes_2009[:recette_taxe_fonciere_bati] / @comptes_2009[:population] %>, <%= @comptes_2009[:recette_taxe_habitation] / @comptes_2009[:population] %>, ''],
+          ["2010", <%= @comptes_2010[:recette_taxe_fonciere_bati] / @comptes_2010[:population] %>, <%= @comptes_2010[:recette_taxe_habitation] / @comptes_2010[:population] %>, ''],
+          ["2011", <%= @comptes_2011[:recette_taxe_fonciere_bati] / @comptes_2011[:population] %>, <%= @comptes_2011[:recette_taxe_habitation] / @comptes_2011[:population] %>, ''],
+          ["2012", <%= @comptes_2012[:recette_taxe_fonciere_bati] / @comptes_2012[:population] %>, <%= @comptes_2012[:recette_taxe_habitation] / @comptes_2012[:population] %>, ''],
+          ["2013", <%= @comptes_2013[:recette_taxe_fonciere_bati] / @comptes_2013[:population] %>, <%= @comptes_2013[:recette_taxe_habitation] / @comptes_2013[:population] %>, ''],
+          ["2014", <%= @comptes_2014[:recette_taxe_fonciere_bati] / @comptes_2014[:population] %>, <%= @comptes_2014[:recette_taxe_habitation] / @comptes_2014[:population] %>, ''],
+          ["2015", <%= @comptes_2015[:recette_taxe_fonciere_bati] / @comptes_2015[:population] %>, <%= @comptes_2015[:recette_taxe_habitation] / @comptes_2015[:population] %>, ''],
+        ]);
 
-      data.addRows([
-        ["2008", <%= @comptes_2008[:recette_taxe_fonciere_bati] / @comptes_2008[:population] %>, <%= @comptes_2008[:recette_taxe_habitation] / @comptes_2008[:population] %>],
-        ["2009", <%= @comptes_2009[:recette_taxe_fonciere_bati] / @comptes_2009[:population] %>, <%= @comptes_2009[:recette_taxe_habitation] / @comptes_2009[:population] %>],
-        ["2010", <%= @comptes_2010[:recette_taxe_fonciere_bati] / @comptes_2010[:population] %>, <%= @comptes_2010[:recette_taxe_habitation] / @comptes_2010[:population] %>],
-        ["2011", <%= @comptes_2011[:recette_taxe_fonciere_bati] / @comptes_2011[:population] %>, <%= @comptes_2011[:recette_taxe_habitation] / @comptes_2011[:population] %>],
-        ["2012", <%= @comptes_2012[:recette_taxe_fonciere_bati] / @comptes_2012[:population] %>, <%= @comptes_2012[:recette_taxe_habitation] / @comptes_2012[:population] %>],
-        ["2013", <%= @comptes_2013[:recette_taxe_fonciere_bati] / @comptes_2013[:population] %>, <%= @comptes_2013[:recette_taxe_habitation] / @comptes_2013[:population] %>],
-        ["2014", <%= @comptes_2014[:recette_taxe_fonciere_bati] / @comptes_2014[:population] %>, <%= @comptes_2014[:recette_taxe_habitation] / @comptes_2014[:population] %>],
-        ["2015", <%= @comptes_2015[:recette_taxe_fonciere_bati] / @comptes_2015[:population] %>, <%= @comptes_2015[:recette_taxe_habitation] / @comptes_2015[:population] %>],
-      ]);
+        var options = {
+          'width' : 750,
+          'height' : 350,
+          'chartArea' : {
+            'width': 400,
+            'height': 200
+          },
+          'legend' : {
+            'alignment': 'center'
+          },
+          'isStacked': true,
+        };
 
-      var options = {
-        'title' : 'Motivation and Energy Level Throughout the Day',
-        'width' : 600,
-        'height' : 300,
-      };
+        var impotschart = new google.charts.Bar(document.getElementById('impots_chart_div'));
+        impotschart.draw(data, google.charts.Bar.convertOptions(options));
+      }
 
-      var materialChart = new google.charts.Bar(document.getElementById('chart_div'));
-      materialChart.draw(data, options);
-    }
+      function drawFonctionnement() {
+        var data = google.visualization.arrayToDataTable([
+          ['', 'Charges de personnel', "Achats", "Suventions et contingents", "Intérêts", "Autres charges", "Dotation", "Impôts et taxes", "Autres recettes"],
+          ["2008", <%= - @comptes_2008[:charge_personnel]%>, <%= - @comptes_2008[:charge_achats] %>, <%= - @comptes_2008[:charge_subventions] - @comptes_2008[:charge_contingents] %>, <%= - @comptes_2008[:charge_charges_financieres] %>, <%= - @comptes_2008[:charge_total_fonctionnement] + @comptes_2008[:charge_personnel] + @comptes_2008[:charge_achats] + @comptes_2008[:charge_subventions] + @comptes_2008[:charge_contingents] + @comptes_2008[:charge_charges_financieres] %>, <%= @comptes_2008[:recette_dotation_fonctionnement]%>, <%= @comptes_2008[:recette_taxe_habitation] + @comptes_2008[:recette_taxe_fonciere_non_bati] + @comptes_2008[:recette_taxe_fonciere_bati] + @comptes_2008[:recette_autres_impots_taxes]%>, <%= @comptes_2008[:recette_total_fonctionnement] - @comptes_2008[:recette_dotation_fonctionnement] - @comptes_2008[:recette_taxe_habitation] - @comptes_2008[:recette_taxe_fonciere_non_bati] - @comptes_2008[:recette_taxe_fonciere_bati] - @comptes_2008[:recette_autres_impots_taxes]%>],
+          ["2009", <%= - @comptes_2009[:charge_personnel]%>, <%= - @comptes_2009[:charge_achats] %>, <%= - @comptes_2009[:charge_subventions] - @comptes_2009[:charge_contingents] %>, <%= - @comptes_2009[:charge_charges_financieres] %>, <%= - @comptes_2009[:charge_total_fonctionnement] + @comptes_2009[:charge_personnel] + @comptes_2009[:charge_achats] + @comptes_2009[:charge_subventions] + @comptes_2009[:charge_contingents] + @comptes_2009[:charge_charges_financieres] %>, <%= @comptes_2009[:recette_dotation_fonctionnement]%>, <%= @comptes_2009[:recette_taxe_habitation] + @comptes_2009[:recette_taxe_fonciere_non_bati] + @comptes_2009[:recette_taxe_fonciere_bati] + @comptes_2009[:recette_autres_impots_taxes]%>, <%= @comptes_2009[:recette_total_fonctionnement] - @comptes_2009[:recette_dotation_fonctionnement] - @comptes_2009[:recette_taxe_habitation] - @comptes_2009[:recette_taxe_fonciere_non_bati] - @comptes_2009[:recette_taxe_fonciere_bati] - @comptes_2009[:recette_autres_impots_taxes]%>],
+          ["2010", <%= - @comptes_2010[:charge_personnel]%>, <%= - @comptes_2010[:charge_achats] %>, <%= - @comptes_2010[:charge_subventions] - @comptes_2010[:charge_contingents] %>, <%= - @comptes_2010[:charge_charges_financieres] %>, <%= - @comptes_2010[:charge_total_fonctionnement] + @comptes_2010[:charge_personnel] + @comptes_2010[:charge_achats] + @comptes_2010[:charge_subventions] + @comptes_2010[:charge_contingents] + @comptes_2010[:charge_charges_financieres] %>, <%= @comptes_2010[:recette_dotation_fonctionnement]%>, <%= @comptes_2010[:recette_taxe_habitation] + @comptes_2010[:recette_taxe_fonciere_non_bati] + @comptes_2010[:recette_taxe_fonciere_bati] + @comptes_2010[:recette_autres_impots_taxes]%>, <%= @comptes_2010[:recette_total_fonctionnement] - @comptes_2010[:recette_dotation_fonctionnement] - @comptes_2010[:recette_taxe_habitation] - @comptes_2010[:recette_taxe_fonciere_non_bati] - @comptes_2010[:recette_taxe_fonciere_bati] - @comptes_2010[:recette_autres_impots_taxes]%>],
+          ["2011", <%= - @comptes_2011[:charge_personnel]%>, <%= - @comptes_2011[:charge_achats] %>, <%= - @comptes_2011[:charge_subventions] - @comptes_2011[:charge_contingents] %>, <%= - @comptes_2011[:charge_charges_financieres] %>, <%= - @comptes_2011[:charge_total_fonctionnement] + @comptes_2011[:charge_personnel] + @comptes_2011[:charge_achats] + @comptes_2011[:charge_subventions] + @comptes_2011[:charge_contingents] + @comptes_2011[:charge_charges_financieres] %>, <%= @comptes_2011[:recette_dotation_fonctionnement]%>, <%= @comptes_2011[:recette_taxe_habitation] + @comptes_2011[:recette_taxe_fonciere_non_bati] + @comptes_2011[:recette_taxe_fonciere_bati] + @comptes_2011[:recette_autres_impots_taxes]%>, <%= @comptes_2011[:recette_total_fonctionnement] - @comptes_2011[:recette_dotation_fonctionnement] - @comptes_2011[:recette_taxe_habitation] - @comptes_2011[:recette_taxe_fonciere_non_bati] - @comptes_2011[:recette_taxe_fonciere_bati] - @comptes_2011[:recette_autres_impots_taxes]%>],
+          ["2012", <%= - @comptes_2012[:charge_personnel]%>, <%= - @comptes_2012[:charge_achats] %>, <%= - @comptes_2012[:charge_subventions] - @comptes_2012[:charge_contingents] %>, <%= - @comptes_2012[:charge_charges_financieres] %>, <%= - @comptes_2012[:charge_total_fonctionnement] + @comptes_2012[:charge_personnel] + @comptes_2012[:charge_achats] + @comptes_2012[:charge_subventions] + @comptes_2012[:charge_contingents] + @comptes_2012[:charge_charges_financieres] %>, <%= @comptes_2012[:recette_dotation_fonctionnement]%>, <%= @comptes_2012[:recette_taxe_habitation] + @comptes_2012[:recette_taxe_fonciere_non_bati] + @comptes_2012[:recette_taxe_fonciere_bati] + @comptes_2012[:recette_autres_impots_taxes]%>, <%= @comptes_2012[:recette_total_fonctionnement] - @comptes_2012[:recette_dotation_fonctionnement] - @comptes_2012[:recette_taxe_habitation] - @comptes_2012[:recette_taxe_fonciere_non_bati] - @comptes_2012[:recette_taxe_fonciere_bati] - @comptes_2012[:recette_autres_impots_taxes]%>],
+          ["2013", <%= - @comptes_2013[:charge_personnel]%>, <%= - @comptes_2013[:charge_achats] %>, <%= - @comptes_2013[:charge_subventions] - @comptes_2013[:charge_contingents] %>, <%= - @comptes_2013[:charge_charges_financieres] %>, <%= - @comptes_2013[:charge_total_fonctionnement] + @comptes_2013[:charge_personnel] + @comptes_2013[:charge_achats] + @comptes_2013[:charge_subventions] + @comptes_2013[:charge_contingents] + @comptes_2013[:charge_charges_financieres] %>, <%= @comptes_2013[:recette_dotation_fonctionnement]%>, <%= @comptes_2013[:recette_taxe_habitation] + @comptes_2013[:recette_taxe_fonciere_non_bati] + @comptes_2013[:recette_taxe_fonciere_bati] + @comptes_2013[:recette_autres_impots_taxes]%>, <%= @comptes_2013[:recette_total_fonctionnement] - @comptes_2013[:recette_dotation_fonctionnement] - @comptes_2013[:recette_taxe_habitation] - @comptes_2013[:recette_taxe_fonciere_non_bati] - @comptes_2013[:recette_taxe_fonciere_bati] - @comptes_2013[:recette_autres_impots_taxes]%>],
+          ["2014", <%= - @comptes_2014[:charge_personnel]%>, <%= - @comptes_2014[:charge_achats] %>, <%= - @comptes_2014[:charge_subventions] - @comptes_2014[:charge_contingents] %>, <%= - @comptes_2014[:charge_charges_financieres] %>, <%= - @comptes_2014[:charge_total_fonctionnement] + @comptes_2014[:charge_personnel] + @comptes_2014[:charge_achats] + @comptes_2014[:charge_subventions] + @comptes_2014[:charge_contingents] + @comptes_2014[:charge_charges_financieres] %>, <%= @comptes_2014[:recette_dotation_fonctionnement]%>, <%= @comptes_2014[:recette_taxe_habitation] + @comptes_2014[:recette_taxe_fonciere_non_bati] + @comptes_2014[:recette_taxe_fonciere_bati] + @comptes_2014[:recette_autres_impots_taxes]%>, <%= @comptes_2014[:recette_total_fonctionnement] - @comptes_2014[:recette_dotation_fonctionnement] - @comptes_2014[:recette_taxe_habitation] - @comptes_2014[:recette_taxe_fonciere_non_bati] - @comptes_2014[:recette_taxe_fonciere_bati] - @comptes_2014[:recette_autres_impots_taxes]%>],
+          ["2015", <%= - @comptes_2015[:charge_personnel]%>, <%= - @comptes_2015[:charge_achats] %>, <%= - @comptes_2015[:charge_subventions] - @comptes_2015[:charge_contingents] %>, <%= - @comptes_2015[:charge_charges_financieres] %>, <%= - @comptes_2015[:charge_total_fonctionnement] + @comptes_2015[:charge_personnel] + @comptes_2015[:charge_achats] + @comptes_2015[:charge_subventions] + @comptes_2015[:charge_contingents] + @comptes_2015[:charge_charges_financieres] %>, <%= @comptes_2015[:recette_dotation_fonctionnement]%>, <%= @comptes_2015[:recette_taxe_habitation] + @comptes_2015[:recette_taxe_fonciere_non_bati] + @comptes_2015[:recette_taxe_fonciere_bati] + @comptes_2015[:recette_autres_impots_taxes]%>, <%= @comptes_2015[:recette_total_fonctionnement] - @comptes_2015[:recette_dotation_fonctionnement] - @comptes_2015[:recette_taxe_habitation] - @comptes_2015[:recette_taxe_fonciere_non_bati] - @comptes_2015[:recette_taxe_fonciere_bati] - @comptes_2015[:recette_autres_impots_taxes]%>],
+        ]);
+
+        var options = {
+          'width' : 750,
+          'height' : 350,
+          'chartArea' : {
+            'width': 400,
+            'height': 200
+          },
+          'legend' : {
+            'alignment': 'center'
+          },
+          'isStacked': true,
+        };
+
+        var fonctionnementchart = new google.charts.Bar(document.getElementById('fonctionnement_chart_div'));
+        fonctionnementchart.draw(data, google.charts.Bar.convertOptions(options));
+      }
     </script>
 <% end %>
 
@@ -125,10 +159,9 @@ function drawMaterial() {
   <div class="card">
     <div class="card-title">
       <h3>Historique - Impôts locaux</h3>
-    <!--Div that will hold the pie chart-->
-    <div id="chart_div"></div>
     </div>
     <div class="card-tab">
+      <div id="impots_chart_div"></div>
     </div>
   </div>
   <br>
@@ -136,9 +169,10 @@ function drawMaterial() {
   <br>
   <div class="card">
     <div class="card-title">
-      <h3>Historique - Comptes communaux</h3>
+      <h3>Historique - Budget de fonctionnement</h3>
     </div>
     <div class="card-tab">
+      <div id="fonctionnement_chart_div"></div>
     </div>
   </div>
   <br>
