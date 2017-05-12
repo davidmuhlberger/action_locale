@@ -13,3 +13,14 @@
 @import "layout/index";
 @import "components/index";
 @import "pages/index";
+
+body {
+  font-family: "Open Sans", "Helvetica", "sans-serif";
+  padding-bottom: 200px;
+  padding-left: 30px;
+  padding-right: 30px;
+  background: #e9edf0;
+}
+h1, h2, h3, td, th, tr {
+  font-family: "Montserrat", "sans-serif";
+}

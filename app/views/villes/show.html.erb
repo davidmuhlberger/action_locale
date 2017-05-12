@@ -2,9 +2,11 @@
   <!--Load the AJAX API-->
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript">
-      google.charts.load('current', {packages: ['corechart', 'bar']});
+      google.charts.load('current', {packages: ['corechart', 'bar'], 'language': 'fr'});
       google.charts.setOnLoadCallback(drawImpots);
       google.charts.setOnLoadCallback(drawFonctionnement);
+      google.charts.setOnLoadCallback(drawInvestissement);
+      google.charts.setOnLoadCallback(drawEndettement);
 
       function drawImpots() {
         var data = google.visualization.arrayToDataTable([
@@ -64,6 +66,66 @@
 
         var fonctionnementchart = new google.charts.Bar(document.getElementById('fonctionnement_chart_div'));
         fonctionnementchart.draw(data, google.charts.Bar.convertOptions(options));
+      }
+
+      function drawInvestissement() {
+        var data = google.visualization.arrayToDataTable([
+          ['', "Dépenses d'équipement", "Taxe FCTVA", "Suventions reçues"],
+          ["2008", <%= - @comptes_2008[:depense_equipement]%>, <%= @comptes_2008[:recette_fctva]%>, <%= @comptes_2008[:recette_subventions]%>],
+          ["2009", <%= - @comptes_2009[:depense_equipement]%>, <%= @comptes_2009[:recette_fctva]%>, <%= @comptes_2009[:recette_subventions]%>],
+          ["2010", <%= - @comptes_2010[:depense_equipement]%>, <%= @comptes_2010[:recette_fctva]%>, <%= @comptes_2010[:recette_subventions]%>],
+          ["2011", <%= - @comptes_2011[:depense_equipement]%>, <%= @comptes_2011[:recette_fctva]%>, <%= @comptes_2011[:recette_subventions]%>],
+          ["2012", <%= - @comptes_2012[:depense_equipement]%>, <%= @comptes_2012[:recette_fctva]%>, <%= @comptes_2012[:recette_subventions]%>],
+          ["2013", <%= - @comptes_2013[:depense_equipement]%>, <%= @comptes_2013[:recette_fctva]%>, <%= @comptes_2013[:recette_subventions]%>],
+          ["2014", <%= - @comptes_2014[:depense_equipement]%>, <%= @comptes_2014[:recette_fctva]%>, <%= @comptes_2014[:recette_subventions]%>],
+          ["2015", <%= - @comptes_2015[:depense_equipement]%>, <%= @comptes_2015[:recette_fctva]%>, <%= @comptes_2015[:recette_subventions]%>],
+        ]);
+
+        var options = {
+          'width' : 750,
+          'height' : 350,
+          'chartArea' : {
+            'width': 400,
+            'height': 200
+          },
+          'legend' : {
+            'alignment': 'center'
+          },
+          'isStacked': true,
+        };
+
+        var investissementchart = new google.charts.Bar(document.getElementById('investissement_chart_div'));
+        investissementchart.draw(data, google.charts.Bar.convertOptions(options));
+      }
+
+      function drawEndettement() {
+        var data = google.visualization.arrayToDataTable([
+          ['', "Endettement"],
+          ["2008", <%= @comptes_2008[:endettement_encours]%>],
+          ["2009", <%= @comptes_2009[:endettement_encours]%>],
+          ["2010", <%= @comptes_2010[:endettement_encours]%>],
+          ["2011", <%= @comptes_2011[:endettement_encours]%>],
+          ["2012", <%= @comptes_2012[:endettement_encours]%>],
+          ["2013", <%= @comptes_2013[:endettement_encours]%>],
+          ["2014", <%= @comptes_2014[:endettement_encours]%>],
+          ["2015", <%= @comptes_2015[:endettement_encours]%>],
+        ]);
+
+        var options = {
+          'width' : 750,
+          'height' : 350,
+          'chartArea' : {
+            'width': 400,
+            'height': 200
+          },
+          'legend' : {
+            'alignment': 'center'
+          },
+          'isStacked': true,
+        };
+
+        var endettementchart = new google.charts.Bar(document.getElementById('endettement_chart_div'));
+        endettementchart.draw(data, google.charts.Bar.convertOptions(options));
       }
     </script>
 <% end %>
@@ -151,6 +213,11 @@
           <td><i class="fa fa-circle green" aria-hidden="true"></i></td>
         </tr>
       </table>
+      <br>
+      <br>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam egestas tortor at nibh lobortis euismod. Pellentesque at purus eget justo feugiat condimentum. Proin rhoncus nunc sit amet dictum tempor. Vivamus in enim in orci maximus vulputate et sed dolor. Aenean quis lacus eros. Integer magna turpis, auctor quis tincidunt eu, porttitor a augue.
+      </p>
     </div>
   </div>
   <br>
@@ -159,6 +226,11 @@
   <div class="card">
     <div class="card-title">
       <h3>Historique - Impôts locaux</h3>
+      <br>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam egestas tortor at nibh lobortis euismod. Pellentesque at purus eget justo feugiat condimentum. Proin rhoncus nunc sit amet dictum tempor. Vivamus in enim in orci maximus vulputate et sed dolor. Aenean quis lacus eros. Integer magna turpis, auctor quis tincidunt eu, porttitor a augue.
+      </p>
+      <br>
     </div>
     <div class="card-tab">
       <div id="impots_chart_div"></div>
@@ -170,9 +242,46 @@
   <div class="card">
     <div class="card-title">
       <h3>Historique - Budget de fonctionnement</h3>
+      <br>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam egestas tortor at nibh lobortis euismod. Pellentesque at purus eget justo feugiat condimentum. Proin rhoncus nunc sit amet dictum tempor. Vivamus in enim in orci maximus vulputate et sed dolor. Aenean quis lacus eros. Integer magna turpis, auctor quis tincidunt eu, porttitor a augue.
+      </p>
+      <br>
     </div>
     <div class="card-tab">
       <div id="fonctionnement_chart_div"></div>
+    </div>
+  </div>
+  <br>
+  <br>
+  <br>
+  <div class="card">
+    <div class="card-title">
+      <h3>Historique - Budget d'investissement</h3>
+      <br>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam egestas tortor at nibh lobortis euismod. Pellentesque at purus eget justo feugiat condimentum. Proin rhoncus nunc sit amet dictum tempor. Vivamus in enim in orci maximus vulputate et sed dolor. Aenean quis lacus eros. Integer magna turpis, auctor quis tincidunt eu, porttitor a augue.
+      </p>
+      <br>
+    </div>
+    <div class="card-tab">
+      <div id="investissement_chart_div"></div>
+    </div>
+  </div>
+  <br>
+  <br>
+  <br>
+  <div class="card">
+    <div class="card-title">
+      <h3>Historique - Endettement de la commune</h3>
+      <br>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam egestas tortor at nibh lobortis euismod. Pellentesque at purus eget justo feugiat condimentum. Proin rhoncus nunc sit amet dictum tempor. Vivamus in enim in orci maximus vulputate et sed dolor. Aenean quis lacus eros. Integer magna turpis, auctor quis tincidunt eu, porttitor a augue.
+      </p>
+      <br>
+    </div>
+    <div class="card-tab">
+      <div id="endettement_chart_div"></div>
     </div>
   </div>
   <br>
