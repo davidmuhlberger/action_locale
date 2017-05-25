@@ -1,0 +1,117 @@
+<% content_for :head do %>
+  <!--Load the AJAX API-->
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {packages: ['corechart', 'bar'], 'language': 'fr'});
+      google.charts.setOnLoadCallback(drawImpots);
+
+      function drawImpots() {
+        var data = google.visualization.arrayToDataTable([
+          ['', 'Taxe foncière / habitant <%=escape_javascript @ville[:nom].downcase.capitalize %>', "Taxe d'habitation / habitant <%=escape_javascript @ville[:nom].downcase.capitalize %>", 'Taxe foncière / habitant moyenne', "Taxe d'habitation / habitant moyenne"],
+          ["2008", <%= @comptes_2008[:recette_taxe_fonciere_bati] / @comptes_2008[:population] %>, <%= @comptes_2008[:recette_taxe_habitation] / @comptes_2008[:population] %>, <%= @comptes_moy_2008[:recette_taxe_fonciere_bati] / @comptes_moy_2008[:population] %>, <%= @comptes_moy_2008[:recette_taxe_habitation] / @comptes_moy_2008[:population] %>],
+          ["2009", <%= @comptes_2009[:recette_taxe_fonciere_bati] / @comptes_2009[:population] %>, <%= @comptes_2009[:recette_taxe_habitation] / @comptes_2009[:population] %>, <%= @comptes_moy_2009[:recette_taxe_fonciere_bati] / @comptes_moy_2009[:population] %>, <%= @comptes_moy_2009[:recette_taxe_habitation] / @comptes_moy_2009[:population] %>],
+          ["2010", <%= @comptes_2010[:recette_taxe_fonciere_bati] / @comptes_2010[:population] %>, <%= @comptes_2010[:recette_taxe_habitation] / @comptes_2010[:population] %>, <%= @comptes_moy_2010[:recette_taxe_fonciere_bati] / @comptes_moy_2010[:population] %>, <%= @comptes_moy_2010[:recette_taxe_habitation] / @comptes_moy_2010[:population] %>],
+          ["2011", <%= @comptes_2011[:recette_taxe_fonciere_bati] / @comptes_2011[:population] %>, <%= @comptes_2011[:recette_taxe_habitation] / @comptes_2011[:population] %>, <%= @comptes_moy_2011[:recette_taxe_fonciere_bati] / @comptes_moy_2011[:population] %>, <%= @comptes_moy_2011[:recette_taxe_habitation] / @comptes_moy_2011[:population] %>],
+          ["2012", <%= @comptes_2012[:recette_taxe_fonciere_bati] / @comptes_2012[:population] %>, <%= @comptes_2012[:recette_taxe_habitation] / @comptes_2012[:population] %>, <%= @comptes_moy_2012[:recette_taxe_fonciere_bati] / @comptes_moy_2012[:population] %>, <%= @comptes_moy_2012[:recette_taxe_habitation] / @comptes_moy_2012[:population] %>],
+          ["2013", <%= @comptes_2013[:recette_taxe_fonciere_bati] / @comptes_2013[:population] %>, <%= @comptes_2013[:recette_taxe_habitation] / @comptes_2013[:population] %>, <%= @comptes_moy_2013[:recette_taxe_fonciere_bati] / @comptes_moy_2013[:population] %>, <%= @comptes_moy_2013[:recette_taxe_habitation] / @comptes_moy_2013[:population] %>],
+          ["2014", <%= @comptes_2014[:recette_taxe_fonciere_bati] / @comptes_2014[:population] %>, <%= @comptes_2014[:recette_taxe_habitation] / @comptes_2014[:population] %>, <%= @comptes_moy_2014[:recette_taxe_fonciere_bati] / @comptes_moy_2014[:population] %>, <%= @comptes_moy_2014[:recette_taxe_habitation] / @comptes_moy_2014[:population] %>],
+          ["2015", <%= @comptes_2015[:recette_taxe_fonciere_bati] / @comptes_2015[:population] %>, <%= @comptes_2015[:recette_taxe_habitation] / @comptes_2015[:population] %>, <%= @comptes_moy_2015[:recette_taxe_fonciere_bati] / @comptes_moy_2015[:population] %>, <%= @comptes_moy_2015[:recette_taxe_habitation] / @comptes_moy_2015[:population] %>]
+        ]);
+
+        var options = {
+          'width' : 750,
+          'height' : 350,
+          'chartArea' : {
+            'width': 400,
+            'height': 250
+          },
+          colors: ['#2196F3','#B0BEC5'],
+          'legend' : {
+            'alignment': 'center'
+          },
+          'isStacked': true,
+          vAxis: {
+            viewWindow: {
+              max: 1100,
+              min: 0
+            }
+          },
+          vAxes: {
+            1: {
+              gridlines: {
+                color: 'transparent'
+              },
+              textStyle: {
+                color: 'transparent'
+              }
+            },
+          },
+          series: {
+            2: {
+              targetAxisIndex: 1
+            },
+            3: {
+              targetAxisIndex: 1
+            },
+          },
+        };
+
+        var impotschart = new google.charts.Bar(document.getElementById('impots_chart_div'));
+        impotschart.draw(data, google.charts.Bar.convertOptions(options));
+      }
+    </script>
+<% end %>
+
+
+<div class="main-card-sm">
+  <div class="sticky-side">
+    <div>
+      <button type="button" class="btn btn-default sticky-btn active">Commune</button>
+    </div>
+    <div>
+      <button type="button" class="btn btn-default sticky-btn">Agglomération</button>
+    </div>
+    <div>
+      <button type="button" class="btn btn-default sticky-btn">Département</button>
+    </div>
+    <div>
+      <button type="button" class="btn btn-default sticky-btn">Région</button>
+    </div>
+  </div>
+  <div class="entity-title">
+    <h1>
+      <%= @ville[:nom].downcase.capitalize %>
+    </h1>
+  </div>
+  <ul class="nav nav-tabs">
+    <li role="presentation">
+      <%= link_to "Indicateurs", ville_indicateurs_path(nom: @ville.nom) %>
+    </li>
+    <li role="presentation" class="active">
+      <%= link_to "Fiscalité", ville_fiscalite_path(nom: @ville.nom) %>
+    </li>
+    <li role="presentation">
+      <%= link_to "Budget", ville_budget_path(nom: @ville.nom) %>
+    </li>
+    <li role="presentation">
+      <%= link_to "Endettement", ville_endettement_path(nom: @ville.nom) %>
+    </li>
+    <li role="presentation"><a href="#">Discussions</a></li>
+  </ul>
+  <div class="card">
+    <div class="card-title">
+      <h3>Historique - Impôts locaux</h3>
+      <br>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam egestas tortor at nibh lobortis euismod. Pellentesque at purus eget justo feugiat condimentum. Proin rhoncus nunc sit amet dictum tempor. Vivamus in enim in orci maximus vulputate et sed dolor. Aenean quis lacus eros. Integer magna turpis, auctor quis tincidunt eu, porttitor a augue.
+      </p>
+      <br>
+      <p>
+        Evolution des impôts locaux à <%= @ville[:nom].downcase.capitalize %> et pour le moyenne des villes françaises avec une population <%= @ville_moy[:nom].downcase %>
+      </p>
+    </div>
+    <div class="card-tab">
+      <div id="impots_chart_div"></div>
+    </div>
+  </div>
+</div>

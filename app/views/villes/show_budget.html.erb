@@ -1,0 +1,228 @@
+<% content_for :head do %>
+  <!--Load the AJAX API-->
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {packages: ['corechart', 'bar'], 'language': 'fr'});
+      google.charts.setOnLoadCallback(drawFctRecettes);
+      google.charts.setOnLoadCallback(drawFctCharges);
+      google.charts.setOnLoadCallback(drawInvestissement);
+      google.charts.setOnLoadCallback(drawFonctionnement);
+
+      function drawFctRecettes() {
+        var data = google.visualization.arrayToDataTable([
+          ['', "Dotation", "Impôts et taxes", "Autres recettes"],
+          ["2008", <%= @comptes_2008[:recette_dotation_fonctionnement]%>, <%= @comptes_2008[:recette_taxe_habitation] + @comptes_2008[:recette_taxe_fonciere_non_bati] + @comptes_2008[:recette_taxe_fonciere_bati] + @comptes_2008[:recette_autres_impots_taxes]%>, <%= @comptes_2008[:recette_total_fonctionnement] - @comptes_2008[:recette_dotation_fonctionnement] - @comptes_2008[:recette_taxe_habitation] - @comptes_2008[:recette_taxe_fonciere_non_bati] - @comptes_2008[:recette_taxe_fonciere_bati] - @comptes_2008[:recette_autres_impots_taxes]%>],
+          ["2009", <%= @comptes_2009[:recette_dotation_fonctionnement]%>, <%= @comptes_2009[:recette_taxe_habitation] + @comptes_2009[:recette_taxe_fonciere_non_bati] + @comptes_2009[:recette_taxe_fonciere_bati] + @comptes_2009[:recette_autres_impots_taxes]%>, <%= @comptes_2009[:recette_total_fonctionnement] - @comptes_2009[:recette_dotation_fonctionnement] - @comptes_2009[:recette_taxe_habitation] - @comptes_2009[:recette_taxe_fonciere_non_bati] - @comptes_2009[:recette_taxe_fonciere_bati] - @comptes_2009[:recette_autres_impots_taxes]%>],
+          ["2010", <%= @comptes_2010[:recette_dotation_fonctionnement]%>, <%= @comptes_2010[:recette_taxe_habitation] + @comptes_2010[:recette_taxe_fonciere_non_bati] + @comptes_2010[:recette_taxe_fonciere_bati] + @comptes_2010[:recette_autres_impots_taxes]%>, <%= @comptes_2010[:recette_total_fonctionnement] - @comptes_2010[:recette_dotation_fonctionnement] - @comptes_2010[:recette_taxe_habitation] - @comptes_2010[:recette_taxe_fonciere_non_bati] - @comptes_2010[:recette_taxe_fonciere_bati] - @comptes_2010[:recette_autres_impots_taxes]%>],
+          ["2011", <%= @comptes_2011[:recette_dotation_fonctionnement]%>, <%= @comptes_2011[:recette_taxe_habitation] + @comptes_2011[:recette_taxe_fonciere_non_bati] + @comptes_2011[:recette_taxe_fonciere_bati] + @comptes_2011[:recette_autres_impots_taxes]%>, <%= @comptes_2011[:recette_total_fonctionnement] - @comptes_2011[:recette_dotation_fonctionnement] - @comptes_2011[:recette_taxe_habitation] - @comptes_2011[:recette_taxe_fonciere_non_bati] - @comptes_2011[:recette_taxe_fonciere_bati] - @comptes_2011[:recette_autres_impots_taxes]%>],
+          ["2012", <%= @comptes_2012[:recette_dotation_fonctionnement]%>, <%= @comptes_2012[:recette_taxe_habitation] + @comptes_2012[:recette_taxe_fonciere_non_bati] + @comptes_2012[:recette_taxe_fonciere_bati] + @comptes_2012[:recette_autres_impots_taxes]%>, <%= @comptes_2012[:recette_total_fonctionnement] - @comptes_2012[:recette_dotation_fonctionnement] - @comptes_2012[:recette_taxe_habitation] - @comptes_2012[:recette_taxe_fonciere_non_bati] - @comptes_2012[:recette_taxe_fonciere_bati] - @comptes_2012[:recette_autres_impots_taxes]%>],
+          ["2013", <%= @comptes_2013[:recette_dotation_fonctionnement]%>, <%= @comptes_2013[:recette_taxe_habitation] + @comptes_2013[:recette_taxe_fonciere_non_bati] + @comptes_2013[:recette_taxe_fonciere_bati] + @comptes_2013[:recette_autres_impots_taxes]%>, <%= @comptes_2013[:recette_total_fonctionnement] - @comptes_2013[:recette_dotation_fonctionnement] - @comptes_2013[:recette_taxe_habitation] - @comptes_2013[:recette_taxe_fonciere_non_bati] - @comptes_2013[:recette_taxe_fonciere_bati] - @comptes_2013[:recette_autres_impots_taxes]%>],
+          ["2014", <%= @comptes_2014[:recette_dotation_fonctionnement]%>, <%= @comptes_2014[:recette_taxe_habitation] + @comptes_2014[:recette_taxe_fonciere_non_bati] + @comptes_2014[:recette_taxe_fonciere_bati] + @comptes_2014[:recette_autres_impots_taxes]%>, <%= @comptes_2014[:recette_total_fonctionnement] - @comptes_2014[:recette_dotation_fonctionnement] - @comptes_2014[:recette_taxe_habitation] - @comptes_2014[:recette_taxe_fonciere_non_bati] - @comptes_2014[:recette_taxe_fonciere_bati] - @comptes_2014[:recette_autres_impots_taxes]%>],
+          ["2015", <%= @comptes_2015[:recette_dotation_fonctionnement]%>, <%= @comptes_2015[:recette_taxe_habitation] + @comptes_2015[:recette_taxe_fonciere_non_bati] + @comptes_2015[:recette_taxe_fonciere_bati] + @comptes_2015[:recette_autres_impots_taxes]%>, <%= @comptes_2015[:recette_total_fonctionnement] - @comptes_2015[:recette_dotation_fonctionnement] - @comptes_2015[:recette_taxe_habitation] - @comptes_2015[:recette_taxe_fonciere_non_bati] - @comptes_2015[:recette_taxe_fonciere_bati] - @comptes_2015[:recette_autres_impots_taxes]%>],
+        ]);
+
+        var options = {
+          'width' : 750,
+          'height' : 350,
+          'chartArea' : {
+            'width': 400,
+            'height': 200
+          },
+          'legend' : {
+            'alignment': 'center'
+          },
+          colors: ['#2196F3','#B0BEC5'],
+          'isStacked': true,
+        };
+
+        var fonctionnementchart = new google.charts.Bar(document.getElementById('recettes_chart_div'));
+        fonctionnementchart.draw(data, google.charts.Bar.convertOptions(options));
+      }
+
+      function drawFctCharges() {
+        var data = google.visualization.arrayToDataTable([
+          ['', 'Charges de personnel', "Achats", "Suventions et contingents", "Intérêts", "Autres charges"],
+          ["2008", <%= @comptes_2008[:charge_personnel]%>, <%= @comptes_2008[:charge_achats] %>, <%= @comptes_2008[:charge_subventions] + @comptes_2008[:charge_contingents] %>, <%= @comptes_2008[:charge_charges_financieres] %>, <%= @comptes_2008[:charge_total_fonctionnement] - @comptes_2008[:charge_personnel] - @comptes_2008[:charge_achats] - @comptes_2008[:charge_subventions] - @comptes_2008[:charge_contingents] - @comptes_2008[:charge_charges_financieres] %>],
+          ["2009", <%= @comptes_2009[:charge_personnel]%>, <%= @comptes_2009[:charge_achats] %>, <%= @comptes_2009[:charge_subventions] + @comptes_2009[:charge_contingents] %>, <%= @comptes_2009[:charge_charges_financieres] %>, <%= @comptes_2009[:charge_total_fonctionnement] - @comptes_2009[:charge_personnel] - @comptes_2009[:charge_achats] - @comptes_2009[:charge_subventions] - @comptes_2009[:charge_contingents] - @comptes_2009[:charge_charges_financieres] %>],
+          ["2010", <%= @comptes_2010[:charge_personnel]%>, <%= @comptes_2010[:charge_achats] %>, <%= @comptes_2010[:charge_subventions] + @comptes_2010[:charge_contingents] %>, <%= @comptes_2010[:charge_charges_financieres] %>, <%= @comptes_2010[:charge_total_fonctionnement] - @comptes_2010[:charge_personnel] - @comptes_2010[:charge_achats] - @comptes_2010[:charge_subventions] - @comptes_2010[:charge_contingents] - @comptes_2010[:charge_charges_financieres] %>],
+          ["2011", <%= @comptes_2011[:charge_personnel]%>, <%= @comptes_2011[:charge_achats] %>, <%= @comptes_2011[:charge_subventions] + @comptes_2011[:charge_contingents] %>, <%= @comptes_2011[:charge_charges_financieres] %>, <%= @comptes_2011[:charge_total_fonctionnement] - @comptes_2011[:charge_personnel] - @comptes_2011[:charge_achats] - @comptes_2011[:charge_subventions] - @comptes_2011[:charge_contingents] - @comptes_2011[:charge_charges_financieres] %>],
+          ["2012", <%= @comptes_2012[:charge_personnel]%>, <%= @comptes_2012[:charge_achats] %>, <%= @comptes_2012[:charge_subventions] + @comptes_2012[:charge_contingents] %>, <%= @comptes_2012[:charge_charges_financieres] %>, <%= @comptes_2012[:charge_total_fonctionnement] - @comptes_2012[:charge_personnel] - @comptes_2012[:charge_achats] - @comptes_2012[:charge_subventions] - @comptes_2012[:charge_contingents] - @comptes_2012[:charge_charges_financieres] %>],
+          ["2013", <%= @comptes_2013[:charge_personnel]%>, <%= @comptes_2013[:charge_achats] %>, <%= @comptes_2013[:charge_subventions] + @comptes_2013[:charge_contingents] %>, <%= @comptes_2013[:charge_charges_financieres] %>, <%= @comptes_2013[:charge_total_fonctionnement] - @comptes_2013[:charge_personnel] - @comptes_2013[:charge_achats] - @comptes_2013[:charge_subventions] - @comptes_2013[:charge_contingents] - @comptes_2013[:charge_charges_financieres] %>],
+          ["2014", <%= @comptes_2014[:charge_personnel]%>, <%= @comptes_2014[:charge_achats] %>, <%= @comptes_2014[:charge_subventions] + @comptes_2014[:charge_contingents] %>, <%= @comptes_2014[:charge_charges_financieres] %>, <%= @comptes_2014[:charge_total_fonctionnement] - @comptes_2014[:charge_personnel] - @comptes_2014[:charge_achats] - @comptes_2014[:charge_subventions] - @comptes_2014[:charge_contingents] - @comptes_2014[:charge_charges_financieres] %>],
+          ["2015", <%= @comptes_2015[:charge_personnel]%>, <%= @comptes_2015[:charge_achats] %>, <%= @comptes_2015[:charge_subventions] + @comptes_2015[:charge_contingents] %>, <%= @comptes_2015[:charge_charges_financieres] %>, <%= @comptes_2015[:charge_total_fonctionnement] - @comptes_2015[:charge_personnel] - @comptes_2015[:charge_achats] - @comptes_2015[:charge_subventions] - @comptes_2015[:charge_contingents] - @comptes_2015[:charge_charges_financieres] %>],
+        ]);
+
+        var options = {
+          'width' : 750,
+          'height' : 350,
+          'chartArea' : {
+            'width': 400,
+            'height': 200
+          },
+          'legend' : {
+            'alignment': 'center'
+          },
+          colors: ['#2196F3','#B0BEC5'],
+          'isStacked': true,
+        };
+
+        var fonctionnementchart = new google.charts.Bar(document.getElementById('charges_chart_div'));
+        fonctionnementchart.draw(data, google.charts.Bar.convertOptions(options));
+      }
+
+      function drawFonctionnement() {
+        var data = google.visualization.arrayToDataTable([
+          ['', "Dépenses de fonctionnement / habitant", "Dépenses de fonctionnement / habitant moyenne"],
+          ["2008", <%= @comptes_2008[:charge_total_fonctionnement] / @comptes_2008[:population] %>, <%= @comptes_moy_2008[:charge_total_fonctionnement] / @comptes_moy_2008[:population] %>],
+          ["2009", <%= @comptes_2009[:charge_total_fonctionnement] / @comptes_2009[:population] %>, <%= @comptes_moy_2008[:charge_total_fonctionnement] / @comptes_moy_2008[:population] %>],
+          ["2010", <%= @comptes_2010[:charge_total_fonctionnement] / @comptes_2010[:population] %>, <%= @comptes_moy_2008[:charge_total_fonctionnement] / @comptes_moy_2008[:population] %>],
+          ["2011", <%= @comptes_2011[:charge_total_fonctionnement] / @comptes_2011[:population] %>, <%= @comptes_moy_2008[:charge_total_fonctionnement] / @comptes_moy_2008[:population] %>],
+          ["2012", <%= @comptes_2012[:charge_total_fonctionnement] / @comptes_2012[:population] %>, <%= @comptes_moy_2008[:charge_total_fonctionnement] / @comptes_moy_2008[:population] %>],
+          ["2013", <%= @comptes_2013[:charge_total_fonctionnement] / @comptes_2013[:population] %>, <%= @comptes_moy_2008[:charge_total_fonctionnement] / @comptes_moy_2008[:population] %>],
+          ["2014", <%= @comptes_2014[:charge_total_fonctionnement] / @comptes_2014[:population] %>, <%= @comptes_moy_2008[:charge_total_fonctionnement] / @comptes_moy_2008[:population] %>],
+          ["2015", <%= @comptes_2015[:charge_total_fonctionnement] / @comptes_2015[:population] %>, <%= @comptes_moy_2008[:charge_total_fonctionnement] / @comptes_moy_2008[:population] %>],
+        ]);
+
+
+        var options = {
+          'width' : 750,
+          'height' : 350,
+          'chartArea' : {
+            'width': 400,
+            'height': 200
+          },
+          colors: ['#2196F3','#B0BEC5'],
+          'legend' : {
+            'alignment': 'center'
+          },
+        };
+
+        var investissementchart = new google.charts.Bar(document.getElementById('fonctionnement_chart_div'));
+        investissementchart.draw(data, google.charts.Bar.convertOptions(options));
+      }
+
+      function drawInvestissement() {
+        var data = google.visualization.arrayToDataTable([
+          ['', "Dépenses d'investissement / habitant", "Dépenses d'investissement / habitant moyenne"],
+          ["2008", <%= @comptes_2008[:depense_equipement] / @comptes_2008[:population] %>, <%= @comptes_moy_2008[:depense_equipement] / @comptes_moy_2008[:population] %>],
+          ["2009", <%= @comptes_2009[:depense_equipement] / @comptes_2009[:population] %>, <%= @comptes_moy_2008[:depense_equipement] / @comptes_moy_2008[:population] %>],
+          ["2010", <%= @comptes_2010[:depense_equipement] / @comptes_2010[:population] %>, <%= @comptes_moy_2008[:depense_equipement] / @comptes_moy_2008[:population] %>],
+          ["2011", <%= @comptes_2011[:depense_equipement] / @comptes_2011[:population] %>, <%= @comptes_moy_2008[:depense_equipement] / @comptes_moy_2008[:population] %>],
+          ["2012", <%= @comptes_2012[:depense_equipement] / @comptes_2012[:population] %>, <%= @comptes_moy_2008[:depense_equipement] / @comptes_moy_2008[:population] %>],
+          ["2013", <%= @comptes_2013[:depense_equipement] / @comptes_2013[:population] %>, <%= @comptes_moy_2008[:depense_equipement] / @comptes_moy_2008[:population] %>],
+          ["2014", <%= @comptes_2014[:depense_equipement] / @comptes_2014[:population] %>, <%= @comptes_moy_2008[:depense_equipement] / @comptes_moy_2008[:population] %>],
+          ["2015", <%= @comptes_2015[:depense_equipement] / @comptes_2015[:population] %>, <%= @comptes_moy_2008[:depense_equipement] / @comptes_moy_2008[:population] %>],
+        ]);
+
+
+        var options = {
+          'width' : 750,
+          'height' : 350,
+          'chartArea' : {
+            'width': 400,
+            'height': 200
+          },
+          'legend' : {
+            'alignment': 'center'
+          },
+          colors: ['#2196F3','#B0BEC5'],
+        };
+
+        var investissementchart = new google.charts.Bar(document.getElementById('investissement_chart_div'));
+        investissementchart.draw(data, google.charts.Bar.convertOptions(options));
+      }
+    </script>
+<% end %>
+
+
+<div class="main-card-sm">
+  <div class="sticky-side">
+    <div>
+      <button type="button" class="btn btn-default sticky-btn active">Commune</button>
+    </div>
+    <div>
+      <button type="button" class="btn btn-default sticky-btn">Agglomération</button>
+    </div>
+    <div>
+      <button type="button" class="btn btn-default sticky-btn">Département</button>
+    </div>
+    <div>
+      <button type="button" class="btn btn-default sticky-btn">Région</button>
+    </div>
+  </div>
+  <div class="entity-title">
+    <h1>
+      <%= @ville[:nom].downcase.capitalize %>
+    </h1>
+  </div>
+  <ul class="nav nav-tabs">
+    <li role="presentation">
+      <%= link_to "Indicateurs", ville_indicateurs_path(nom: @ville.nom) %>
+    </li>
+    <li role="presentation"">
+      <%= link_to "Fiscalité", ville_fiscalite_path(nom: @ville.nom) %>
+    </li>
+    <li role="presentation" class="active" >
+      <%= link_to "Budget", ville_budget_path(nom: @ville.nom) %>
+    </li>
+    <li role="presentation"">
+      <%= link_to "Endettement", ville_endettement_path(nom: @ville.nom) %>
+    </li>
+    <li role="presentation"><a href="#">Discussions</a></li>
+  </ul>
+  <div class="card">
+    <div class="card-title">
+      <h3>Historique - Dépenses de fonctionnement</h3>
+      <br>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam egestas tortor at nibh lobortis euismod. Pellentesque at purus eget justo feugiat condimentum. Proin rhoncus nunc sit amet dictum tempor. Vivamus in enim in orci maximus vulputate et sed dolor. Aenean quis lacus eros. Integer magna turpis, auctor quis tincidunt eu, porttitor a augue.
+      </p>
+      <br>
+    </div>
+    <div class="card-tab">
+      <div id="fonctionnement_chart_div"></div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-title">
+      <h3>Historique - Dépenses d'investissement</h3>
+      <br>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam egestas tortor at nibh lobortis euismod. Pellentesque at purus eget justo feugiat condimentum. Proin rhoncus nunc sit amet dictum tempor. Vivamus in enim in orci maximus vulputate et sed dolor. Aenean quis lacus eros. Integer magna turpis, auctor quis tincidunt eu, porttitor a augue.
+      </p>
+      <br>
+    </div>
+    <div class="card-tab">
+      <div id="investissement_chart_div"></div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-title">
+      <h3>Historique - Budget de fonctionnement : recettes</h3>
+      <br>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam egestas tortor at nibh lobortis euismod. Pellentesque at purus eget justo feugiat condimentum. Proin rhoncus nunc sit amet dictum tempor. Vivamus in enim in orci maximus vulputate et sed dolor. Aenean quis lacus eros. Integer magna turpis, auctor quis tincidunt eu, porttitor a augue.
+      </p>
+      <br>
+    </div>
+    <div class="card-tab">
+      <div id="recettes_chart_div"></div>
+    </div>
+  </div>
+  <br>
+  <br>
+  <br>
+    <div class="card">
+    <div class="card-title">
+      <h3>Historique - Budget de fonctionnement : charges</h3>
+      <br>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam egestas tortor at nibh lobortis euismod. Pellentesque at purus eget justo feugiat condimentum. Proin rhoncus nunc sit amet dictum tempor. Vivamus in enim in orci maximus vulputate et sed dolor. Aenean quis lacus eros. Integer magna turpis, auctor quis tincidunt eu, porttitor a augue.
+      </p>
+      <br>
+    </div>
+    <div class="card-tab">
+      <div id="charges_chart_div"></div>
+    </div>
+  </div>
+</div>

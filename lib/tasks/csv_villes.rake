@@ -1,3 +1,5 @@
+#rake csv_villes:create_villes
+
 require 'csv'
 
 namespace :csv_villes do
