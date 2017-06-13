@@ -83,6 +83,7 @@
       <%= @ville[:nom].downcase.capitalize %>
     </h1>
   </div>
+  <br>
   <ul class="nav nav-tabs">
     <li role="presentation">
       <%= link_to "Indicateurs", ville_indicateurs_path(nom: @ville.nom) %>
@@ -98,9 +99,11 @@
     </li>
     <li role="presentation"><a href="#">Discussions</a></li>
   </ul>
+  <br>
   <div class="card">
     <div class="card-title">
-      <h3>Historique - Impôts locaux</h3>
+      <br>
+      <h4><strong>Historique - Impôts locaux</strong></h4>
       <br>
       <p>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam egestas tortor at nibh lobortis euismod. Pellentesque at purus eget justo feugiat condimentum. Proin rhoncus nunc sit amet dictum tempor. Vivamus in enim in orci maximus vulputate et sed dolor. Aenean quis lacus eros. Integer magna turpis, auctor quis tincidunt eu, porttitor a augue.

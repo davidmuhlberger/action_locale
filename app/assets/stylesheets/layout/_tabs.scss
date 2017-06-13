@@ -3,3 +3,12 @@
   padding-left: 10px;
   background: white;
 }
+
+.nav-tabs li a {
+  color: #F48024;
+}
+
+.nav-tabs li.active a {
+  font-weight: bold;
+  fonct-color: black;
+}
