@@ -135,100 +135,106 @@
 <% end %>
 
 
-<div class="main-card-sm">
-  <div class="sticky-side">
-    <div>
-      <button type="button" class="btn btn-default sticky-btn active">Commune</button>
+<div class="container">
+  <div class="row">
+    <div class="col-md-2 col-sm-12">
+      <div class="sticky-side">
+        <div>
+          <button type="button" class="btn btn-default sticky-btn active">Commune</button>
+        </div>
+        <div>
+          <button type="button" class="btn btn-default sticky-btn">Agglomération</button>
+        </div>
+        <div>
+          <button type="button" class="btn btn-default sticky-btn">Département</button>
+        </div>
+        <div>
+          <button type="button" class="btn btn-default sticky-btn">Région</button>
+        </div>
+      </div>
     </div>
-    <div>
-      <button type="button" class="btn btn-default sticky-btn">Agglomération</button>
-    </div>
-    <div>
-      <button type="button" class="btn btn-default sticky-btn">Département</button>
-    </div>
-    <div>
-      <button type="button" class="btn btn-default sticky-btn">Région</button>
-    </div>
-  </div>
-  <div class="entity-title">
-    <h1>
-      <%= @ville[:nom].downcase.capitalize %>
-    </h1>
-  </div>
-  <br>
-  <ul class="nav nav-tabs">
-    <li role="presentation">
-      <%= link_to "Indicateurs", ville_indicateurs_path(nom: @ville.nom) %>
-    </li>
-    <li role="presentation"">
-      <%= link_to "Fiscalité", ville_fiscalite_path(nom: @ville.nom) %>
-    </li>
-    <li role="presentation" class="active" >
-      <%= link_to "Budget", ville_budget_path(nom: @ville.nom) %>
-    </li>
-    <li role="presentation"">
-      <%= link_to "Endettement", ville_endettement_path(nom: @ville.nom) %>
-    </li>
-    <li role="presentation"><a href="#">Discussions</a></li>
-  </ul>
-  <br>
-  <div class="card">
-    <div class="card-title">
+    <div class="col-md-10 col-sm-12">
+      <div class="entity-title">
+        <h1>
+          <%= @ville[:nom].downcase.capitalize %>
+        </h1>
+      </div>
       <br>
-      <h4><strong>Historique - Dépenses de fonctionnement</strong></h4>
+      <ul class="nav nav-tabs">
+        <li role="presentation">
+          <%= link_to "Indicateurs", ville_indicateurs_path(nom: @ville.nom) %>
+        </li>
+        <li role="presentation"">
+          <%= link_to "Fiscalité", ville_fiscalite_path(nom: @ville.nom) %>
+        </li>
+        <li role="presentation" class="active" >
+          <%= link_to "Budget", ville_budget_path(nom: @ville.nom) %>
+        </li>
+        <li role="presentation"">
+          <%= link_to "Endettement", ville_endettement_path(nom: @ville.nom) %>
+        </li>
+        <li role="presentation"><a href="#">Discussions</a></li>
+      </ul>
       <br>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam egestas tortor at nibh lobortis euismod. Pellentesque at purus eget justo feugiat condimentum. Proin rhoncus nunc sit amet dictum tempor. Vivamus in enim in orci maximus vulputate et sed dolor. Aenean quis lacus eros. Integer magna turpis, auctor quis tincidunt eu, porttitor a augue.
-      </p>
+      <div class="card">
+        <div class="card-title">
+          <br>
+          <h4><strong>Historique - Dépenses de fonctionnement</strong></h4>
+          <br>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam egestas tortor at nibh lobortis euismod. Pellentesque at purus eget justo feugiat condimentum. Proin rhoncus nunc sit amet dictum tempor. Vivamus in enim in orci maximus vulputate et sed dolor. Aenean quis lacus eros. Integer magna turpis, auctor quis tincidunt eu, porttitor a augue.
+          </p>
+          <br>
+        </div>
+        <div class="card-tab">
+          <div id="fonctionnement_chart_div"></div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-title">
+          <br>
+          <h4><strong>Historique - Dépenses d'investissement</strong></h4>
+          <br>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam egestas tortor at nibh lobortis euismod. Pellentesque at purus eget justo feugiat condimentum. Proin rhoncus nunc sit amet dictum tempor. Vivamus in enim in orci maximus vulputate et sed dolor. Aenean quis lacus eros. Integer magna turpis, auctor quis tincidunt eu, porttitor a augue.
+          </p>
+          <br>
+        </div>
+        <div class="card-tab">
+          <div id="investissement_chart_div"></div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-title">
+          <br>
+          <h4><strong>Historique - Budget de fonctionnement : recettes</strong></h4>
+          <br>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam egestas tortor at nibh lobortis euismod. Pellentesque at purus eget justo feugiat condimentum. Proin rhoncus nunc sit amet dictum tempor. Vivamus in enim in orci maximus vulputate et sed dolor. Aenean quis lacus eros. Integer magna turpis, auctor quis tincidunt eu, porttitor a augue.
+          </p>
+          <br>
+        </div>
+        <div class="card-tab">
+          <div id="recettes_chart_div"></div>
+        </div>
+      </div>
       <br>
-    </div>
-    <div class="card-tab">
-      <div id="fonctionnement_chart_div"></div>
-    </div>
-  </div>
-  <div class="card">
-    <div class="card-title">
       <br>
-      <h4><strong>Historique - Dépenses d'investissement</strong></h4>
       <br>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam egestas tortor at nibh lobortis euismod. Pellentesque at purus eget justo feugiat condimentum. Proin rhoncus nunc sit amet dictum tempor. Vivamus in enim in orci maximus vulputate et sed dolor. Aenean quis lacus eros. Integer magna turpis, auctor quis tincidunt eu, porttitor a augue.
-      </p>
-      <br>
-    </div>
-    <div class="card-tab">
-      <div id="investissement_chart_div"></div>
-    </div>
-  </div>
-  <div class="card">
-    <div class="card-title">
-      <br>
-      <h4><strong>Historique - Budget de fonctionnement : recettes</strong></h4>
-      <br>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam egestas tortor at nibh lobortis euismod. Pellentesque at purus eget justo feugiat condimentum. Proin rhoncus nunc sit amet dictum tempor. Vivamus in enim in orci maximus vulputate et sed dolor. Aenean quis lacus eros. Integer magna turpis, auctor quis tincidunt eu, porttitor a augue.
-      </p>
-      <br>
-    </div>
-    <div class="card-tab">
-      <div id="recettes_chart_div"></div>
-    </div>
-  </div>
-  <br>
-  <br>
-  <br>
-    <div class="card">
-    <div class="card-title">
-      <br>
-      <h4><strong>Historique - Budget de fonctionnement : charges</strong></h4>
-      <br>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam egestas tortor at nibh lobortis euismod. Pellentesque at purus eget justo feugiat condimentum. Proin rhoncus nunc sit amet dictum tempor. Vivamus in enim in orci maximus vulputate et sed dolor. Aenean quis lacus eros. Integer magna turpis, auctor quis tincidunt eu, porttitor a augue.
-      </p>
-      <br>
-    </div>
-    <div class="card-tab">
-      <div id="charges_chart_div"></div>
+        <div class="card">
+        <div class="card-title">
+          <br>
+          <h4><strong>Historique - Budget de fonctionnement : charges</strong></h4>
+          <br>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam egestas tortor at nibh lobortis euismod. Pellentesque at purus eget justo feugiat condimentum. Proin rhoncus nunc sit amet dictum tempor. Vivamus in enim in orci maximus vulputate et sed dolor. Aenean quis lacus eros. Integer magna turpis, auctor quis tincidunt eu, porttitor a augue.
+          </p>
+          <br>
+        </div>
+        <div class="card-tab">
+          <div id="charges_chart_div"></div>
+        </div>
+      </div>
     </div>
   </div>
 </div>

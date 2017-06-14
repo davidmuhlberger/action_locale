@@ -38,67 +38,72 @@
 <% end %>
 
 
-<div class="main-card-sm">
-  <div class="sticky-side">
-    <div>
-      <button type="button" class="btn btn-default sticky-btn active">Commune</button>
+<div class="container">
+  <div class="row">
+    <div class="col-md-2 col-sm-12">
+      <div class="sticky-side">
+        <div>
+          <button type="button" class="btn btn-default sticky-btn active">Commune</button>
+        </div>
+        <div>
+          <button type="button" class="btn btn-default sticky-btn">Agglomération</button>
+        </div>
+        <div>
+          <button type="button" class="btn btn-default sticky-btn">Département</button>
+        </div>
+        <div>
+          <button type="button" class="btn btn-default sticky-btn">Région</button>
+        </div>
+      </div>
     </div>
-    <div>
-      <button type="button" class="btn btn-default sticky-btn">Agglomération</button>
-    </div>
-    <div>
-      <button type="button" class="btn btn-default sticky-btn">Département</button>
-    </div>
-    <div>
-      <button type="button" class="btn btn-default sticky-btn">Région</button>
+    <div class="col-md-10 col-sm-12">
+      <div class="entity-title">
+        <h1>
+          <%= @ville[:nom].downcase.capitalize %>
+        </h1>
+      </div>
+      <br>
+      <ul class="nav nav-tabs">
+        <li role="presentation">
+          <%= link_to "Indicateurs", ville_indicateurs_path(nom: @ville.nom) %>
+        </li>
+        <li role="presentation"">
+          <%= link_to "Fiscalité", ville_fiscalite_path(nom: @ville.nom) %>
+        </li>
+        <li role="presentation">
+          <%= link_to "Budget", ville_budget_path(nom: @ville.nom) %>
+        </li>
+        <li role="presentation" class="active">
+          <%= link_to "Endettement", ville_endettement_path(nom: @ville.nom) %>
+        </li>
+        <li role="presentation"><a href="#">Discussions</a></li>
+      </ul>
+      <br>
+      <div class="card">
+        <div class="card-title">
+          <br>
+          <h4><strong>Historique - Endettement de la commune</strong></h4>
+          <br>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam egestas tortor at nibh lobortis euismod. Pellentesque at purus eget justo feugiat condimentum. Proin rhoncus nunc sit amet dictum tempor. Vivamus in enim in orci maximus vulputate et sed dolor. Aenean quis lacus eros. Integer magna turpis, auctor quis tincidunt eu, porttitor a augue.
+          </p>
+          <br>
+          <p>
+            A la fin 2015, l'endettement total de la ville de <%= @ville[:nom].downcase.capitalize %> est de <%= @comptes_2015[:endettement_encours] / 1000000 %> M€ soit <%= @comptes_2015[:endettement_encours] / @comptes_2015[:population]%> € par habitant.
+          </p>
+          <p>
+            Evolution de l'endettement à <%= @ville[:nom].downcase.capitalize %> et pour le moyenne des villes françaises avec une population <%= @ville_moy[:nom].downcase %>
+          </p>
+        </div>
+        <div class="card-tab">
+          <div id="endettement_chart_div"></div>
+        </div>
+      </div>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
     </div>
   </div>
-  <div class="entity-title">
-    <h1>
-      <%= @ville[:nom].downcase.capitalize %>
-    </h1>
-  </div>
-  <br>
-  <ul class="nav nav-tabs">
-    <li role="presentation">
-      <%= link_to "Indicateurs", ville_indicateurs_path(nom: @ville.nom) %>
-    </li>
-    <li role="presentation"">
-      <%= link_to "Fiscalité", ville_fiscalite_path(nom: @ville.nom) %>
-    </li>
-    <li role="presentation">
-      <%= link_to "Budget", ville_budget_path(nom: @ville.nom) %>
-    </li>
-    <li role="presentation" class="active">
-      <%= link_to "Endettement", ville_endettement_path(nom: @ville.nom) %>
-    </li>
-    <li role="presentation"><a href="#">Discussions</a></li>
-  </ul>
-  <br>
-  <div class="card">
-    <div class="card-title">
-      <br>
-      <h4><strong>Historique - Endettement de la commune</strong></h4>
-      <br>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam egestas tortor at nibh lobortis euismod. Pellentesque at purus eget justo feugiat condimentum. Proin rhoncus nunc sit amet dictum tempor. Vivamus in enim in orci maximus vulputate et sed dolor. Aenean quis lacus eros. Integer magna turpis, auctor quis tincidunt eu, porttitor a augue.
-      </p>
-      <br>
-      <p>
-        A la fin 2015, l'endettement total de la ville de <%= @ville[:nom].downcase.capitalize %> est de <%= @comptes_2015[:endettement_encours] / 1000000 %> M€ soit <%= @comptes_2015[:endettement_encours] / @comptes_2015[:population]%> € par habitant.
-      </p>
-      <p>
-        Evolution de l'endettement à <%= @ville[:nom].downcase.capitalize %> et pour le moyenne des villes françaises avec une population <%= @ville_moy[:nom].downcase %>
-      </p>
-    </div>
-    <div class="card-tab">
-      <div id="endettement_chart_div"></div>
-    </div>
-  </div>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-
 </div>

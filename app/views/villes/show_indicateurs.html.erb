@@ -1,117 +1,123 @@
-<div class="main-card-sm">
-  <div class="sticky-side">
-    <div>
-      <button type="button" class="btn btn-default sticky-btn active">Commune</button>
+<div class="container">
+  <div class="row">
+    <div class="col-md-2 col-sm-12">
+      <div class="sticky-side">
+        <div>
+          <button type="button" class="btn btn-default sticky-btn active">Commune</button>
+        </div>
+        <div>
+          <button type="button" class="btn btn-default sticky-btn">Agglomération</button>
+        </div>
+        <div>
+          <button type="button" class="btn btn-default sticky-btn">Département</button>
+        </div>
+        <div>
+          <button type="button" class="btn btn-default sticky-btn">Région</button>
+        </div>
+      </div>
     </div>
-    <div>
-      <button type="button" class="btn btn-default sticky-btn">Agglomération</button>
-    </div>
-    <div>
-      <button type="button" class="btn btn-default sticky-btn">Département</button>
-    </div>
-    <div>
-      <button type="button" class="btn btn-default sticky-btn">Région</button>
-    </div>
-  </div>
-  <div class="entity-title">
-    <h1>
-      <%= @ville[:nom].downcase.capitalize %>
-    </h1>
-  </div>
-  <br>
-  <ul class="nav nav-tabs">
-    <li role="presentation" class= "active" >
-      <%= link_to "Indicateurs", ville_indicateurs_path(nom: @ville.nom) %>
-    </li>
-    <li role="presentation"">
-      <%= link_to "Fiscalité", ville_fiscalite_path(nom: @ville.nom) %>
-    </li>
-    <li role="presentation">
-      <%= link_to "Budget", ville_budget_path(nom: @ville.nom) %>
-    </li>
-    <li role="presentation">
-      <%= link_to "Endettement", ville_endettement_path(nom: @ville.nom) %>
-    </li>
-    <li role="presentation"><a href="#">Discussions</a></li>
-  </ul>
-  <br>
-  <div class="card">
-    <div class="card-title">
+    <div class="col-md-10 col-sm-12">
+      <div class="entity-title">
+        <h1>
+          <%= @ville[:nom].downcase.capitalize %>
+        </h1>
+      </div>
       <br>
-      <h4><strong>Principaux indicateurs</strong></h4>
-    </div>
-    <div class="card-tab">
-      <table class="table table-hover">
-        <thead>
-          <tr>
-            <th></th>
-            <th class="text-center">
-              <%= @ville[:nom].downcase.capitalize %>
-              <br>(2015)
-            </th>
-            <th class="text-center">
-              Moyenne France (*)
-              <br>(2015)
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <th scope="row">Taxe d'habitation / habitant (€)</th>
-            <td class="text-center">
-              <%= @comptes_2015[:recette_taxe_habitation] / @comptes_2015[:population] %>
-            </td>
-            <td class="text-center">
-              <%= @comptes_moy_2015[:recette_taxe_habitation] / @comptes_moy_2015[:population] %>
-            </td>
-          </tr>
-          <tr>
-            <th scope="row">Taxe foncière / habitant (€)</th>
-            <td class="text-center">
-              <%= @comptes_2015[:recette_taxe_fonciere_bati] / @comptes_2015[:population] %>
-            </td>
-            <td class="text-center">
-              <%= @comptes_moy_2015[:recette_taxe_fonciere_bati] / @comptes_moy_2015[:population] %>
-            </td>
-          </tr>
-          <tr>
-            <th scope="row">Dépenses de fonctionnement / habitant (€)</th>
-            <td class="text-center">
-              <%= @comptes_2015[:recette_total_fonctionnement] / @comptes_2015[:population]%>
-            </td>
-            <td class="text-center">
-              <%= @comptes_moy_2015[:recette_total_fonctionnement] / @comptes_moy_2015[:population]%>
-            </td>
-          </tr>
-          <tr>
-            <th scope="row">Endettement / habitant (€)</th>
-            <td class="text-center">
-              <%= @comptes_2015[:endettement_encours] / @comptes_2015[:population]%>
-            </td>
-            <td class="text-center">
-              <%= @comptes_moy_2015[:endettement_encours] / @comptes_moy_2015[:population]%>
-            </td>
-          </tr>
-          <tr>
-            <th scope="row">Taux de chômage</th>
-            <td class="text-center">Dummy</td>
-            <td class="text-center">Dummy</td>
-          </tr>
-          <tr>
-            <th scope="row">Part de logements sociaux</th>
-            <td class="text-center">Dummy</td>
-            <td class="text-center">Dummy</td>
-          </tr>
-        </tbody>
-      </table>
-      <p>
-        (*) Moyenne des villes <%= @ville_moy[:nom].downcase %>
-      <p>
+      <ul class="nav nav-tabs">
+        <li role="presentation" class= "active" >
+          <%= link_to "Indicateurs", ville_indicateurs_path(nom: @ville.nom) %>
+        </li>
+        <li role="presentation"">
+          <%= link_to "Fiscalité", ville_fiscalite_path(nom: @ville.nom) %>
+        </li>
+        <li role="presentation">
+          <%= link_to "Budget", ville_budget_path(nom: @ville.nom) %>
+        </li>
+        <li role="presentation">
+          <%= link_to "Endettement", ville_endettement_path(nom: @ville.nom) %>
+        </li>
+        <li role="presentation"><a href="#">Discussions</a></li>
+      </ul>
       <br>
-      <br>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam egestas tortor at nibh lobortis euismod. Pellentesque at purus eget justo feugiat condimentum. Proin rhoncus nunc sit amet dictum tempor. Vivamus in enim in orci maximus vulputate et sed dolor. Aenean quis lacus eros. Integer magna turpis, auctor quis tincidunt eu, porttitor a augue.
-      </p>
+      <div class="card">
+        <div class="card-title">
+          <br>
+          <h4><strong>Principaux indicateurs</strong></h4>
+        </div>
+        <div class="card-tab">
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th></th>
+                <th class="text-center">
+                  <%= @ville[:nom].downcase.capitalize %>
+                  <br>(2015)
+                </th>
+                <th class="text-center">
+                  Moyenne France (*)
+                  <br>(2015)
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">Taxe d'habitation / habitant (€)</th>
+                <td class="text-center">
+                  <%= @comptes_2015[:recette_taxe_habitation] / @comptes_2015[:population] %>
+                </td>
+                <td class="text-center">
+                  <%= @comptes_moy_2015[:recette_taxe_habitation] / @comptes_moy_2015[:population] %>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">Taxe foncière / habitant (€)</th>
+                <td class="text-center">
+                  <%= @comptes_2015[:recette_taxe_fonciere_bati] / @comptes_2015[:population] %>
+                </td>
+                <td class="text-center">
+                  <%= @comptes_moy_2015[:recette_taxe_fonciere_bati] / @comptes_moy_2015[:population] %>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">Dépenses de fonctionnement / habitant (€)</th>
+                <td class="text-center">
+                  <%= @comptes_2015[:recette_total_fonctionnement] / @comptes_2015[:population]%>
+                </td>
+                <td class="text-center">
+                  <%= @comptes_moy_2015[:recette_total_fonctionnement] / @comptes_moy_2015[:population]%>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">Endettement / habitant (€)</th>
+                <td class="text-center">
+                  <%= @comptes_2015[:endettement_encours] / @comptes_2015[:population]%>
+                </td>
+                <td class="text-center">
+                  <%= @comptes_moy_2015[:endettement_encours] / @comptes_moy_2015[:population]%>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">Taux de chômage</th>
+                <td class="text-center">Dummy</td>
+                <td class="text-center">Dummy</td>
+              </tr>
+              <tr>
+                <th scope="row">Part de logements sociaux</th>
+                <td class="text-center">Dummy</td>
+                <td class="text-center">Dummy</td>
+              </tr>
+            </tbody>
+          </table>
+          <p class="footnote">
+            (*) Moyenne des villes <%= @ville_moy[:nom].downcase %>
+          <p>
+          <br>
+          <br>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam egestas tortor at nibh lobortis euismod. Pellentesque at purus eget justo feugiat condimentum. Proin rhoncus nunc sit amet dictum tempor. Vivamus in enim in orci maximus vulputate et sed dolor. Aenean quis lacus eros. Integer magna turpis, auctor quis tincidunt eu, porttitor a augue.
+          </p>
+        </div>
+      </div>
     </div>
   </div>
 </div>
