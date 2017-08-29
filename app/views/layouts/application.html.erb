@@ -27,7 +27,14 @@
           </button>
         </form>
         <%= link_to "Projet", pages_projet_path, class: "navbar-link navbar-item" %>
-        <a href="" class="navbar-link navbar-item">Blog</a>
+          <div class="dropdown">
+            <p class="navbar-link navbar-item dropdown-toggle" data-toggle="dropdown">Ressources</p>
+            <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
+              <li><a href="#">Profile</a></li>
+              <li><a href="#">Dashboard</a></li>
+              <li><a href="#">Log Out</a></li>
+            </ul>
+          </div>
       </div>
     </div>
     <%= yield %>
