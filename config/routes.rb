@@ -5,5 +5,6 @@ Rails.application.routes.draw do
   get "/villes/:nom/budget" => "villes#show_budget", as: 'ville_budget'
   get "/villes/:nom/fiscalite" => "villes#show_fiscalite", as: 'ville_fiscalite'
   get "/villes/:nom/endettement" => "villes#show_endettement", as: 'ville_endettement'
+  get "/projet" => "pages#projet", as: 'pages_projet'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
