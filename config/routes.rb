@@ -7,5 +7,8 @@ Rails.application.routes.draw do
   get "/villes/:nom/endettement" => "villes#show_endettement", as: 'ville_endettement'
   get "/projet" => "pages#projet", as: 'pages_projet'
   get "/lexique" => "pages#lexique", as: 'pages_lexique'
+  get "/home" => "pages#home", as: 'pages_home'
+  get "/competences" => "pages#competences", as: 'pages_competences'
+  get "/structure" => "pages#structure", as: 'pages_structure'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

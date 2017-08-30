@@ -14,9 +14,7 @@
   </head>
   <body>
     <div class="navbar">
-      <a href="" class="logo">
-        <img src="http://placehold.it/40x40" />
-      </a>
+      <%=link_to(image_tag("http://placehold.it/40x40"), pages_home_path, class: "logo") %>
       <div class="navbar-right hidden-xs hidden-sm">
         <form class="navbar-form navbar-left" role="search">
           <div class="form-group">
@@ -30,9 +28,15 @@
           <div class="dropdown">
             <p class="navbar-link navbar-item dropdown-toggle" data-toggle="dropdown">Ressources</p>
             <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
-              <li><a href="#">Profile</a></li>
-              <li><a href="#">Dashboard</a></li>
-              <li><a href="#">Log Out</a></li>
+              <li>
+                <%= link_to "Compétences des collectivités", pages_competences_path %>
+              </li>
+              <li>
+                <%= link_to "Structure des budgets", pages_structure_path %>
+              </li>
+              <li>
+                <%= link_to "Analyse des budgets", pages_projet_path %>
+              </li>
             </ul>
           </div>
       </div>
