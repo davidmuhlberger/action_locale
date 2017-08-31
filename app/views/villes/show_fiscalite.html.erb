@@ -112,11 +112,35 @@
           <h4><strong>Historique - Impôts locaux</strong></h4>
           <br>
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam egestas tortor at nibh lobortis euismod. Pellentesque at purus eget justo feugiat condimentum. Proin rhoncus nunc sit amet dictum tempor. Vivamus in enim in orci maximus vulputate et sed dolor. Aenean quis lacus eros. Integer magna turpis, auctor quis tincidunt eu, porttitor a augue.
-          </p>
-          <br>
-          <p>
-            Evolution des impôts locaux à <%= @ville[:nom].downcase.capitalize %> et pour le moyenne des villes françaises avec une population <%= @ville_moy[:nom].downcase %>
+            Ce graphique présente l'évolution des deux principaux impôts locaux,
+            c'est-à-dire la taxe d'habitation et la taxe foncière, entre les années 2008 et 2015,
+            et la compare, sur la même période, à l'évolution de ces impôts en moyenne pour
+            l'ensemble des communes de taille comparable en France.
+            <br>
+            <br>
+            A titre d'exemple, la taxe foncière par habitant pour l'année 2015
+            correspond au montant de taxe foncière qui est payé en moyenne par un habitant
+            de la commune. La taxe foncière est payé par chaque foyer. Le montant moyen par
+            foyer en 2015 était de XXX.
+            <br>
+            <br>
+            Pour plus d'informations sur la nature de chacune de ses taxes,
+            vous pouvez consulter la section impôts et taxes du <%= link_to "lexique", pages_lexique_path %>.
+            <br>
+            <br>
+            La taxe foncière par habitant a augmenté de <%= number_to_percentage(100*(@comptes_2015[:recette_taxe_fonciere_bati]/@comptes_2015[:population])/(@comptes_2008[:recette_taxe_fonciere_bati]/@comptes_2008[:population]) - 100, precision: 0) %>
+            entre 2008 et 2015 et atteint <%= @comptes_2015[:recette_taxe_fonciere_bati]/@comptes_2015[:population] %> € a la fin de l'année 2015.
+            <br>
+            Pendant la même période, les communes françaises de même taille ont augmenté le montant de la taxe foncière par habitant de <%= number_to_percentage(100*(@comptes_moy_2015[:recette_taxe_fonciere_bati]/@comptes_moy_2015[:population])/(@comptes_moy_2008[:recette_taxe_fonciere_bati]/@comptes_moy_2008[:population]) - 100, precision: 0) %>,
+            à <%= @comptes_moy_2015[:recette_taxe_fonciere_bati]/@comptes_moy_2015[:population] %> €.
+            <br>
+            <br>
+            La taxe d'habitation  a augmenté de <%= number_to_percentage(100*(@comptes_2015[:recette_taxe_habitation]/@comptes_2015[:population])/(@comptes_2008[:recette_taxe_habitation]/@comptes_2008[:population]) - 100, precision: 0) %>
+            entre 2008 et 2015 et atteint <%= @comptes_2015[:recette_taxe_habitation]/@comptes_2015[:population] %> € a la fin de l'année 2015.
+            <br>
+            Pendant la même période, les communes françaises de même taille ont augmenté le montant de la taxe d'habitation de <%= number_to_percentage(100*(@comptes_moy_2015[:recette_taxe_habitation]/@comptes_moy_2015[:population])/(@comptes_moy_2008[:recette_taxe_habitation]/@comptes_moy_2008[:population]) - 100, precision: 0) %>,
+            à <%= @comptes_moy_2015[:recette_taxe_habitation]/@comptes_moy_2015[:population] %> € par habitant.
+            <br>
           </p>
         </div>
         <div class="card-tab">

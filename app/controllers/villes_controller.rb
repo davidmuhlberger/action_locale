@@ -2,6 +2,11 @@ class VillesController < ApplicationController
 before_action :find_ville
 
   def show_indicateurs
+    if @comptes_2015[:charge_total_fonctionnement]/@comptes_2015[:population] >= @comptes_moy_2015[:charge_total_fonctionnement]/@comptes_moy_2015[:population]
+      @charge_fct_comp = "supérieur"
+    else
+      @charge_fct_comp = "inférieur"
+    end
   end
 
   def show_fiscalite

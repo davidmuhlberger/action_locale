@@ -44,6 +44,11 @@
       <div class="card">
         <div class="card-title">
           <br>
+          <p>
+            Pour comprendre au mieux les indicateurs de votre commune, vous pouvez consulter notre
+            page dédiée à l'<a href="#">analyse des budgets des collectivités locales</a>.
+          </p>
+          <br>
           <h4><strong>Principaux indicateurs</strong></h4>
         </div>
         <div class="card-tab">
@@ -83,10 +88,10 @@
               <tr>
                 <th scope="row">Dépenses de fonctionnement / habitant (€)</th>
                 <td class="text-center">
-                  <%= @comptes_2015[:recette_total_fonctionnement] / @comptes_2015[:population]%>
+                  <%= @comptes_2015[:charge_total_fonctionnement] / @comptes_2015[:population]%>
                 </td>
                 <td class="text-center">
-                  <%= @comptes_moy_2015[:recette_total_fonctionnement] / @comptes_moy_2015[:population]%>
+                  <%= @comptes_moy_2015[:charge_total_fonctionnement] / @comptes_moy_2015[:population]%>
                 </td>
               </tr>
               <tr>
@@ -116,7 +121,27 @@
           <br>
           <br>
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam egestas tortor at nibh lobortis euismod. Pellentesque at purus eget justo feugiat condimentum. Proin rhoncus nunc sit amet dictum tempor. Vivamus in enim in orci maximus vulputate et sed dolor. Aenean quis lacus eros. Integer magna turpis, auctor quis tincidunt eu, porttitor a augue.
+            Le revenu moyen par ménage de <%= @ville[:nom].downcase.capitalize %> est de XX
+            , ce qui la classe parmi les XX% des communes avec les plus hauts revenus de France.
+            Le taux de chômage de l'ère urbaine, à X % en 2015, était plus/moins élevé que le taux
+            de chômage du pays la même année, qui était de X%.
+            <br>
+            <br>
+            La somme des deux principaux impôts locaux (taxe d’habitation et taxe foncière)
+            s’élève à <%= (@comptes_2015[:recette_taxe_habitation]+@comptes_2015[:recette_taxe_fonciere_bati]) / @comptes_2015[:population] %> €.
+            Cette somme représente <%= number_to_percentage(100*((@comptes_2015[:recette_taxe_habitation]+@comptes_2015[:recette_taxe_fonciere_bati]) / @comptes_2015[:population])/((@comptes_moy_2015[:recette_taxe_habitation]+@comptes_moy_2015[:recette_taxe_fonciere_bati]) / @comptes_moy_2015[:population]), precision: 0) %>
+            de la moyenne nationale des villes de taille comparable.
+            Pour pouvez consulter plus en détails le niveau des prélèvements et son évolution dans
+            l'onglet <%= link_to "fiscalité", ville_fiscalite_path(nom: @ville.nom) %>.
+            <br>
+            <br>
+            Les dépenses de fonctionnement s'élevaient en 2015 à
+            <%= @comptes_2015[:charge_total_fonctionnement]/@comptes_2015[:population] %> € par habitant , correspondant
+            à un niveau de dépenses <%= @charge_fct_comp %> à la moyenne des communes de même taille. Pour une analyse
+            détaillé de la situation financière de la commune, vous pouvez consulter l'onglet
+            <%= link_to "budget", ville_budget_path(nom: @ville.nom) %> et nos pages dédiées à
+            la <%= link_to "structure des budgets", pages_structure_path %> ou à
+            l'<a href="#">analyse des budgets des collectivités locales</a>.
           </p>
         </div>
       </div>
