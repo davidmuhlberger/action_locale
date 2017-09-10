@@ -7,6 +7,16 @@ before_action :find_ville
     else
       @charge_fct_comp = "inférieur"
     end
+
+    if @ville[:decile_revenu] == 1
+      @decile_comp = "dans les 10% des revenus médians les plus faibles du pays"
+    elsif @ville[:decile_revenu] == 10
+      @decile_comp = "dans les 10% des revenus médians les plus élevés du pays"
+    elsif @ville[:decile_revenu] <= 5
+      @decile_comp = "entre les #{(@ville[:decile_revenu] - 1) * 10}% et #{@ville[:decile_revenu] * 10}% des revenus médians les plus faibles du pays"
+    else
+      @decile_comp = "entre les #{(@ville[:decile_revenu] - 1) * 10}% et #{@ville[:decile_revenu] * 10}% des revenus médians les plus élevés du pays"
+    end
   end
 
   def show_fiscalite

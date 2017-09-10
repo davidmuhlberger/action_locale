@@ -33,9 +33,6 @@
         <li role="presentation">
           <%= link_to "Budget", ville_budget_path(nom: @ville.nom) %>
         </li>
-        <li role="presentation">
-          <%= link_to "Endettement", ville_endettement_path(nom: @ville.nom) %>
-        </li>
         <li role="presentation"">
           <%= link_to "Lexique", pages_lexique_path %>
         </li>
@@ -68,50 +65,84 @@
             </thead>
             <tbody>
               <tr>
+                <th scope="row">Population</th>
+                <td class="text-center">
+                  <%= number_with_precision(@comptes_2015[:population], options = {delimiter: " ", precision: 0}) %>
+                </td>
+                <td class="text-center">-</td>
+              </tr>
+              <tr>
+                <th scope="row" class="category">Fiscalité</th>
+                <td class="text-center"></td>
+                <td class="text-center"></td>
+              </tr>
+              <tr>
                 <th scope="row">Taxe d'habitation / habitant (€)</th>
                 <td class="text-center">
-                  <%= @comptes_2015[:recette_taxe_habitation] / @comptes_2015[:population] %>
+                  <%= number_with_precision(@comptes_2015[:recette_taxe_habitation] / (@comptes_2015[:population] +  @comptes_2015[:nb_res_secondaires]), options = {delimiter: " ", precision: 0}) %>
                 </td>
                 <td class="text-center">
-                  <%= @comptes_moy_2015[:recette_taxe_habitation] / @comptes_moy_2015[:population] %>
+                  <%= number_with_precision(@comptes_moy_2015[:recette_taxe_habitation] / (@comptes_moy_2015[:population] + @comptes_moy_2015[:nb_res_secondaires]), options = {delimiter: " ", precision: 0}) %>
                 </td>
               </tr>
               <tr>
                 <th scope="row">Taxe foncière / habitant (€)</th>
                 <td class="text-center">
-                  <%= @comptes_2015[:recette_taxe_fonciere_bati] / @comptes_2015[:population] %>
+                  <%= number_with_precision(@comptes_2015[:recette_taxe_fonciere_bati] / (@comptes_2015[:population] +  @comptes_2015[:nb_res_secondaires]), options = {delimiter: " ", precision: 0}) %>
                 </td>
                 <td class="text-center">
-                  <%= @comptes_moy_2015[:recette_taxe_fonciere_bati] / @comptes_moy_2015[:population] %>
+                  <%= number_with_precision(@comptes_moy_2015[:recette_taxe_fonciere_bati] / (@comptes_moy_2015[:population] + @comptes_moy_2015[:nb_res_secondaires]), options = {delimiter: " ", precision: 0}) %>
                 </td>
+              </tr>
+              <tr>
+                <th scope="row" class="category">Finances</th>
+                <td class="text-center"></td>
+                <td class="text-center"></td>
               </tr>
               <tr>
                 <th scope="row">Dépenses de fonctionnement / habitant (€)</th>
                 <td class="text-center">
-                  <%= @comptes_2015[:charge_total_fonctionnement] / @comptes_2015[:population]%>
+                  <%= number_with_precision(@comptes_2015[:charge_total_fonctionnement] / (@comptes_2015[:population] +  @comptes_2015[:nb_res_secondaires]), options = {delimiter: " ", precision: 0})%>
                 </td>
                 <td class="text-center">
-                  <%= @comptes_moy_2015[:charge_total_fonctionnement] / @comptes_moy_2015[:population]%>
+                  <%= number_with_precision(@comptes_moy_2015[:charge_total_fonctionnement] / (@comptes_moy_2015[:population] + @comptes_moy_2015[:nb_res_secondaires]), options = {delimiter: " ", precision: 0})%>
                 </td>
               </tr>
               <tr>
                 <th scope="row">Endettement / habitant (€)</th>
                 <td class="text-center">
-                  <%= @comptes_2015[:endettement_encours] / @comptes_2015[:population]%>
+                  <%= number_with_precision(@comptes_2015[:endettement_encours] / (@comptes_2015[:population] +  @comptes_2015[:nb_res_secondaires]), options = {delimiter: " ", precision: 0})%>
                 </td>
                 <td class="text-center">
-                  <%= @comptes_moy_2015[:endettement_encours] / @comptes_moy_2015[:population]%>
+                  <%= number_with_precision(@comptes_moy_2015[:endettement_encours] / (@comptes_moy_2015[:population] + @comptes_moy_2015[:nb_res_secondaires]), options = {delimiter: " ", precision: 0})%>
                 </td>
               </tr>
               <tr>
-                <th scope="row">Taux de chômage</th>
-                <td class="text-center">Dummy</td>
-                <td class="text-center">Dummy</td>
+                <th scope="row" class="category">Niveau de vie</th>
+                <td class="text-center"></td>
+                <td class="text-center"></td>
               </tr>
               <tr>
-                <th scope="row">Part de logements sociaux</th>
-                <td class="text-center">Dummy</td>
-                <td class="text-center">Dummy</td>
+                <th scope="row">Revenu médian par ménage</th>
+                <td class="text-center">
+                  <%=  number_with_precision(@ville[:uc_par_menage] * @ville[:revenu_median_uc], options = {delimiter: " ", precision: 0}) %>
+                </td>
+                <td class="text-center">-</td>
+              </tr>
+              <tr>
+              <tr>
+                <th scope="row">Revenu médian : décile</th>
+                <td class="text-center">
+                  <%=  @ville[:decile_revenu] %>
+                </td>
+                <td class="text-center">-</td>
+              </tr>
+              <tr>
+                <th scope="row">Part de logements sociaux <%= "(objectif : #{number_to_percentage(@ville[:taux_hlm_legal], precision: 0)})" if @ville[:taux_hlm_legal].is_a? Numeric%> </th>
+                <td class="text-center">
+                  <%= @ville[:taux_hlm_2015] ? number_to_percentage(100 * @ville[:taux_hlm_2015], precision: 0) : "na" %>
+                </td>
+                <td class="text-center">-</td>
               </tr>
             </tbody>
           </table>
@@ -121,22 +152,23 @@
           <br>
           <br>
           <p>
-            Le revenu moyen par ménage de <%= @ville[:nom].downcase.capitalize %> est de XX
-            , ce qui la classe parmi les XX% des communes avec les plus hauts revenus de France.
-            Le taux de chômage de l'ère urbaine, à X % en 2015, était plus/moins élevé que le taux
-            de chômage du pays la même année, qui était de X%.
+            Le revenu moyen par ménage de <%= @ville[:nom].downcase.capitalize %> est de
+            <%=  number_with_precision(@ville[:uc_par_menage] * @ville[:revenu_median_uc], options = {delimiter: " ", precision: 0}) %>€.
+            <br>
+            Ce niveau classe la commune dans le <%=  @ville[:decile_revenu] %><%= @ville[:decile_revenu] == 1 ? ("er") : ("ème") %> décile.
+            C'est à dire que le revenu médian dans la commune se situe <%= @decile_comp %>.
             <br>
             <br>
             La somme des deux principaux impôts locaux (taxe d’habitation et taxe foncière)
-            s’élève à <%= (@comptes_2015[:recette_taxe_habitation]+@comptes_2015[:recette_taxe_fonciere_bati]) / @comptes_2015[:population] %> €.
-            Cette somme représente <%= number_to_percentage(100*((@comptes_2015[:recette_taxe_habitation]+@comptes_2015[:recette_taxe_fonciere_bati]) / @comptes_2015[:population])/((@comptes_moy_2015[:recette_taxe_habitation]+@comptes_moy_2015[:recette_taxe_fonciere_bati]) / @comptes_moy_2015[:population]), precision: 0) %>
+            s’élève à <%= (@comptes_2015[:recette_taxe_habitation]+@comptes_2015[:recette_taxe_fonciere_bati]) / (@comptes_2015[:population] +  @comptes_2015[:nb_res_secondaires]) %> €.
+            Cette somme représente <%= number_to_percentage(100*((@comptes_2015[:recette_taxe_habitation]+@comptes_2015[:recette_taxe_fonciere_bati]) / (@comptes_2015[:population] +  @comptes_2015[:nb_res_secondaires]))/((@comptes_moy_2015[:recette_taxe_habitation]+@comptes_moy_2015[:recette_taxe_fonciere_bati]) / (@comptes_moy_2015[:population] +  @comptes_moy_2015[:nb_res_secondaires])), precision: 0) %>
             de la moyenne nationale des villes de taille comparable.
-            Pour pouvez consulter plus en détails le niveau des prélèvements et son évolution dans
+            Vous pouvez consulter plus en détails le niveau des prélèvements et son évolution dans
             l'onglet <%= link_to "fiscalité", ville_fiscalite_path(nom: @ville.nom) %>.
             <br>
             <br>
             Les dépenses de fonctionnement s'élevaient en 2015 à
-            <%= @comptes_2015[:charge_total_fonctionnement]/@comptes_2015[:population] %> € par habitant , correspondant
+            <%= @comptes_2015[:charge_total_fonctionnement]/(@comptes_2015[:population] +  @comptes_2015[:nb_res_secondaires]) %> € par habitant , correspondant
             à un niveau de dépenses <%= @charge_fct_comp %> à la moyenne des communes de même taille. Pour une analyse
             détaillé de la situation financière de la commune, vous pouvez consulter l'onglet
             <%= link_to "budget", ville_budget_path(nom: @ville.nom) %> et nos pages dédiées à

@@ -3,72 +3,7 @@
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript">
       google.charts.load('current', {packages: ['corechart', 'bar'], 'language': 'fr'});
-      google.charts.setOnLoadCallback(drawFctRecettes);
-      google.charts.setOnLoadCallback(drawFctCharges);
-      google.charts.setOnLoadCallback(drawInvestissement);
       google.charts.setOnLoadCallback(drawFonctionnement);
-
-      function drawFctRecettes() {
-        var data = google.visualization.arrayToDataTable([
-          ['', "Dotation", "Impôts et taxes", "Autres recettes"],
-          ["2008", <%= @comptes_2008[:recette_dotation_fonctionnement]%>, <%= @comptes_2008[:recette_taxe_habitation] + @comptes_2008[:recette_taxe_fonciere_non_bati] + @comptes_2008[:recette_taxe_fonciere_bati] + @comptes_2008[:recette_autres_impots_taxes]%>, <%= @comptes_2008[:recette_total_fonctionnement] - @comptes_2008[:recette_dotation_fonctionnement] - @comptes_2008[:recette_taxe_habitation] - @comptes_2008[:recette_taxe_fonciere_non_bati] - @comptes_2008[:recette_taxe_fonciere_bati] - @comptes_2008[:recette_autres_impots_taxes]%>],
-          ["2009", <%= @comptes_2009[:recette_dotation_fonctionnement]%>, <%= @comptes_2009[:recette_taxe_habitation] + @comptes_2009[:recette_taxe_fonciere_non_bati] + @comptes_2009[:recette_taxe_fonciere_bati] + @comptes_2009[:recette_autres_impots_taxes]%>, <%= @comptes_2009[:recette_total_fonctionnement] - @comptes_2009[:recette_dotation_fonctionnement] - @comptes_2009[:recette_taxe_habitation] - @comptes_2009[:recette_taxe_fonciere_non_bati] - @comptes_2009[:recette_taxe_fonciere_bati] - @comptes_2009[:recette_autres_impots_taxes]%>],
-          ["2010", <%= @comptes_2010[:recette_dotation_fonctionnement]%>, <%= @comptes_2010[:recette_taxe_habitation] + @comptes_2010[:recette_taxe_fonciere_non_bati] + @comptes_2010[:recette_taxe_fonciere_bati] + @comptes_2010[:recette_autres_impots_taxes]%>, <%= @comptes_2010[:recette_total_fonctionnement] - @comptes_2010[:recette_dotation_fonctionnement] - @comptes_2010[:recette_taxe_habitation] - @comptes_2010[:recette_taxe_fonciere_non_bati] - @comptes_2010[:recette_taxe_fonciere_bati] - @comptes_2010[:recette_autres_impots_taxes]%>],
-          ["2011", <%= @comptes_2011[:recette_dotation_fonctionnement]%>, <%= @comptes_2011[:recette_taxe_habitation] + @comptes_2011[:recette_taxe_fonciere_non_bati] + @comptes_2011[:recette_taxe_fonciere_bati] + @comptes_2011[:recette_autres_impots_taxes]%>, <%= @comptes_2011[:recette_total_fonctionnement] - @comptes_2011[:recette_dotation_fonctionnement] - @comptes_2011[:recette_taxe_habitation] - @comptes_2011[:recette_taxe_fonciere_non_bati] - @comptes_2011[:recette_taxe_fonciere_bati] - @comptes_2011[:recette_autres_impots_taxes]%>],
-          ["2012", <%= @comptes_2012[:recette_dotation_fonctionnement]%>, <%= @comptes_2012[:recette_taxe_habitation] + @comptes_2012[:recette_taxe_fonciere_non_bati] + @comptes_2012[:recette_taxe_fonciere_bati] + @comptes_2012[:recette_autres_impots_taxes]%>, <%= @comptes_2012[:recette_total_fonctionnement] - @comptes_2012[:recette_dotation_fonctionnement] - @comptes_2012[:recette_taxe_habitation] - @comptes_2012[:recette_taxe_fonciere_non_bati] - @comptes_2012[:recette_taxe_fonciere_bati] - @comptes_2012[:recette_autres_impots_taxes]%>],
-          ["2013", <%= @comptes_2013[:recette_dotation_fonctionnement]%>, <%= @comptes_2013[:recette_taxe_habitation] + @comptes_2013[:recette_taxe_fonciere_non_bati] + @comptes_2013[:recette_taxe_fonciere_bati] + @comptes_2013[:recette_autres_impots_taxes]%>, <%= @comptes_2013[:recette_total_fonctionnement] - @comptes_2013[:recette_dotation_fonctionnement] - @comptes_2013[:recette_taxe_habitation] - @comptes_2013[:recette_taxe_fonciere_non_bati] - @comptes_2013[:recette_taxe_fonciere_bati] - @comptes_2013[:recette_autres_impots_taxes]%>],
-          ["2014", <%= @comptes_2014[:recette_dotation_fonctionnement]%>, <%= @comptes_2014[:recette_taxe_habitation] + @comptes_2014[:recette_taxe_fonciere_non_bati] + @comptes_2014[:recette_taxe_fonciere_bati] + @comptes_2014[:recette_autres_impots_taxes]%>, <%= @comptes_2014[:recette_total_fonctionnement] - @comptes_2014[:recette_dotation_fonctionnement] - @comptes_2014[:recette_taxe_habitation] - @comptes_2014[:recette_taxe_fonciere_non_bati] - @comptes_2014[:recette_taxe_fonciere_bati] - @comptes_2014[:recette_autres_impots_taxes]%>],
-          ["2015", <%= @comptes_2015[:recette_dotation_fonctionnement]%>, <%= @comptes_2015[:recette_taxe_habitation] + @comptes_2015[:recette_taxe_fonciere_non_bati] + @comptes_2015[:recette_taxe_fonciere_bati] + @comptes_2015[:recette_autres_impots_taxes]%>, <%= @comptes_2015[:recette_total_fonctionnement] - @comptes_2015[:recette_dotation_fonctionnement] - @comptes_2015[:recette_taxe_habitation] - @comptes_2015[:recette_taxe_fonciere_non_bati] - @comptes_2015[:recette_taxe_fonciere_bati] - @comptes_2015[:recette_autres_impots_taxes]%>],
-        ]);
-
-        var options = {
-          'width' : 750,
-          'height' : 350,
-          'chartArea' : {
-            'width': 400,
-            'height': 200
-          },
-          'legend' : {
-            'alignment': 'center'
-          },
-          colors: ['#2196F3','#B0BEC5'],
-          'isStacked': true,
-        };
-
-        var fonctionnementchart = new google.charts.Bar(document.getElementById('recettes_chart_div'));
-        fonctionnementchart.draw(data, google.charts.Bar.convertOptions(options));
-      }
-
-      function drawFctCharges() {
-        var data = google.visualization.arrayToDataTable([
-          ['', 'Charges de personnel', "Achats", "Suventions et contingents", "Intérêts", "Autres charges"],
-          ["2008", <%= @comptes_2008[:charge_personnel]%>, <%= @comptes_2008[:charge_achats] %>, <%= @comptes_2008[:charge_subventions] + @comptes_2008[:charge_contingents] %>, <%= @comptes_2008[:charge_charges_financieres] %>, <%= @comptes_2008[:charge_total_fonctionnement] - @comptes_2008[:charge_personnel] - @comptes_2008[:charge_achats] - @comptes_2008[:charge_subventions] - @comptes_2008[:charge_contingents] - @comptes_2008[:charge_charges_financieres] %>],
-          ["2009", <%= @comptes_2009[:charge_personnel]%>, <%= @comptes_2009[:charge_achats] %>, <%= @comptes_2009[:charge_subventions] + @comptes_2009[:charge_contingents] %>, <%= @comptes_2009[:charge_charges_financieres] %>, <%= @comptes_2009[:charge_total_fonctionnement] - @comptes_2009[:charge_personnel] - @comptes_2009[:charge_achats] - @comptes_2009[:charge_subventions] - @comptes_2009[:charge_contingents] - @comptes_2009[:charge_charges_financieres] %>],
-          ["2010", <%= @comptes_2010[:charge_personnel]%>, <%= @comptes_2010[:charge_achats] %>, <%= @comptes_2010[:charge_subventions] + @comptes_2010[:charge_contingents] %>, <%= @comptes_2010[:charge_charges_financieres] %>, <%= @comptes_2010[:charge_total_fonctionnement] - @comptes_2010[:charge_personnel] - @comptes_2010[:charge_achats] - @comptes_2010[:charge_subventions] - @comptes_2010[:charge_contingents] - @comptes_2010[:charge_charges_financieres] %>],
-          ["2011", <%= @comptes_2011[:charge_personnel]%>, <%= @comptes_2011[:charge_achats] %>, <%= @comptes_2011[:charge_subventions] + @comptes_2011[:charge_contingents] %>, <%= @comptes_2011[:charge_charges_financieres] %>, <%= @comptes_2011[:charge_total_fonctionnement] - @comptes_2011[:charge_personnel] - @comptes_2011[:charge_achats] - @comptes_2011[:charge_subventions] - @comptes_2011[:charge_contingents] - @comptes_2011[:charge_charges_financieres] %>],
-          ["2012", <%= @comptes_2012[:charge_personnel]%>, <%= @comptes_2012[:charge_achats] %>, <%= @comptes_2012[:charge_subventions] + @comptes_2012[:charge_contingents] %>, <%= @comptes_2012[:charge_charges_financieres] %>, <%= @comptes_2012[:charge_total_fonctionnement] - @comptes_2012[:charge_personnel] - @comptes_2012[:charge_achats] - @comptes_2012[:charge_subventions] - @comptes_2012[:charge_contingents] - @comptes_2012[:charge_charges_financieres] %>],
-          ["2013", <%= @comptes_2013[:charge_personnel]%>, <%= @comptes_2013[:charge_achats] %>, <%= @comptes_2013[:charge_subventions] + @comptes_2013[:charge_contingents] %>, <%= @comptes_2013[:charge_charges_financieres] %>, <%= @comptes_2013[:charge_total_fonctionnement] - @comptes_2013[:charge_personnel] - @comptes_2013[:charge_achats] - @comptes_2013[:charge_subventions] - @comptes_2013[:charge_contingents] - @comptes_2013[:charge_charges_financieres] %>],
-          ["2014", <%= @comptes_2014[:charge_personnel]%>, <%= @comptes_2014[:charge_achats] %>, <%= @comptes_2014[:charge_subventions] + @comptes_2014[:charge_contingents] %>, <%= @comptes_2014[:charge_charges_financieres] %>, <%= @comptes_2014[:charge_total_fonctionnement] - @comptes_2014[:charge_personnel] - @comptes_2014[:charge_achats] - @comptes_2014[:charge_subventions] - @comptes_2014[:charge_contingents] - @comptes_2014[:charge_charges_financieres] %>],
-          ["2015", <%= @comptes_2015[:charge_personnel]%>, <%= @comptes_2015[:charge_achats] %>, <%= @comptes_2015[:charge_subventions] + @comptes_2015[:charge_contingents] %>, <%= @comptes_2015[:charge_charges_financieres] %>, <%= @comptes_2015[:charge_total_fonctionnement] - @comptes_2015[:charge_personnel] - @comptes_2015[:charge_achats] - @comptes_2015[:charge_subventions] - @comptes_2015[:charge_contingents] - @comptes_2015[:charge_charges_financieres] %>],
-        ]);
-
-        var options = {
-          'width' : 750,
-          'height' : 350,
-          'chartArea' : {
-            'width': 400,
-            'height': 200
-          },
-          'legend' : {
-            'alignment': 'center'
-          },
-          colors: ['#2196F3','#B0BEC5'],
-          'isStacked': true,
-        };
-
-        var fonctionnementchart = new google.charts.Bar(document.getElementById('charges_chart_div'));
-        fonctionnementchart.draw(data, google.charts.Bar.convertOptions(options));
-      }
 
       function drawFonctionnement() {
         var data = google.visualization.arrayToDataTable([
@@ -101,36 +36,6 @@
         investissementchart.draw(data, google.charts.Bar.convertOptions(options));
       }
 
-      function drawInvestissement() {
-        var data = google.visualization.arrayToDataTable([
-          ['', "Dépenses d'investissement / habitant", "Dépenses d'investissement / habitant moyenne"],
-          ["2008", <%= @comptes_2008[:depense_equipement] / @comptes_2008[:population] %>, <%= @comptes_moy_2008[:depense_equipement] / @comptes_moy_2008[:population] %>],
-          ["2009", <%= @comptes_2009[:depense_equipement] / @comptes_2009[:population] %>, <%= @comptes_moy_2008[:depense_equipement] / @comptes_moy_2008[:population] %>],
-          ["2010", <%= @comptes_2010[:depense_equipement] / @comptes_2010[:population] %>, <%= @comptes_moy_2008[:depense_equipement] / @comptes_moy_2008[:population] %>],
-          ["2011", <%= @comptes_2011[:depense_equipement] / @comptes_2011[:population] %>, <%= @comptes_moy_2008[:depense_equipement] / @comptes_moy_2008[:population] %>],
-          ["2012", <%= @comptes_2012[:depense_equipement] / @comptes_2012[:population] %>, <%= @comptes_moy_2008[:depense_equipement] / @comptes_moy_2008[:population] %>],
-          ["2013", <%= @comptes_2013[:depense_equipement] / @comptes_2013[:population] %>, <%= @comptes_moy_2008[:depense_equipement] / @comptes_moy_2008[:population] %>],
-          ["2014", <%= @comptes_2014[:depense_equipement] / @comptes_2014[:population] %>, <%= @comptes_moy_2008[:depense_equipement] / @comptes_moy_2008[:population] %>],
-          ["2015", <%= @comptes_2015[:depense_equipement] / @comptes_2015[:population] %>, <%= @comptes_moy_2008[:depense_equipement] / @comptes_moy_2008[:population] %>],
-        ]);
-
-
-        var options = {
-          'width' : 750,
-          'height' : 350,
-          'chartArea' : {
-            'width': 400,
-            'height': 200
-          },
-          'legend' : {
-            'alignment': 'center'
-          },
-          colors: ['#2196F3','#B0BEC5'],
-        };
-
-        var investissementchart = new google.charts.Bar(document.getElementById('investissement_chart_div'));
-        investissementchart.draw(data, google.charts.Bar.convertOptions(options));
-      }
     </script>
 <% end %>
 
@@ -171,9 +76,6 @@
           <%= link_to "Budget", ville_budget_path(nom: @ville.nom) %>
         </li>
         <li role="presentation"">
-          <%= link_to "Endettement", ville_endettement_path(nom: @ville.nom) %>
-        </li>
-        <li role="presentation"">
           <%= link_to "Lexique", pages_lexique_path %>
         </li>
       </ul>
@@ -181,60 +83,324 @@
       <div class="card">
         <div class="card-title">
           <br>
-          <h4><strong>Historique - Dépenses de fonctionnement</strong></h4>
+          <h4><strong>Situation financière de la commune</strong></h4>
           <br>
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam egestas tortor at nibh lobortis euismod. Pellentesque at purus eget justo feugiat condimentum. Proin rhoncus nunc sit amet dictum tempor. Vivamus in enim in orci maximus vulputate et sed dolor. Aenean quis lacus eros. Integer magna turpis, auctor quis tincidunt eu, porttitor a augue.
+            <table class="table table-hover">
+              <thead>
+                <tr>
+                  <th></th>
+                  <th class="text-center">
+                    2010
+                  </th>
+                  <th class="text-center">
+                    2011
+                  </th>
+                  <th class="text-center">
+                    2012
+                  </th>
+                  <th class="text-center">
+                    2013
+                  </th>
+                  <th class="text-center">
+                    2014
+                  </th>
+                  <th class="text-center">
+                    2015
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">Recettes de fonctionnement (M€) (1)</th>
+                  <td class="text-center">
+                    <%= number_with_precision(@comptes_2010[:recette_total_fonctionnement]/1000000.0, options = {delimiter: " ", precision: 1}) %>
+                  </td>
+                  <td class="text-center">
+                    <%= number_with_precision(@comptes_2011[:recette_total_fonctionnement]/1000000.0, options = {delimiter: " ", precision: 1}) %>
+                  </td>
+                  <td class="text-center">
+                    <%= number_with_precision(@comptes_2012[:recette_total_fonctionnement]/1000000.0, options = {delimiter: " ", precision: 1}) %>
+                  </td>
+                  <td class="text-center">
+                    <%= number_with_precision(@comptes_2013[:recette_total_fonctionnement]/1000000.0, options = {delimiter: " ", precision: 1}) %>
+                  </td>
+                  <td class="text-center">
+                    <%= number_with_precision(@comptes_2014[:recette_total_fonctionnement]/1000000.0, options = {delimiter: " ", precision: 1}) %>
+                  </td>
+                  <td class="text-center">
+                    <%= number_with_precision(@comptes_2015[:recette_total_fonctionnement]/1000000.0, options = {delimiter: " ", precision: 1}) %>
+                  </td>
+                </tr>
+                <tr>
+                  <th scope="row"><i class="subcategory">Dont impôts (M€)</i></th>
+                  <td class="text-center">
+                    <i class="subcategory"><%= number_with_precision((@comptes_2010[:recette_taxe_habitation]+@comptes_2010[:recette_taxe_fonciere_non_bati]+@comptes_2010[:recette_taxe_fonciere_bati]+@comptes_2010[:recette_taxe_surfaces_commerciales]+@comptes_2010[:recette_autres_impots_taxes])/1000000.0, options = {delimiter: " ", precision: 1}) %></i>
+                  </td>
+                  <td class="text-center">
+                    <i class="subcategory"><%= number_with_precision((@comptes_2011[:recette_taxe_habitation]+@comptes_2011[:recette_taxe_fonciere_non_bati]+@comptes_2011[:recette_taxe_fonciere_bati]+@comptes_2011[:recette_taxe_surfaces_commerciales]+@comptes_2011[:recette_autres_impots_taxes])/1000000.0, options = {delimiter: " ", precision: 1}) %></i>
+                  </td>
+                  <td class="text-center">
+                    <i class="subcategory"><%= number_with_precision((@comptes_2012[:recette_taxe_habitation]+@comptes_2012[:recette_taxe_fonciere_non_bati]+@comptes_2012[:recette_taxe_fonciere_bati]+@comptes_2012[:recette_taxe_surfaces_commerciales]+@comptes_2012[:recette_autres_impots_taxes])/1000000.0, options = {delimiter: " ", precision: 1}) %></i>
+                  </td>
+                  <td class="text-center">
+                    <i class="subcategory"><%= number_with_precision((@comptes_2013[:recette_taxe_habitation]+@comptes_2013[:recette_taxe_fonciere_non_bati]+@comptes_2013[:recette_taxe_fonciere_bati]+@comptes_2013[:recette_taxe_surfaces_commerciales]+@comptes_2013[:recette_autres_impots_taxes])/1000000.0, options = {delimiter: " ", precision: 1}) %></i>
+                  </td>
+                  <td class="text-center">
+                    <i class="subcategory"><%= number_with_precision((@comptes_2014[:recette_taxe_habitation]+@comptes_2014[:recette_taxe_fonciere_non_bati]+@comptes_2014[:recette_taxe_fonciere_bati]+@comptes_2014[:recette_taxe_surfaces_commerciales]+@comptes_2014[:recette_autres_impots_taxes])/1000000.0, options = {delimiter: " ", precision: 1}) %></i>
+                  </td>
+                  <td class="text-center">
+                    <i class="subcategory"><%= number_with_precision((@comptes_2015[:recette_taxe_habitation]+@comptes_2015[:recette_taxe_fonciere_non_bati]+@comptes_2015[:recette_taxe_fonciere_bati]+@comptes_2015[:recette_taxe_surfaces_commerciales]+@comptes_2015[:recette_autres_impots_taxes])/1000000.0, options = {delimiter: " ", precision: 1}) %></i>
+                  </td>
+                </tr>
+                <tr>
+                  <th scope="row"><i class="subcategory">Dont dotation (M€)</i></th>
+                  <td class="text-center">
+                    <i class="subcategory"><%= number_with_precision(@comptes_2010[:recette_dotation_fonctionnement]/1000000.0, options = {delimiter: " ", precision: 1}) %></i>
+                  </td>
+                  <td class="text-center">
+                    <i class="subcategory"><%= number_with_precision(@comptes_2011[:recette_dotation_fonctionnement]/1000000.0, options = {delimiter: " ", precision: 1}) %></i>
+                  </td>
+                  <td class="text-center">
+                    <i class="subcategory"><%= number_with_precision(@comptes_2012[:recette_dotation_fonctionnement]/1000000.0, options = {delimiter: " ", precision: 1}) %></i>
+                  </td>
+                  <td class="text-center">
+                    <i class="subcategory"><%= number_with_precision(@comptes_2013[:recette_dotation_fonctionnement]/1000000.0, options = {delimiter: " ", precision: 1}) %></i>
+                  </td>
+                  <td class="text-center">
+                    <i class="subcategory"><%= number_with_precision(@comptes_2014[:recette_dotation_fonctionnement]/1000000.0, options = {delimiter: " ", precision: 1}) %></i>
+                  </td>
+                  <td class="text-center">
+                    <i class="subcategory"><%= number_with_precision(@comptes_2015[:recette_dotation_fonctionnement]/1000000.0, options = {delimiter: " ", precision: 1}) %></i>
+                  </td>
+                </tr>
+                <tr>
+                  <th scope="row">Dépenses de fonctionnement (M€) (2)</th>
+                  <td class="text-center">
+                    <%= number_with_precision(@comptes_2010[:charge_total_fonctionnement]/1000000.0, options = {delimiter: " ", precision: 1}) %>
+                  </td>
+                  <td class="text-center">
+                    <%= number_with_precision(@comptes_2011[:charge_total_fonctionnement]/1000000.0, options = {delimiter: " ", precision: 1}) %>
+                  </td>
+                  <td class="text-center">
+                    <%= number_with_precision(@comptes_2012[:charge_total_fonctionnement]/1000000.0, options = {delimiter: " ", precision: 1}) %>
+                  </td>
+                  <td class="text-center">
+                    <%= number_with_precision(@comptes_2013[:charge_total_fonctionnement]/1000000.0, options = {delimiter: " ", precision: 1}) %>
+                  </td>
+                  <td class="text-center">
+                    <%= number_with_precision(@comptes_2014[:charge_total_fonctionnement]/1000000.0, options = {delimiter: " ", precision: 1}) %>
+                  </td>
+                  <td class="text-center">
+                    <%= number_with_precision(@comptes_2015[:charge_total_fonctionnement]/1000000.0, options = {delimiter: " ", precision: 1}) %>
+                  </td>
+                </tr>
+                <tr>
+                  <th scope="row">Epargne brute (M€) (1)-(2)</th>
+                  <td class="text-center">
+                    <%= number_with_precision((@comptes_2010[:recette_total_fonctionnement] - @comptes_2010[:charge_total_fonctionnement])/1000000.0, options = {delimiter: " ", precision: 1}) %>
+                  </td>
+                  <td class="text-center">
+                    <%= number_with_precision((@comptes_2011[:recette_total_fonctionnement] - @comptes_2011[:charge_total_fonctionnement])/1000000.0, options = {delimiter: " ", precision: 1}) %>
+                  </td>
+                  <td class="text-center">
+                    <%= number_with_precision((@comptes_2012[:recette_total_fonctionnement] - @comptes_2012[:charge_total_fonctionnement])/1000000.0, options = {delimiter: " ", precision: 1}) %>
+                  </td>
+                  <td class="text-center">
+                    <%= number_with_precision((@comptes_2013[:recette_total_fonctionnement] - @comptes_2013[:charge_total_fonctionnement])/1000000.0, options = {delimiter: " ", precision: 1}) %>
+                  </td>
+                  <td class="text-center">
+                    <%= number_with_precision((@comptes_2014[:recette_total_fonctionnement] - @comptes_2014[:charge_total_fonctionnement])/1000000.0, options = {delimiter: " ", precision: 1}) %>
+                  </td>
+                  <td class="text-center">
+                    <%= number_with_precision((@comptes_2015[:recette_total_fonctionnement] - @comptes_2015[:charge_total_fonctionnement])/1000000.0, options = {delimiter: " ", precision: 1}) %>
+                  </td>
+                </tr>
+                <tr>
+                  <th scope="row" class="category">Epargne brute / recettes</th>
+                  <td class="text-center category">
+                    <%= number_with_precision(100*(@comptes_2010[:recette_total_fonctionnement] - @comptes_2010[:charge_total_fonctionnement])/@comptes_2010[:recette_total_fonctionnement], options = {delimiter: " ", precision: 0}) %>%
+                  </td>
+                  <td class="text-center category">
+                    <%= number_with_precision(100*(@comptes_2011[:recette_total_fonctionnement] - @comptes_2011[:charge_total_fonctionnement])/@comptes_2011[:recette_total_fonctionnement], options = {delimiter: " ", precision: 0}) %>%
+                  </td>
+                  <td class="text-center category">
+                    <%= number_with_precision(100*(@comptes_2012[:recette_total_fonctionnement] - @comptes_2012[:charge_total_fonctionnement])/@comptes_2012[:recette_total_fonctionnement], options = {delimiter: " ", precision: 0}) %>%
+                  </td>
+                  <td class="text-center category">
+                    <%= number_with_precision(100*(@comptes_2013[:recette_total_fonctionnement] - @comptes_2013[:charge_total_fonctionnement])/@comptes_2013[:recette_total_fonctionnement], options = {delimiter: " ", precision: 0}) %>%
+                  </td>
+                  <td class="text-center category">
+                    <%= number_with_precision(100*(@comptes_2014[:recette_total_fonctionnement] - @comptes_2014[:charge_total_fonctionnement])/@comptes_2014[:recette_total_fonctionnement], options = {delimiter: " ", precision: 0}) %>%
+                  </td>
+                  <td class="text-center category">
+                    <%= number_with_precision(100*(@comptes_2015[:recette_total_fonctionnement] - @comptes_2015[:charge_total_fonctionnement])/@comptes_2015[:recette_total_fonctionnement], options = {delimiter: " ", precision: 0}) %>%
+                  </td>
+                </tr>
+                <tr>
+                  <th scope="row">Dépenses d'équipement (M€) </th>
+                  <td class="text-center">
+                    <%= number_with_precision(@comptes_2010[:depense_equipement] / 1000000.0, options = {delimiter: " ", precision: 1}) %>
+                  </td>
+                  <td class="text-center">
+                    <%= number_with_precision(@comptes_2011[:depense_equipement] / 1000000.0, options = {delimiter: " ", precision: 1}) %>
+                  </td>
+                  <td class="text-center">
+                    <%= number_with_precision(@comptes_2012[:depense_equipement] / 1000000.0, options = {delimiter: " ", precision: 1}) %>
+                  </td>
+                  <td class="text-center">
+                    <%= number_with_precision(@comptes_2013[:depense_equipement] / 1000000.0, options = {delimiter: " ", precision: 1}) %>
+                  </td>
+                  <td class="text-center">
+                    <%= number_with_precision(@comptes_2014[:depense_equipement] / 1000000.0, options = {delimiter: " ", precision: 1}) %>
+                  </td>
+                  <td class="text-center">
+                    <%= number_with_precision(@comptes_2015[:depense_equipement] / 1000000.0, options = {delimiter: " ", precision: 1}) %>
+                  </td>
+                </tr>
+                <tr>
+                  <th scope="row">Subventions reçues (M€) </th>
+                  <td class="text-center">
+                    <%= number_with_precision(@comptes_2010[:recette_subventions] / 1000000.0, options = {delimiter: " ", precision: 1}) %>
+                  </td>
+                  <td class="text-center">
+                    <%= number_with_precision(@comptes_2011[:recette_subventions] / 1000000.0, options = {delimiter: " ", precision: 1}) %>
+                  </td>
+                  <td class="text-center">
+                    <%= number_with_precision(@comptes_2012[:recette_subventions] / 1000000.0, options = {delimiter: " ", precision: 1}) %>
+                  </td>
+                  <td class="text-center">
+                    <%= number_with_precision(@comptes_2013[:recette_subventions] / 1000000.0, options = {delimiter: " ", precision: 1}) %>
+                  </td>
+                  <td class="text-center">
+                    <%= number_with_precision(@comptes_2014[:recette_subventions] / 1000000.0, options = {delimiter: " ", precision: 1}) %>
+                  </td>
+                  <td class="text-center">
+                    <%= number_with_precision(@comptes_2015[:recette_subventions] / 1000000.0, options = {delimiter: " ", precision: 1}) %>
+                  </td>
+                </tr>
+                <tr>
+                  <th scope="row">Endettement (M€) </th>
+                  <td class="text-center">
+                    <%= number_with_precision((@comptes_2010[:endettement_encours]) / 1000000.0, options = {delimiter: " ", precision: 1}) %>
+                  </td>
+                  <td class="text-center">
+                    <%= number_with_precision((@comptes_2011[:endettement_encours]) / 1000000.0, options = {delimiter: " ", precision: 1}) %>
+                  </td>
+                  <td class="text-center">
+                    <%= number_with_precision((@comptes_2012[:endettement_encours]) / 1000000.0, options = {delimiter: " ", precision: 1}) %>
+                  </td>
+                  <td class="text-center">
+                    <%= number_with_precision((@comptes_2013[:endettement_encours]) / 1000000.0, options = {delimiter: " ", precision: 1}) %>
+                  </td>
+                  <td class="text-center">
+                    <%= number_with_precision((@comptes_2014[:endettement_encours]) / 1000000.0, options = {delimiter: " ", precision: 1}) %>
+                  </td>
+                  <td class="text-center">
+                    <%= number_with_precision((@comptes_2015[:endettement_encours]) / 1000000.0, options = {delimiter: " ", precision: 1}) %>
+                  </td>
+                </tr>
+                <tr>
+                  <th scope="row" class="category">Endettement / épargne brute</th>
+                  <td class="text-center category">
+                    <%= number_with_precision(@comptes_2010[:endettement_encours] / (@comptes_2010[:recette_total_fonctionnement] - @comptes_2010[:charge_total_fonctionnement]), options = {delimiter: " ", precision: 0}) %>X
+                  </td>
+                  <td class="text-center category">
+                    <%= number_with_precision(@comptes_2011[:endettement_encours] / (@comptes_2011[:recette_total_fonctionnement] - @comptes_2011[:charge_total_fonctionnement]), options = {delimiter: " ", precision: 0}) %>X
+                  </td>
+                  <td class="text-center category">
+                    <%= number_with_precision(@comptes_2012[:endettement_encours] / (@comptes_2012[:recette_total_fonctionnement] - @comptes_2012[:charge_total_fonctionnement]), options = {delimiter: " ", precision: 0}) %>X
+                  </td>
+                  <td class="text-center category">
+                    <%= number_with_precision(@comptes_2013[:endettement_encours] / (@comptes_2013[:recette_total_fonctionnement] - @comptes_2013[:charge_total_fonctionnement]), options = {delimiter: " ", precision: 0}) %>X
+                  </td>
+                  <td class="text-center category">
+                    <%= number_with_precision(@comptes_2014[:endettement_encours] / (@comptes_2014[:recette_total_fonctionnement] - @comptes_2014[:charge_total_fonctionnement]), options = {delimiter: " ", precision: 0}) %>X
+                  </td>
+                  <td class="text-center category">
+                    <%= number_with_precision(@comptes_2015[:endettement_encours] / (@comptes_2015[:recette_total_fonctionnement] - @comptes_2015[:charge_total_fonctionnement]), options = {delimiter: " ", precision: 0}) %>X
+                  </td>
+                </tr>
+                <tr>
+                  <th scope="row" class="category">Endettement / habitant</th>
+                  <td class="text-center category">
+                    <%= number_with_precision(@comptes_2010[:endettement_encours] / (@comptes_2010[:population]), options = {delimiter: " ", precision: 0}) %>€
+                  </td>
+                  <td class="text-center category">
+                    <%= number_with_precision(@comptes_2011[:endettement_encours] / (@comptes_2011[:population]), options = {delimiter: " ", precision: 0}) %>€
+                  </td>
+                  <td class="text-center category">
+                    <%= number_with_precision(@comptes_2012[:endettement_encours] / (@comptes_2012[:population]), options = {delimiter: " ", precision: 0}) %>€
+                  </td>
+                  <td class="text-center category">
+                    <%= number_with_precision(@comptes_2013[:endettement_encours] / (@comptes_2013[:population]), options = {delimiter: " ", precision: 0}) %>€
+                  </td>
+                  <td class="text-center category">
+                    <%= number_with_precision(@comptes_2014[:endettement_encours] / (@comptes_2014[:population]), options = {delimiter: " ", precision: 0}) %>€
+                  </td>
+                  <td class="text-center category">
+                    <%= number_with_precision(@comptes_2015[:endettement_encours] / (@comptes_2015[:population]), options = {delimiter: " ", precision: 0}) %>€
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            Le budget d'une commune se compose de deux parties :
+            <br>
+            - le <strong>budget de fonctionnement</strong> correspond aux recettes (taxes et impôts locaux, dotation de l'Etat)
+            et dépenses (personnel, fournitures...) récurrentes d'une commune,
+            <br>
+            - le <strong>budget d'investissement</strong> correspond à des dépenses d'équipement et à leur financement (subventions, emprunt).
+            <br>
+            <br>
+            Le budget de fonctionnement est obligatoirement excédentaire (au budget prévisionnel) : une commune n'a pas le
+            droit d'emprunter pour financer le fonctionnement de ses services.
+            <br>
+            <br>
+            <strong>Le solde du budget de fonctionnement (recettes - dépenses) est appelé épargne brute en comptabilité publique.</strong>
+            <br>
+            L'épargne brute finance les investissements de la commune. Si elle est insuffisante, la
+            commune peut avoir recours à l'emprunt ou demander des suventions à d'autres institutions
+            (département, région, Union Européenne)
+            <br>
+            <br>
+            Plusieurs indicateurs permettent d'évaluer la santé financière d'une commune :
+            <br>
+            <br>
+            1. La part de l'épargne brute dans le budget de fonctionnement indique la capacité
+            de la commune à financer elle-même ses investissements et à faire face à des imprévus.
+            <br>
+            <br>
+            2. Le niveau d'endettement par rapport à l'épargne brute révèle la soutenabilité de la
+             dette de la commune et donc sa capacité à emprunter à nouveau pour financer ses investissements.
+            <br>
+            <br>
+            3. L 'évolution de ces ratios permet d'évaluer l'action des élus sur la santé financière de la commune.
+            <br>
+            <br>
+          </p>
+          <br>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-title">
+          <br>
+          <h4><strong>Niveau de des dépenses de la commune</strong></h4>
+          <br>
+          <p>
+            Une commune ne doit pas seulement garder une marge de manoeurvre financière.
+            <br>
+            Elle doit dans l'idéal fournir un bon niveau de services à sa population, pour un coût
+            qui reste le plus raisonnable possible.
+            <br>
+            <br>
+            Le graphique ci-dessous compare le niveau de dépenses de fonctionnement par habitant pour <%= @ville[:nom].downcase.capitalize %>
+            avec la moyenne des villes de même taille. Un montant de dépenses élevées devrait correspondre à une qualité
+            de services municipaux supérieurs à la moyenne.
           </p>
           <br>
         </div>
         <div class="card-tab">
           <div id="fonctionnement_chart_div"></div>
-        </div>
-      </div>
-      <div class="card">
-        <div class="card-title">
-          <br>
-          <h4><strong>Historique - Dépenses d'investissement</strong></h4>
-          <br>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam egestas tortor at nibh lobortis euismod. Pellentesque at purus eget justo feugiat condimentum. Proin rhoncus nunc sit amet dictum tempor. Vivamus in enim in orci maximus vulputate et sed dolor. Aenean quis lacus eros. Integer magna turpis, auctor quis tincidunt eu, porttitor a augue.
-          </p>
-          <br>
-        </div>
-        <div class="card-tab">
-          <div id="investissement_chart_div"></div>
-        </div>
-      </div>
-      <div class="card">
-        <div class="card-title">
-          <br>
-          <h4><strong>Historique - Budget de fonctionnement : recettes</strong></h4>
-          <br>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam egestas tortor at nibh lobortis euismod. Pellentesque at purus eget justo feugiat condimentum. Proin rhoncus nunc sit amet dictum tempor. Vivamus in enim in orci maximus vulputate et sed dolor. Aenean quis lacus eros. Integer magna turpis, auctor quis tincidunt eu, porttitor a augue.
-          </p>
-          <br>
-        </div>
-        <div class="card-tab">
-          <div id="recettes_chart_div"></div>
-        </div>
-      </div>
-      <br>
-      <br>
-      <br>
-        <div class="card">
-        <div class="card-title">
-          <br>
-          <h4><strong>Historique - Budget de fonctionnement : charges</strong></h4>
-          <br>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam egestas tortor at nibh lobortis euismod. Pellentesque at purus eget justo feugiat condimentum. Proin rhoncus nunc sit amet dictum tempor. Vivamus in enim in orci maximus vulputate et sed dolor. Aenean quis lacus eros. Integer magna turpis, auctor quis tincidunt eu, porttitor a augue.
-          </p>
-          <br>
-        </div>
-        <div class="card-tab">
-          <div id="charges_chart_div"></div>
         </div>
       </div>
     </div>
