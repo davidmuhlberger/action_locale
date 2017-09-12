@@ -85,7 +85,72 @@
           <br>
           <h4><strong>Situation financière de la commune</strong></h4>
           <br>
+          <% if 100 * @comptes_2015[:endettement_encours] / (@comptes_2015[:recette_total_fonctionnement] - @comptes_2015[:charge_total_fonctionnement]) > 2000 %>
+            <p>
+            La structure financière de <%= @ville[:nom].downcase.capitalize %> est dégradée car la commune est très endettée.
+            </p>
+            <%= image_tag "matrice_degradee.png" %>
+          <% elsif 100 * (@comptes_2015[:recette_total_fonctionnement] - @comptes_2015[:charge_total_fonctionnement])/@comptes_2015[:recette_total_fonctionnement] >= 10.6 && 100 * @comptes_2015[:endettement_encours] / (@comptes_2015[:recette_total_fonctionnement] - @comptes_2015[:charge_total_fonctionnement]) < 750 %>
+            <p>
+            La structure financière de <%= @ville[:nom].downcase.capitalize %> est saine. La commune dépense une part raisonnable de ses recettes pour son fonctionnement
+            et il lui reste des fonds pour investir en équipements. Son niveau d'endettement est par ailleurs raisonnable.
+            </p>
+            <%= image_tag "matrice_saine.png" %>
+          <% elsif 100 * (@comptes_2015[:recette_total_fonctionnement] - @comptes_2015[:charge_total_fonctionnement])/@comptes_2015[:recette_total_fonctionnement] < 10.6 && 100 * @comptes_2015[:endettement_encours] / (@comptes_2015[:recette_total_fonctionnement] - @comptes_2015[:charge_total_fonctionnement]) < 750 %>
+            <p>
+            La structure financière de <%= @ville[:nom].downcase.capitalize %> n'est pas optimale. Une fois les dépenses de fonctionnement payées,
+            il reste à la commune peu de fonds pour réaliser des investissements d'équipement. Elle doit compter sur la dette
+            ou les subventions.
+            </p>
+            <%= image_tag "matrice_faible_epargne.png" %>
+          <% elsif 100 * (@comptes_2015[:recette_total_fonctionnement] - @comptes_2015[:charge_total_fonctionnement])/@comptes_2015[:recette_total_fonctionnement] < 10.6 && 100 * @comptes_2015[:endettement_encours] / (@comptes_2015[:recette_total_fonctionnement] - @comptes_2015[:charge_total_fonctionnement]) >= 750 %>
+            <p>
+            La structure financière de <%= @ville[:nom].downcase.capitalize %> est dégradée et lui laisse peu de marges de manoeuvre.
+            Une fois les dépenses de fonctionnement payées, il reste à la commune peu de fonds pour réaliser des investissements d'équipement. Elle doit compter sur la dette
+            ou les subventions, mais sa dette est déjà élevée par rapport à ses capacités de remboursement.
+            </p>
+            <%= image_tag "matrice_degradee.png" %>
+          <% elsif 100 * (@comptes_2015[:recette_total_fonctionnement] - @comptes_2015[:charge_total_fonctionnement])/@comptes_2015[:recette_total_fonctionnement] >= 10.6 && 100 * @comptes_2015[:endettement_encours] / (@comptes_2015[:recette_total_fonctionnement] - @comptes_2015[:charge_total_fonctionnement]) >= 750 %>
+            <%= image_tag "matrice_endettement.png" %>
+          <% end %>
+          <br>
+          <br>
+          <br>
           <p>
+            Le budget d'une commune se compose de deux parties :
+            <br>
+            <br>
+            - le <strong>budget de fonctionnement</strong> correspond aux recettes (taxes et impôts locaux, dotation de l'Etat)
+            et dépenses (personnel, fournitures...) récurrentes d'une commune,
+            <br>
+            - le <strong>budget d'investissement</strong> correspond à des dépenses d'équipement et à leur financement (subventions, emprunt).
+            <br>
+            <br>
+            <strong>Le solde du budget de fonctionnement (recettes - dépenses) est appelé épargne brute en comptabilité publique.</strong>
+            <br>
+            L'épargne brute finance les investissements de la commune. Si elle est insuffisante, la
+            commune peut avoir recours à l'emprunt ou demander des suventions à d'autres institutions
+            (département, région, Union Européenne)
+            <br>
+            <br>
+            Plusieurs indicateurs permettent d'évaluer la santé financière d'une commune :
+            <br>
+            <br>
+            <strong>1.</strong> La part de l'épargne brute dans le budget de fonctionnement indique la capacité
+            de la commune à financer elle-même ses investissements et à faire face à des imprévus.
+            A <%= @ville[:nom].downcase.capitalize %> en 2015 elle était de <%= number_with_precision(100*(@comptes_2015[:recette_total_fonctionnement] - @comptes_2015[:charge_total_fonctionnement])/@comptes_2015[:recette_total_fonctionnement], options = {delimiter: " ", precision: 0}) %>%
+            contre 11% en moyenne en France.
+            <br>
+            <br>
+            <strong>2.</strong> Le niveau d'endettement par rapport à l'épargne brute révèle la soutenabilité de la
+             dette de la commune et donc sa capacité à emprunter à nouveau pour financer ses investissements.
+             A <%= @ville[:nom].downcase.capitalize %> l'endettement représentait <%= number_with_precision(@comptes_2015[:endettement_encours] / (@comptes_2015[:recette_total_fonctionnement] - @comptes_2015[:charge_total_fonctionnement]), options = {delimiter: " ", precision: 0}) %>
+             fois l'épargne brute annuelle en 2015, contre 7 fois en moyenne en France
+            <br>
+            <br>
+            <strong>3.</strong> L 'évolution de ces ratios permet d'évaluer l'action des élus sur la santé financière de la commune.
+            <br>
+            <br>
             <table class="table table-hover">
               <thead>
                 <tr>
@@ -303,22 +368,22 @@
                 <tr>
                   <th scope="row" class="category">Endettement / épargne brute</th>
                   <td class="text-center category">
-                    <%= number_with_precision(@comptes_2010[:endettement_encours] / (@comptes_2010[:recette_total_fonctionnement] - @comptes_2010[:charge_total_fonctionnement]), options = {delimiter: " ", precision: 0}) %>X
+                    <%= number_with_precision(@comptes_2010[:endettement_encours] / (@comptes_2010[:recette_total_fonctionnement] - @comptes_2010[:charge_total_fonctionnement]), options = {delimiter: " ", precision: 0}) %>x
                   </td>
                   <td class="text-center category">
-                    <%= number_with_precision(@comptes_2011[:endettement_encours] / (@comptes_2011[:recette_total_fonctionnement] - @comptes_2011[:charge_total_fonctionnement]), options = {delimiter: " ", precision: 0}) %>X
+                    <%= number_with_precision(@comptes_2011[:endettement_encours] / (@comptes_2011[:recette_total_fonctionnement] - @comptes_2011[:charge_total_fonctionnement]), options = {delimiter: " ", precision: 0}) %>x
                   </td>
                   <td class="text-center category">
-                    <%= number_with_precision(@comptes_2012[:endettement_encours] / (@comptes_2012[:recette_total_fonctionnement] - @comptes_2012[:charge_total_fonctionnement]), options = {delimiter: " ", precision: 0}) %>X
+                    <%= number_with_precision(@comptes_2012[:endettement_encours] / (@comptes_2012[:recette_total_fonctionnement] - @comptes_2012[:charge_total_fonctionnement]), options = {delimiter: " ", precision: 0}) %>x
                   </td>
                   <td class="text-center category">
-                    <%= number_with_precision(@comptes_2013[:endettement_encours] / (@comptes_2013[:recette_total_fonctionnement] - @comptes_2013[:charge_total_fonctionnement]), options = {delimiter: " ", precision: 0}) %>X
+                    <%= number_with_precision(@comptes_2013[:endettement_encours] / (@comptes_2013[:recette_total_fonctionnement] - @comptes_2013[:charge_total_fonctionnement]), options = {delimiter: " ", precision: 0}) %>x
                   </td>
                   <td class="text-center category">
-                    <%= number_with_precision(@comptes_2014[:endettement_encours] / (@comptes_2014[:recette_total_fonctionnement] - @comptes_2014[:charge_total_fonctionnement]), options = {delimiter: " ", precision: 0}) %>X
+                    <%= number_with_precision(@comptes_2014[:endettement_encours] / (@comptes_2014[:recette_total_fonctionnement] - @comptes_2014[:charge_total_fonctionnement]), options = {delimiter: " ", precision: 0}) %>x
                   </td>
                   <td class="text-center category">
-                    <%= number_with_precision(@comptes_2015[:endettement_encours] / (@comptes_2015[:recette_total_fonctionnement] - @comptes_2015[:charge_total_fonctionnement]), options = {delimiter: " ", precision: 0}) %>X
+                    <%= number_with_precision(@comptes_2015[:endettement_encours] / (@comptes_2015[:recette_total_fonctionnement] - @comptes_2015[:charge_total_fonctionnement]), options = {delimiter: " ", precision: 0}) %>x
                   </td>
                 </tr>
                 <tr>
@@ -344,39 +409,6 @@
                 </tr>
               </tbody>
             </table>
-            Le budget d'une commune se compose de deux parties :
-            <br>
-            - le <strong>budget de fonctionnement</strong> correspond aux recettes (taxes et impôts locaux, dotation de l'Etat)
-            et dépenses (personnel, fournitures...) récurrentes d'une commune,
-            <br>
-            - le <strong>budget d'investissement</strong> correspond à des dépenses d'équipement et à leur financement (subventions, emprunt).
-            <br>
-            <br>
-            Le budget de fonctionnement est obligatoirement excédentaire (au budget prévisionnel) : une commune n'a pas le
-            droit d'emprunter pour financer le fonctionnement de ses services.
-            <br>
-            <br>
-            <strong>Le solde du budget de fonctionnement (recettes - dépenses) est appelé épargne brute en comptabilité publique.</strong>
-            <br>
-            L'épargne brute finance les investissements de la commune. Si elle est insuffisante, la
-            commune peut avoir recours à l'emprunt ou demander des suventions à d'autres institutions
-            (département, région, Union Européenne)
-            <br>
-            <br>
-            Plusieurs indicateurs permettent d'évaluer la santé financière d'une commune :
-            <br>
-            <br>
-            1. La part de l'épargne brute dans le budget de fonctionnement indique la capacité
-            de la commune à financer elle-même ses investissements et à faire face à des imprévus.
-            <br>
-            <br>
-            2. Le niveau d'endettement par rapport à l'épargne brute révèle la soutenabilité de la
-             dette de la commune et donc sa capacité à emprunter à nouveau pour financer ses investissements.
-            <br>
-            <br>
-            3. L 'évolution de ces ratios permet d'évaluer l'action des élus sur la santé financière de la commune.
-            <br>
-            <br>
           </p>
           <br>
         </div>

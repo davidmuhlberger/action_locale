@@ -133,12 +133,12 @@
               <tr>
                 <th scope="row">Revenu médian : décile</th>
                 <td class="text-center">
-                  <%=  @ville[:decile_revenu] %>
+                  <%=  @ville[:decile_revenu] %>/10
                 </td>
                 <td class="text-center">-</td>
               </tr>
               <tr>
-                <th scope="row">Part de logements sociaux <%= "(objectif : #{number_to_percentage(@ville[:taux_hlm_legal], precision: 0)})" if @ville[:taux_hlm_legal].is_a? Numeric%> </th>
+                <th scope="row">Part de logements sociaux <%= "(obligation : #{number_to_percentage(@ville[:taux_hlm_legal], precision: 0)})" if @ville[:taux_hlm_legal].is_a? Numeric%> </th>
                 <td class="text-center">
                   <%= @ville[:taux_hlm_2015] ? number_to_percentage(100 * @ville[:taux_hlm_2015], precision: 0) : "na" %>
                 </td>
