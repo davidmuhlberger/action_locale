@@ -66,20 +66,6 @@
 <div class="container">
   <div class="row">
     <div class="col-md-2 col-sm-12">
-      <div class="sticky-side">
-        <div>
-          <button type="button" class="btn btn-default sticky-btn active">Commune</button>
-        </div>
-        <div>
-          <button type="button" class="btn btn-default sticky-btn">Agglomération</button>
-        </div>
-        <div>
-          <button type="button" class="btn btn-default sticky-btn">Département</button>
-        </div>
-        <div>
-          <button type="button" class="btn btn-default sticky-btn">Région</button>
-        </div>
-      </div>
     </div>
     <div class="col-md-10 col-sm-12">
       <div class="entity-title">
@@ -96,10 +82,10 @@
           <%= link_to "Fiscalité", ville_fiscalite_path(nom: @ville.nom) %>
         </li>
         <li role="presentation">
-          <%= link_to "Budget", ville_budget_path(nom: @ville.nom) %>
+          <%= link_to "Dépenses", ville_depenses_path(nom: @ville.nom) %>
         </li>
-        <li role="presentation"">
-          <%= link_to "Lexique", pages_lexique_path %>
+        <li role="presentation">
+          <%= link_to "Finances", ville_finances_path(nom: @ville.nom) %>
         </li>
       </ul>
       <br>

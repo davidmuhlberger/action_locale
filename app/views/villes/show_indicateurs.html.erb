@@ -1,20 +1,6 @@
 <div class="container">
   <div class="row">
     <div class="col-md-2 col-sm-12">
-      <div class="sticky-side">
-        <div>
-          <button type="button" class="btn btn-default sticky-btn active">Commune</button>
-        </div>
-        <div>
-          <button type="button" class="btn btn-default sticky-btn">Agglomération</button>
-        </div>
-        <div>
-          <button type="button" class="btn btn-default sticky-btn">Département</button>
-        </div>
-        <div>
-          <button type="button" class="btn btn-default sticky-btn">Région</button>
-        </div>
-      </div>
     </div>
     <div class="col-md-10 col-sm-12">
       <div class="entity-title">
@@ -27,14 +13,14 @@
         <li role="presentation" class= "active" >
           <%= link_to "Indicateurs", ville_indicateurs_path(nom: @ville.nom) %>
         </li>
-        <li role="presentation"">
+        <li role="presentation">
           <%= link_to "Fiscalité", ville_fiscalite_path(nom: @ville.nom) %>
         </li>
         <li role="presentation">
-          <%= link_to "Budget", ville_budget_path(nom: @ville.nom) %>
+          <%= link_to "Dépenses", ville_depenses_path(nom: @ville.nom) %>
         </li>
-        <li role="presentation"">
-          <%= link_to "Lexique", pages_lexique_path %>
+        <li role="presentation">
+          <%= link_to "Finances", ville_finances_path(nom: @ville.nom) %>
         </li>
       </ul>
       <br>
@@ -244,7 +230,7 @@
             <%= @comptes_2015[:charge_total_fonctionnement]/(@comptes_2015[:population] +  @comptes_2015[:nb_res_secondaires]) %> € par habitant , correspondant
             à un niveau de dépenses <%= @charge_fct_comp %> à la moyenne des communes de même taille. Pour une analyse
             détaillé de la situation financière de la commune, vous pouvez consulter l'onglet
-            <%= link_to "budget", ville_budget_path(nom: @ville.nom) %> et nos pages dédiées à
+            <%= link_to "Finances", ville_finances_path(nom: @ville.nom) %> et nos pages dédiées à
             la <%= link_to "structure des budgets", pages_structure_path %> ou à
             l'<a href="#">analyse des budgets des collectivités locales</a>.
           </p>

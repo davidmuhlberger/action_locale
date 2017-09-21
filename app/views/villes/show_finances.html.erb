@@ -1,62 +1,6 @@
-<% content_for :head do %>
-  <!--Load the AJAX API-->
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    <script type="text/javascript">
-      google.charts.load('current', {packages: ['corechart', 'bar'], 'language': 'fr'});
-      google.charts.setOnLoadCallback(drawFonctionnement);
-
-      function drawFonctionnement() {
-        var data = google.visualization.arrayToDataTable([
-          ['', "Dépenses de fonctionnement / habitant", "Dépenses de fonctionnement / habitant moyenne"],
-          ["2008", <%= @comptes_2008[:charge_total_fonctionnement] / @comptes_2008[:population] %>, <%= @comptes_moy_2008[:charge_total_fonctionnement] / @comptes_moy_2008[:population] %>],
-          ["2009", <%= @comptes_2009[:charge_total_fonctionnement] / @comptes_2009[:population] %>, <%= @comptes_moy_2008[:charge_total_fonctionnement] / @comptes_moy_2008[:population] %>],
-          ["2010", <%= @comptes_2010[:charge_total_fonctionnement] / @comptes_2010[:population] %>, <%= @comptes_moy_2008[:charge_total_fonctionnement] / @comptes_moy_2008[:population] %>],
-          ["2011", <%= @comptes_2011[:charge_total_fonctionnement] / @comptes_2011[:population] %>, <%= @comptes_moy_2008[:charge_total_fonctionnement] / @comptes_moy_2008[:population] %>],
-          ["2012", <%= @comptes_2012[:charge_total_fonctionnement] / @comptes_2012[:population] %>, <%= @comptes_moy_2008[:charge_total_fonctionnement] / @comptes_moy_2008[:population] %>],
-          ["2013", <%= @comptes_2013[:charge_total_fonctionnement] / @comptes_2013[:population] %>, <%= @comptes_moy_2008[:charge_total_fonctionnement] / @comptes_moy_2008[:population] %>],
-          ["2014", <%= @comptes_2014[:charge_total_fonctionnement] / @comptes_2014[:population] %>, <%= @comptes_moy_2008[:charge_total_fonctionnement] / @comptes_moy_2008[:population] %>],
-          ["2015", <%= @comptes_2015[:charge_total_fonctionnement] / @comptes_2015[:population] %>, <%= @comptes_moy_2008[:charge_total_fonctionnement] / @comptes_moy_2008[:population] %>],
-        ]);
-
-
-        var options = {
-          'width' : 750,
-          'height' : 350,
-          'chartArea' : {
-            'width': 400,
-            'height': 200
-          },
-          colors: ['#2196F3','#B0BEC5'],
-          'legend' : {
-            'alignment': 'center'
-          },
-        };
-
-        var investissementchart = new google.charts.Bar(document.getElementById('fonctionnement_chart_div'));
-        investissementchart.draw(data, google.charts.Bar.convertOptions(options));
-      }
-
-    </script>
-<% end %>
-
-
 <div class="container">
   <div class="row">
     <div class="col-md-2 col-sm-12">
-      <div class="sticky-side">
-        <div>
-          <button type="button" class="btn btn-default sticky-btn active">Commune</button>
-        </div>
-        <div>
-          <button type="button" class="btn btn-default sticky-btn">Agglomération</button>
-        </div>
-        <div>
-          <button type="button" class="btn btn-default sticky-btn">Département</button>
-        </div>
-        <div>
-          <button type="button" class="btn btn-default sticky-btn">Région</button>
-        </div>
-      </div>
     </div>
     <div class="col-md-10 col-sm-12">
       <div class="entity-title">
@@ -69,14 +13,14 @@
         <li role="presentation">
           <%= link_to "Indicateurs", ville_indicateurs_path(nom: @ville.nom) %>
         </li>
-        <li role="presentation"">
+        <li role="presentation">
           <%= link_to "Fiscalité", ville_fiscalite_path(nom: @ville.nom) %>
         </li>
-        <li role="presentation" class="active" >
-          <%= link_to "Budget", ville_budget_path(nom: @ville.nom) %>
+        <li role="presentation" >
+          <%= link_to "Dépenses", ville_depenses_path(nom: @ville.nom) %>
         </li>
-        <li role="presentation"">
-          <%= link_to "Lexique", pages_lexique_path %>
+        <li role="presentation" class="active" >
+          <%= link_to "Finances", ville_finances_path(nom: @ville.nom) %>
         </li>
       </ul>
       <br>
@@ -85,34 +29,46 @@
           <br>
           <h4><strong>Situation financière de la commune</strong></h4>
           <br>
-          <% if 100 * @comptes_2015[:endettement_encours] / (@comptes_2015[:recette_total_fonctionnement] - @comptes_2015[:charge_total_fonctionnement]) > 2000 %>
-            <p>
-            La structure financière de <%= @ville[:nom].downcase.capitalize %> est dégradée car la commune est très endettée.
-            </p>
-            <%= image_tag "matrice_degradee.png" %>
-          <% elsif 100 * (@comptes_2015[:recette_total_fonctionnement] - @comptes_2015[:charge_total_fonctionnement])/@comptes_2015[:recette_total_fonctionnement] >= 10.6 && 100 * @comptes_2015[:endettement_encours] / (@comptes_2015[:recette_total_fonctionnement] - @comptes_2015[:charge_total_fonctionnement]) < 750 %>
-            <p>
-            La structure financière de <%= @ville[:nom].downcase.capitalize %> est saine. La commune dépense une part raisonnable de ses recettes pour son fonctionnement
-            et il lui reste des fonds pour investir en équipements. Son niveau d'endettement est par ailleurs raisonnable.
-            </p>
-            <%= image_tag "matrice_saine.png" %>
-          <% elsif 100 * (@comptes_2015[:recette_total_fonctionnement] - @comptes_2015[:charge_total_fonctionnement])/@comptes_2015[:recette_total_fonctionnement] < 10.6 && 100 * @comptes_2015[:endettement_encours] / (@comptes_2015[:recette_total_fonctionnement] - @comptes_2015[:charge_total_fonctionnement]) < 750 %>
-            <p>
-            La structure financière de <%= @ville[:nom].downcase.capitalize %> n'est pas optimale. Une fois les dépenses de fonctionnement payées,
-            il reste à la commune peu de fonds pour réaliser des investissements d'équipement. Elle doit compter sur la dette
-            ou les subventions.
-            </p>
-            <%= image_tag "matrice_faible_epargne.png" %>
-          <% elsif 100 * (@comptes_2015[:recette_total_fonctionnement] - @comptes_2015[:charge_total_fonctionnement])/@comptes_2015[:recette_total_fonctionnement] < 10.6 && 100 * @comptes_2015[:endettement_encours] / (@comptes_2015[:recette_total_fonctionnement] - @comptes_2015[:charge_total_fonctionnement]) >= 750 %>
-            <p>
-            La structure financière de <%= @ville[:nom].downcase.capitalize %> est dégradée et lui laisse peu de marges de manoeuvre.
-            Une fois les dépenses de fonctionnement payées, il reste à la commune peu de fonds pour réaliser des investissements d'équipement. Elle doit compter sur la dette
-            ou les subventions, mais sa dette est déjà élevée par rapport à ses capacités de remboursement.
-            </p>
-            <%= image_tag "matrice_degradee.png" %>
-          <% elsif 100 * (@comptes_2015[:recette_total_fonctionnement] - @comptes_2015[:charge_total_fonctionnement])/@comptes_2015[:recette_total_fonctionnement] >= 10.6 && 100 * @comptes_2015[:endettement_encours] / (@comptes_2015[:recette_total_fonctionnement] - @comptes_2015[:charge_total_fonctionnement]) >= 750 %>
-            <%= image_tag "matrice_endettement.png" %>
-          <% end %>
+          <div class="card-tab">
+            <table class="table table-hover">
+              <thead>
+                <tr>
+                  <th class="text-center">
+                    Capacité d'autofinancement
+                  </th>
+                  <th class="text-center">
+                    Capacité à rembourser la dette
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="text-center">
+                    <% if 100 * (@comptes_2015[:recette_total_fonctionnement] - @comptes_2015[:charge_total_fonctionnement])/@comptes_2015[:recette_total_fonctionnement] <7 %>
+                      <%= image_tag "capa_fin_min.png" %>
+                    <% elsif 100 * (@comptes_2015[:recette_total_fonctionnement] - @comptes_2015[:charge_total_fonctionnement])/@comptes_2015[:recette_total_fonctionnement] < 10 %>
+                      <%= image_tag "capa_fin_small_min.png" %>
+                    <% elsif 100 * (@comptes_2015[:recette_total_fonctionnement] - @comptes_2015[:charge_total_fonctionnement])/@comptes_2015[:recette_total_fonctionnement] < 13 %>
+                      <%= image_tag "capa_fin_small_max.png" %>
+                    <% else %>
+                      <%= image_tag "capa_fin_max.png" %>
+                    <% end %>
+                  </td>
+                  <td class="text-center">
+                    <% if 100 * @comptes_2015[:endettement_encours] / (@comptes_2015[:recette_total_fonctionnement] - @comptes_2015[:charge_total_fonctionnement]) > 1000 %>
+                      <%= image_tag "capa_fin_min.png" %>
+                    <% elsif 100 * @comptes_2015[:endettement_encours] / (@comptes_2015[:recette_total_fonctionnement] - @comptes_2015[:charge_total_fonctionnement]) > 750 %>
+                      <%= image_tag "capa_fin_small_min.png" %>
+                    <% elsif 100 * @comptes_2015[:endettement_encours] / (@comptes_2015[:recette_total_fonctionnement] - @comptes_2015[:charge_total_fonctionnement]) > 500 %>
+                      <%= image_tag "capa_fin_small_max.png" %>
+                    <% else %>
+                      <%= image_tag "capa_fin_max.png" %>
+                    <% end %>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
           <br>
           <br>
           <br>
@@ -411,28 +367,6 @@
             </table>
           </p>
           <br>
-        </div>
-      </div>
-      <div class="card">
-        <div class="card-title">
-          <br>
-          <h4><strong>Niveau de des dépenses de la commune</strong></h4>
-          <br>
-          <p>
-            Une commune ne doit pas seulement garder une marge de manoeurvre financière.
-            <br>
-            Elle doit dans l'idéal fournir un bon niveau de services à sa population, pour un coût
-            qui reste le plus raisonnable possible.
-            <br>
-            <br>
-            Le graphique ci-dessous compare le niveau de dépenses de fonctionnement par habitant pour <%= @ville[:nom].downcase.capitalize %>
-            avec la moyenne des villes de même taille. Un montant de dépenses élevées devrait correspondre à une qualité
-            de services municipaux supérieurs à la moyenne.
-          </p>
-          <br>
-        </div>
-        <div class="card-tab">
-          <div id="fonctionnement_chart_div"></div>
         </div>
       </div>
     </div>
