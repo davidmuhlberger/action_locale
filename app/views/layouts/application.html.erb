@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Action !</title>
+    <title>Citoyens Responsables</title>
     <%= csrf_meta_tags %>
     <%= action_cable_meta_tag %>
     <%= stylesheet_link_tag    'application', media: 'all' %>
@@ -14,11 +14,11 @@
   </head>
   <body>
     <div class="navbar">
-      <%=link_to(image_tag("http://placehold.it/40x40"), pages_home_path, class: "logo") %>
+      <%=link_to(image_tag("logo_full.png"), pages_home_path, class: "logo") %>
       <div class="navbar-right hidden-xs hidden-sm">
         <form class="navbar-form navbar-left" role="search">
           <div class="form-group">
-            <input type="text" class="form-control" placeholder="Ma commune">
+            <input type="text" class="form-control" placeholder="Chercher une collectivité">
           </div>
           <button type="submit" class="btn btn-default">
             <i class="fa fa-search"></i>

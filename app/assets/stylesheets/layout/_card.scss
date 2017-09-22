@@ -11,11 +11,25 @@
 }
 
 .entity-title {
-  height: 50px;
-  padding-top: 100px;
-  padding-bottom: 40px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 120px;
   text-align: center;
-  color: #808080;
+}
+
+.entity-title h1 {
+  display:inline-block;
+  max-width: 700px;
+  padding-left: 30px;
+  padding-right: 30px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  text-align: center;
+  color: black;
+  border-style: solid;
+  border-color: red;
+  border-width: 5px;
+  border-radius: 7px;
 }
 
 .card {
