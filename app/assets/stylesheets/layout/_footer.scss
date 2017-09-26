@@ -1,7 +1,17 @@
 .footer {
-  height: 300px;
+  padding-top: 0px;
+  padding-bottom: 70px;
   background-color: #607D8B;
   position: absolute;
   left: 0;
   right: 0;
+}
+
+.footer a {
+  color: #F0F8FF;
+}
+
+.footer a:hover {
+  color: #F0F8FF;
+  text-decoration: none;
 }

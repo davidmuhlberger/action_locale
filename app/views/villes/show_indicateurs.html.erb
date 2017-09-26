@@ -1,8 +1,8 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-2 col-sm-12">
+    <div class="col-md-1 col-sm-12">
     </div>
-    <div class="col-md-10 col-sm-12">
+    <div class="col-md-11 col-sm-12">
     <br>
       <div class="entity-title">
         <h1>
@@ -130,11 +130,11 @@
                   <%= number_with_precision(@comptes_moy_2015[:recette_taxe_habitation] / (@comptes_moy_2015[:population] + @comptes_moy_2015[:nb_res_secondaires]), options = {delimiter: " ", precision: 0}) %>
                 </td>
                 <td class="text-center">
-                  <% if @comptes_2015[:recette_taxe_habitation] / (@comptes_2015[:population] +  @comptes_2015[:nb_res_secondaires]) < 160 %>
+                  <% if @comptes_2015[:recette_taxe_habitation] / (@comptes_2015[:population] +  @comptes_2015[:nb_res_secondaires]) < @comptes_moy_2015[:recette_taxe_habitation] / (@comptes_moy_2015[:population] +  @comptes_moy_2015[:nb_res_secondaires]) * 0.75 %>
                     <%= image_tag "gauge_min.png" %>
-                  <% elsif @comptes_2015[:recette_taxe_habitation] / (@comptes_2015[:population] +  @comptes_2015[:nb_res_secondaires]) < 220 %>
+                  <% elsif @comptes_2015[:recette_taxe_habitation] / (@comptes_2015[:population] +  @comptes_2015[:nb_res_secondaires]) < @comptes_moy_2015[:recette_taxe_habitation] / (@comptes_moy_2015[:population] +  @comptes_moy_2015[:nb_res_secondaires]) %>
                     <%= image_tag "gauge_small_min.png" %>
-                  <% elsif @comptes_2015[:recette_taxe_habitation] / (@comptes_2015[:population] +  @comptes_2015[:nb_res_secondaires]) < 280 %>
+                  <% elsif @comptes_2015[:recette_taxe_habitation] / (@comptes_2015[:population] +  @comptes_2015[:nb_res_secondaires]) < @comptes_moy_2015[:recette_taxe_habitation] / (@comptes_moy_2015[:population] +  @comptes_moy_2015[:nb_res_secondaires]) * 1.25 %>
                     <%= image_tag "gauge_small_max.png" %>
                   <% else %>
                     <%= image_tag "gauge_max.png" %>
@@ -150,11 +150,11 @@
                   <%= number_with_precision((@comptes_moy_2015[:recette_taxe_fonciere_bati]+@comptes_moy_2015[:recette_taxe_fonciere_non_bati]) / (@comptes_moy_2015[:population] + @comptes_moy_2015[:nb_res_secondaires]), options = {delimiter: " ", precision: 0}) %>
                 </td>
                 <td class="text-center">
-                  <% if (@comptes_2015[:recette_taxe_fonciere_bati]+@comptes_2015[:recette_taxe_fonciere_non_bati]) / (@comptes_2015[:population] +  @comptes_2015[:nb_res_secondaires]) < 180 %>
+                  <% if (@comptes_2015[:recette_taxe_fonciere_bati]+@comptes_2015[:recette_taxe_fonciere_non_bati]) / (@comptes_2015[:population] +  @comptes_2015[:nb_res_secondaires]) < (@comptes_moy_2015[:recette_taxe_fonciere_bati]+@comptes_moy_2015[:recette_taxe_fonciere_non_bati]) / (@comptes_moy_2015[:population] +  @comptes_moy_2015[:nb_res_secondaires]) * 0.75 %>
                     <%= image_tag "gauge_min.png" %>
-                  <% elsif (@comptes_2015[:recette_taxe_fonciere_bati]+@comptes_2015[:recette_taxe_fonciere_non_bati]) / (@comptes_2015[:population] +  @comptes_2015[:nb_res_secondaires]) < 240 %>
+                  <% elsif (@comptes_2015[:recette_taxe_fonciere_bati]+@comptes_2015[:recette_taxe_fonciere_non_bati]) / (@comptes_2015[:population] +  @comptes_2015[:nb_res_secondaires]) < (@comptes_moy_2015[:recette_taxe_fonciere_bati]+@comptes_moy_2015[:recette_taxe_fonciere_non_bati]) / (@comptes_moy_2015[:population] +  @comptes_moy_2015[:nb_res_secondaires]) %>
                     <%= image_tag "gauge_small_min.png" %>
-                  <% elsif (@comptes_2015[:recette_taxe_fonciere_bati]+@comptes_2015[:recette_taxe_fonciere_non_bati]) / (@comptes_2015[:population] +  @comptes_2015[:nb_res_secondaires]) < 300 %>
+                  <% elsif (@comptes_2015[:recette_taxe_fonciere_bati]+@comptes_2015[:recette_taxe_fonciere_non_bati]) / (@comptes_2015[:population] +  @comptes_2015[:nb_res_secondaires]) < (@comptes_moy_2015[:recette_taxe_fonciere_bati]+@comptes_moy_2015[:recette_taxe_fonciere_non_bati]) / (@comptes_moy_2015[:population] +  @comptes_moy_2015[:nb_res_secondaires]) * 1.25 %>
                     <%= image_tag "gauge_small_max.png" %>
                   <% else %>
                     <%= image_tag "gauge_max.png" %>
@@ -178,11 +178,11 @@
                   <%= number_with_precision(@comptes_moy_2015[:charge_total_fonctionnement] / (@comptes_moy_2015[:population] + @comptes_moy_2015[:nb_res_secondaires]), options = {delimiter: " ", precision: 0})%>
                 </td>
                 <td class="text-center">
-                  <% if @comptes_2015[:charge_total_fonctionnement] / (@comptes_2015[:population] +  @comptes_2015[:nb_res_secondaires]) < 650 %>
+                  <% if @comptes_2015[:charge_total_fonctionnement] / (@comptes_2015[:population] +  @comptes_2015[:nb_res_secondaires]) < @comptes_moy_2015[:charge_total_fonctionnement] / (@comptes_moy_2015[:population] +  @comptes_moy_2015[:nb_res_secondaires]) * 0.75 %>
                     <%= image_tag "gauge_min.png" %>
-                  <% elsif @comptes_2015[:charge_total_fonctionnement] / (@comptes_2015[:population] +  @comptes_2015[:nb_res_secondaires]) < 1050 %>
+                  <% elsif @comptes_2015[:charge_total_fonctionnement] / (@comptes_2015[:population] +  @comptes_2015[:nb_res_secondaires]) < @comptes_moy_2015[:charge_total_fonctionnement] / (@comptes_moy_2015[:population] +  @comptes_moy_2015[:nb_res_secondaires]) %>
                     <%= image_tag "gauge_small_min.png" %>
-                  <% elsif @comptes_2015[:charge_total_fonctionnement] / (@comptes_2015[:population] +  @comptes_2015[:nb_res_secondaires]) < 1450 %>
+                  <% elsif @comptes_2015[:charge_total_fonctionnement] / (@comptes_2015[:population] +  @comptes_2015[:nb_res_secondaires]) < @comptes_moy_2015[:charge_total_fonctionnement] / (@comptes_moy_2015[:population] +  @comptes_moy_2015[:nb_res_secondaires]) * 1.25 %>
                     <%= image_tag "gauge_small_max.png" %>
                   <% else %>
                     <%= image_tag "gauge_max.png" %>
@@ -198,11 +198,11 @@
                   <%= number_with_precision(@comptes_moy_2015[:endettement_encours] / (@comptes_moy_2015[:population] + @comptes_moy_2015[:nb_res_secondaires]), options = {delimiter: " ", precision: 0})%>
                 </td>
                 <td class="text-center">
-                  <% if @comptes_2015[:endettement_encours] / (@comptes_2015[:population] +  @comptes_2015[:nb_res_secondaires]) < 500 %>
+                  <% if @comptes_2015[:endettement_encours] / (@comptes_2015[:population] +  @comptes_2015[:nb_res_secondaires]) < @comptes_moy_2015[:endettement_encours] / (@comptes_moy_2015[:population] +  @comptes_moy_2015[:nb_res_secondaires]) * 0.75 %>
                     <%= image_tag "gauge_min.png" %>
-                  <% elsif @comptes_2015[:endettement_encours] / (@comptes_2015[:population] +  @comptes_2015[:nb_res_secondaires]) < 900 %>
+                  <% elsif @comptes_2015[:endettement_encours] / (@comptes_2015[:population] +  @comptes_2015[:nb_res_secondaires]) < @comptes_moy_2015[:endettement_encours] / (@comptes_moy_2015[:population] +  @comptes_moy_2015[:nb_res_secondaires]) %>
                     <%= image_tag "gauge_small_min.png" %>
-                  <% elsif @comptes_2015[:endettement_encours] / (@comptes_2015[:population] +  @comptes_2015[:nb_res_secondaires]) < 1300 %>
+                  <% elsif @comptes_2015[:endettement_encours] / (@comptes_2015[:population] +  @comptes_2015[:nb_res_secondaires]) < @comptes_moy_2015[:endettement_encours] / (@comptes_moy_2015[:population] +  @comptes_moy_2015[:nb_res_secondaires]) * 1.25 %>
                     <%= image_tag "gauge_small_max.png" %>
                   <% else %>
                     <%= image_tag "gauge_max.png" %>
@@ -225,15 +225,21 @@
             <br>
             <br>
             La somme des deux principaux impôts locaux (taxe d’habitation et taxe foncière)
-            s’élève à <%= (@comptes_2015[:recette_taxe_habitation]+@comptes_2015[:recette_taxe_fonciere_bati]+@comptes_2015[:recette_taxe_fonciere_non_bati]) / (@comptes_2015[:population] +  @comptes_2015[:nb_res_secondaires]) %> €.
-            C'est <%= number_to_percentage(100*((@comptes_2015[:recette_taxe_habitation]+@comptes_2015[:recette_taxe_fonciere_bati]+@comptes_2015[:recette_taxe_fonciere_non_bati]) / (@comptes_2015[:population] +  @comptes_2015[:nb_res_secondaires]))/((@comptes_moy_2015[:recette_taxe_habitation]+@comptes_moy_2015[:recette_taxe_fonciere_bati]+@comptes_moy_2015[:recette_taxe_fonciere_non_bati]) / (@comptes_moy_2015[:population] +  @comptes_moy_2015[:nb_res_secondaires]))-100, precision: 0) %>
-            de plus que la moyenne des villes de taille comparable.
-            Vous pouvez consulter plus en détails le niveau des prélèvements et son évolution dans
+            s’élève à <%= number_with_precision((@comptes_2015[:recette_taxe_habitation]+@comptes_2015[:recette_taxe_fonciere_bati]+@comptes_2015[:recette_taxe_fonciere_non_bati]) / (@comptes_2015[:population] +  @comptes_2015[:nb_res_secondaires]), options = {delimiter: " ", precision: 0}) %> €.
+            C'est
+            <% if 100*((@comptes_2015[:recette_taxe_habitation]+@comptes_2015[:recette_taxe_fonciere_bati]+@comptes_2015[:recette_taxe_fonciere_non_bati]) / (@comptes_2015[:population] +  @comptes_2015[:nb_res_secondaires]))/((@comptes_moy_2015[:recette_taxe_habitation]+@comptes_moy_2015[:recette_taxe_fonciere_bati]+@comptes_moy_2015[:recette_taxe_fonciere_non_bati]) / (@comptes_moy_2015[:population] +  @comptes_moy_2015[:nb_res_secondaires]))-100 >=0 %>
+              <%= number_to_percentage(100*((@comptes_2015[:recette_taxe_habitation]+@comptes_2015[:recette_taxe_fonciere_bati]+@comptes_2015[:recette_taxe_fonciere_non_bati]) / (@comptes_2015[:population] +  @comptes_2015[:nb_res_secondaires]))/((@comptes_moy_2015[:recette_taxe_habitation]+@comptes_moy_2015[:recette_taxe_fonciere_bati]+@comptes_moy_2015[:recette_taxe_fonciere_non_bati]) / (@comptes_moy_2015[:population] +  @comptes_moy_2015[:nb_res_secondaires]))-100, precision: 0) %>
+              de plus que la moyenne des villes de taille comparable.
+            <% else %>
+              <%= number_to_percentage(100*((@comptes_2015[:recette_taxe_habitation]+@comptes_2015[:recette_taxe_fonciere_bati]+@comptes_2015[:recette_taxe_fonciere_non_bati]) / (@comptes_2015[:population] +  @comptes_2015[:nb_res_secondaires]))/((@comptes_moy_2015[:recette_taxe_habitation]+@comptes_moy_2015[:recette_taxe_fonciere_bati]+@comptes_moy_2015[:recette_taxe_fonciere_non_bati]) / (@comptes_moy_2015[:population] +  @comptes_moy_2015[:nb_res_secondaires]))-100, precision: 0) %>
+              de moins que la moyenne des villes de taille comparable.
+            <% end %>
+            Vous pouvez consulter plus en détail le niveau des prélèvements et son évolution dans
             l'onglet <%= link_to "fiscalité", ville_fiscalite_path(nom: @ville.nom) %>.
             <br>
             <br>
             Les dépenses de fonctionnement s'élevaient en 2015 à
-            <%= @comptes_2015[:charge_total_fonctionnement]/(@comptes_2015[:population] +  @comptes_2015[:nb_res_secondaires]) %> € par habitant, correspondant
+            <%= number_with_precision(@comptes_2015[:charge_total_fonctionnement]/(@comptes_2015[:population] +  @comptes_2015[:nb_res_secondaires]), options = {delimiter: " ", precision: 0}) %> € par habitant, correspondant
             à un niveau de dépenses <%= @charge_fct_comp %> à la moyenne des communes de même taille. Pour une analyse
             détaillé de la situation financière de la commune, vous pouvez consulter l'onglet
             <%= link_to "Finances", ville_finances_path(nom: @ville.nom) %> et nos pages dédiées à

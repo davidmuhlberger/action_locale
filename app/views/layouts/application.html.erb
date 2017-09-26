@@ -26,7 +26,7 @@
         </form>
         <%= link_to "Projet", pages_projet_path, class: "navbar-link navbar-item" %>
           <div class="dropdown">
-            <p class="navbar-link navbar-item dropdown-toggle" data-toggle="dropdown">Ressources</p>
+            <p class="navbar-link navbar-item dropdown-toggle" data-toggle="dropdown">Documentation</p>
             <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
               <li>
                 <%= link_to "Compétences des collectivités", pages_competences_path %>
@@ -39,12 +39,57 @@
               </li>
             </ul>
           </div>
+        <%= link_to "Blog", pages_blog_path, class: "navbar-link navbar-item" %>
       </div>
     </div>
     <%= yield %>
     <%= javascript_include_tag 'application' %>
     <div class="footer">
-    <p class="text-center"></p>
+      <div class="container">
+      <br>
+      <br>
+      <br>
+        <div class="row">
+          <div class="col-md-2">
+          </div>
+          <div class="col-md-3">
+            <%= link_to "Projet", pages_projet_path %>
+            <br>
+            <br>
+            <%= link_to "Documentation", pages_documentation_path %>
+            <br>
+            <br>
+            <%= link_to "Blog", pages_projet_path %>
+            <br>
+            <br>
+            <%= link_to "Méthodologie", pages_methodologie_path %>
+          </div>
+          <div class="col-md-3">
+            <%= link_to "L'association", pages_association_path %>
+            <br>
+            <br>
+            <%= link_to "Nous rejoindre", pages_rejoindre_path %>
+            <br>
+            <br>
+            <%= link_to "S'abonner", pages_rejoindre_path %>
+            <br>
+            <br>
+            <%= link_to "Mentions légales", pages_mentions_path %>
+          </div>
+          <div class="col-md-4">
+            <br>
+            <br>
+            <h4>
+              <a><i class="fa fa-facebook-official" aria-hidden="true"></i></a>
+              <a><i class="fa fa-twitter-square" aria-hidden="true"></i></a>
+            </h4>
+            <br>
+            <br>
+            <i class="fa fa-copyright" aria-hidden="true"></i>  2017 - Citoyens Responsables
+          </div>
+        </div>
+      </div>
+    </div>
     </div>
   </body>
 </html>
