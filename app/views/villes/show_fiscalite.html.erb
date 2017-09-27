@@ -139,7 +139,15 @@
           <br>
           <p>
             Ces graphiques présentent l'évolution des deux principaux impôts locaux,
-            c'est-à-dire la taxe d'habitation et la taxe foncière, entre les années 2008 et 2015,
+            c'est-à-dire
+            <a data-toggle="modal" data-target="#modalTh">
+              la taxe d'habitation
+            </a>
+             et
+            <a data-toggle="modal" data-target="#modalTf">
+              les taxes foncières
+            </a>
+            , entre les années 2008 et 2015,
             et la compare, sur la même période, à l'évolution de ces impôts en moyenne pour
             l'ensemble des communes de taille comparable en France.
             <br>
@@ -193,6 +201,83 @@
             <br>
           </p>
         </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+  <!-- Button trigger modal -->
+
+
+<!-- Modal TH -->
+<div class="modal fade" id="modalTh" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel"><strong>La taxe d'habitation</strong></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      <p>
+        La taxe d'habitation est due par le foyer occupant d'un logement.
+        Elle est prélevée par la commune et l'intercommunalité.
+        <br>
+        <br>
+        Elle est calculée à partir des bases cadastrales qui sont des estimations des revenus locatifs
+        que génère ou pourrait générer un bien. Des taux votés par la commune et l'intercommunalité sont
+        ensuite appliqués à cette base.
+        <br>
+        Les foyers avec de faibles revenus sont totalement ou partiellement exonérés de taxe d'habitation.
+        <br>
+        <br>
+        La taxe d'habitation finance donc le budget de fonctionnement des communes et collectivités (achats, personnel, entretien).
+        L'année dernière elle a rapporté 16,5 Md€ aux collectivités.
+      </p>
+      </div>
+      <div class="modal-footer">
+        <p>
+        Source : Les Collectivités locales en chiffres, DGCL, 2017
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Modal TF -->
+<div class="modal fade" id="modalTf" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel"><strong>Les taxes foncières</strong></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      <p>
+        Il existe une taxe foncière sur le foncier bâti (immeubles, maisons, appartements, bureaux...)
+        et une taxe foncière sur le foncier non bâti (terrains nus)
+        <br>
+        <br>
+        La taxe foncière est dûe par le propriétaire d'un bien immobilier. Elle
+        <br>
+        <br>
+        Elle est calculée à partir des bases cadastrales qui sont des estimations des revenus locatifs
+        que génère ou pourrait générer un bien. Des taux voté par la commune, l'intercommunalité et le département sont
+        ensuite appliqués à cette base.
+        <br>
+        Les foyers avec de faibles revenus ou âgés peuvent bénéficier d'un abattement.
+        <br>
+        <br>
+        La taxe sur le foncier bâti a rapporté 31,9 Md€ en 2016, et la taxe sur le foncier non bâti 1 Md€. Leur produit
+        finance pour un peu plus de la moitié les communes et intercommunalités et pour le reste les départements.
+      </p>
+      </div>
+      <div class="modal-footer">
+        <p>
+        Source : Les Collectivités locales en chiffres, DGCL, 2017
+        </p>
       </div>
     </div>
   </div>
