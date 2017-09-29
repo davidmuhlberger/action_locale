@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   get "/villes/:nom/depenses" => "villes#show_depenses", as: 'ville_depenses'
   get "/villes/:nom/finances" => "villes#show_finances", as: 'ville_finances'
   get "/villes/:nom/fiscalite" => "villes#show_fiscalite", as: 'ville_fiscalite'
+  get "/villes/:nom/synthese" => "villes#show_synthese", as: 'ville_synthese'
   get "/projet" => "pages#projet", as: 'pages_projet'
   get "/lexique" => "pages#lexique", as: 'pages_lexique'
   get "/home" => "pages#home", as: 'pages_home'
@@ -15,6 +16,5 @@ Rails.application.routes.draw do
   get "/association" => "pages#association", as: 'pages_association'
   get "/rejoindre" => "pages#rejoindre", as: 'pages_rejoindre'
   get "/mentions" => "pages#mentions", as: 'pages_mentions'
-  get "/methodologie" => "pages#methodologie", as: 'pages_methodologie'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

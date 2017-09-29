@@ -1,0 +1,175 @@
+<% content_for :head do %>
+  <!--Load the AJAX API-->
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {packages: ['corechart', 'bar'], 'language': 'fr'});
+      google.charts.setOnLoadCallback(drawtf);
+      google.charts.setOnLoadCallback(drawth);
+
+      function drawtf() {
+        var data = google.visualization.arrayToDataTable([
+          ['', 'Taxes foncières / habitant <%=escape_javascript @ville[:nom].downcase.capitalize %>', 'Taxes foncières / habitant moyenne'],
+          ["2008", <%= (@comptes_2008[:recette_taxe_fonciere_bati]+@comptes_2008[:recette_taxe_fonciere_non_bati]) / @comptes_2008[:population] %>, <%= (@comptes_moy_2008[:recette_taxe_fonciere_bati]+@comptes_moy_2008[:recette_taxe_fonciere_non_bati]) / @comptes_moy_2008[:population] %>],
+          ["2009", <%= (@comptes_2009[:recette_taxe_fonciere_bati]+@comptes_2009[:recette_taxe_fonciere_non_bati]) / @comptes_2009[:population] %>, <%= (@comptes_moy_2009[:recette_taxe_fonciere_bati]+@comptes_moy_2009[:recette_taxe_fonciere_non_bati]) / @comptes_moy_2009[:population] %>],
+          ["2010", <%= (@comptes_2010[:recette_taxe_fonciere_bati]+@comptes_2010[:recette_taxe_fonciere_non_bati]) / @comptes_2010[:population] %>, <%= (@comptes_moy_2010[:recette_taxe_fonciere_bati]+@comptes_moy_2010[:recette_taxe_fonciere_non_bati]) / @comptes_moy_2010[:population] %>],
+          ["2011", <%= (@comptes_2011[:recette_taxe_fonciere_bati]+@comptes_2011[:recette_taxe_fonciere_non_bati]) / @comptes_2011[:population] %>, <%= (@comptes_moy_2011[:recette_taxe_fonciere_bati]+@comptes_moy_2011[:recette_taxe_fonciere_non_bati]) / @comptes_moy_2011[:population] %>],
+          ["2012", <%= (@comptes_2012[:recette_taxe_fonciere_bati]+@comptes_2012[:recette_taxe_fonciere_non_bati]) / @comptes_2012[:population] %>, <%= (@comptes_moy_2012[:recette_taxe_fonciere_bati]+@comptes_moy_2012[:recette_taxe_fonciere_non_bati]) / @comptes_moy_2012[:population] %>],
+          ["2013", <%= (@comptes_2013[:recette_taxe_fonciere_bati]+@comptes_2013[:recette_taxe_fonciere_non_bati]) / @comptes_2013[:population] %>, <%= (@comptes_moy_2013[:recette_taxe_fonciere_bati]+@comptes_moy_2013[:recette_taxe_fonciere_non_bati]) / @comptes_moy_2013[:population] %>],
+          ["2014", <%= (@comptes_2014[:recette_taxe_fonciere_bati]+@comptes_2014[:recette_taxe_fonciere_non_bati]) / @comptes_2014[:population] %>, <%= (@comptes_moy_2014[:recette_taxe_fonciere_bati]+@comptes_moy_2014[:recette_taxe_fonciere_non_bati]) / @comptes_moy_2014[:population] %>],
+          ["2015", <%= (@comptes_2015[:recette_taxe_fonciere_bati]+@comptes_2015[:recette_taxe_fonciere_non_bati]) / @comptes_2015[:population] %>, <%= (@comptes_moy_2015[:recette_taxe_fonciere_bati]+@comptes_moy_2015[:recette_taxe_fonciere_non_bati]) / @comptes_moy_2015[:population] %>]
+        ]);
+
+        var options = {
+          'width' : 750,
+          'height' : 350,
+          'chartArea' : {
+            'width': 400,
+            'height': 250
+          },
+          colors: ['#2196F3','#B0BEC5'],
+          'legend' : {
+            'alignment': 'center'
+          },
+          vAxes: {
+            1: {
+              gridlines: {
+                color: 'transparent'
+              },
+              textStyle: {
+                color: 'transparent'
+              }
+            },
+          },
+          series: {
+            2: {
+              targetAxisIndex: 1
+            },
+            3: {
+              targetAxisIndex: 1
+            },
+          },
+        };
+
+        var tfchart = new google.charts.Bar(document.getElementById('tf_chart_div'));
+        tfchart.draw(data, google.charts.Bar.convertOptions(options));
+      }
+
+      function drawth() {
+        var data = google.visualization.arrayToDataTable([
+          ['', "Taxe d'habitation / habitant <%=escape_javascript @ville[:nom].downcase.capitalize %>", "Taxe d'habitation / habitant moyenne"],
+          ["2008", <%= @comptes_2008[:recette_taxe_habitation] / @comptes_2008[:population] %>, <%= @comptes_moy_2008[:recette_taxe_habitation] / @comptes_moy_2008[:population] %>],
+          ["2009", <%= @comptes_2009[:recette_taxe_habitation] / @comptes_2009[:population] %>, <%= @comptes_moy_2009[:recette_taxe_habitation] / @comptes_moy_2009[:population] %>],
+          ["2010", <%= @comptes_2010[:recette_taxe_habitation] / @comptes_2010[:population] %>, <%= @comptes_moy_2010[:recette_taxe_habitation] / @comptes_moy_2010[:population] %>],
+          ["2011", <%= @comptes_2011[:recette_taxe_habitation] / @comptes_2011[:population] %>, <%= @comptes_moy_2011[:recette_taxe_habitation] / @comptes_moy_2011[:population] %>],
+          ["2012", <%= @comptes_2012[:recette_taxe_habitation] / @comptes_2012[:population] %>, <%= @comptes_moy_2012[:recette_taxe_habitation] / @comptes_moy_2012[:population] %>],
+          ["2013", <%= @comptes_2013[:recette_taxe_habitation] / @comptes_2013[:population] %>, <%= @comptes_moy_2013[:recette_taxe_habitation] / @comptes_moy_2013[:population] %>],
+          ["2014", <%= @comptes_2014[:recette_taxe_habitation] / @comptes_2014[:population] %>, <%= @comptes_moy_2014[:recette_taxe_habitation] / @comptes_moy_2014[:population] %>],
+          ["2015", <%= @comptes_2015[:recette_taxe_habitation] / @comptes_2015[:population] %>, <%= @comptes_moy_2015[:recette_taxe_habitation] / @comptes_moy_2015[:population] %>]
+        ]);
+
+        var options = {
+          'width' : 750,
+          'height' : 350,
+          'chartArea' : {
+            'width': 400,
+            'height': 250
+          },
+          colors: ['#2196F3','#B0BEC5'],
+          'legend' : {
+            'alignment': 'center'
+          },
+          vAxes: {
+            1: {
+              gridlines: {
+                color: 'transparent'
+              },
+              textStyle: {
+                color: 'transparent'
+              }
+            },
+          },
+          series: {
+            2: {
+              targetAxisIndex: 1
+            },
+            3: {
+              targetAxisIndex: 1
+            },
+          },
+        };
+
+        var thchart = new google.charts.Bar(document.getElementById('th_chart_div'));
+        thchart.draw(data, google.charts.Bar.convertOptions(options));
+      }
+    </script>
+<% end %>
+
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-1 col-sm-12">
+    </div>
+    <div class="col-md-11 col-sm-12">
+      <br>
+      <div class="entity-title">
+        <h1>
+          <strong><%= @ville[:nom]%></strong>
+        </h1>
+      </div>
+      <br>
+      <ul class="nav nav-tabs">
+        <li role="presentation" class="active">
+          <%= link_to "Synthèse", ville_synthese_path(nom: @ville.nom) %>
+        </li>
+        <li role="presentation">
+          <%= link_to "Indicateurs", ville_indicateurs_path(nom: @ville.nom) %>
+        </li>
+        <li role="presentation">
+          <%= link_to "Fiscalité", ville_fiscalite_path(nom: @ville.nom) %>
+        </li>
+        <li role="presentation">
+          <%= link_to "Dépenses", ville_depenses_path(nom: @ville.nom) %>
+        </li>
+        <li role="presentation">
+          <%= link_to "Finances", ville_finances_path(nom: @ville.nom) %>
+        </li>
+      </ul>
+      <br>
+      <div class="card">
+        <div class="card-title">
+          <br>
+          <h4><strong>Dépenses et impôts à <%= @ville[:nom].downcase.capitalize%></strong></h4>
+          <br>
+          <div class="card-tab">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th class="text-center">
+                    Capacité d'autofinancement
+                  </th>
+                  <th class="text-center">
+                    Capacité à rembourser la dette
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="text-center">
+                    <div class="card-tab">
+                      <div id="th_chart_div"></div>
+                    </div>
+                  </td>
+                  <td class="text-center">
+                    <div class="card-tab">
+                      <div id="tf_chart_div"></div>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

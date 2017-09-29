@@ -52,6 +52,9 @@
       <br>
       <ul class="nav nav-tabs">
         <li role="presentation">
+          <%= link_to "Synthèse", ville_synthese_path(nom: @ville.nom) %>
+        </li>
+        <li role="presentation">
           <%= link_to "Indicateurs", ville_indicateurs_path(nom: @ville.nom) %>
         </li>
         <li role="presentation">
@@ -86,6 +89,11 @@
         <div class="card-tab">
           <div id="fonctionnement_chart_div"></div>
         </div>
+        <br>
+        <br>
+        <p class="text-center">
+          <%= image_tag "end_text_symbol.png" %>
+        </p>
       </div>
     </div>
   </div>

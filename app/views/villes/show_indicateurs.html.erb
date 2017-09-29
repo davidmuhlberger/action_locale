@@ -11,6 +11,9 @@
       </div>
       <br>
       <ul class="nav nav-tabs">
+        <li role="presentation">
+          <%= link_to "Synthèse", ville_synthese_path(nom: @ville.nom) %>
+        </li>
         <li role="presentation" class= "active" >
           <%= link_to "Indicateurs", ville_indicateurs_path(nom: @ville.nom) %>
         </li>
@@ -245,6 +248,11 @@
             <%= link_to "Finances", ville_finances_path(nom: @ville.nom) %> et nos pages dédiées à
             la <%= link_to "structure des budgets", pages_structure_path %> ou à
             l'<a href="#">analyse des budgets des collectivités locales</a>.
+          </p>
+          <br>
+          <br>
+          <p class="text-center">
+            <%= image_tag "end_text_symbol.png" %>
           </p>
         </div>
       </div>

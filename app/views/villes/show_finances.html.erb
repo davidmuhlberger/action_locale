@@ -12,6 +12,9 @@
       <br>
       <ul class="nav nav-tabs">
         <li role="presentation">
+          <%= link_to "Synthèse", ville_synthese_path(nom: @ville.nom) %>
+        </li>
+        <li role="presentation">
           <%= link_to "Indicateurs", ville_indicateurs_path(nom: @ville.nom) %>
         </li>
         <li role="presentation">
@@ -368,6 +371,10 @@
             </table>
           </p>
           <br>
+          <br>
+          <p class="text-center">
+            <%= image_tag "end_text_symbol.png" %>
+          </p>
         </div>
       </div>
     </div>

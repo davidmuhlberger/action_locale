@@ -119,6 +119,9 @@
       <br>
       <ul class="nav nav-tabs">
         <li role="presentation">
+          <%= link_to "Synthèse", ville_synthese_path(nom: @ville.nom) %>
+        </li>
+        <li role="presentation">
           <%= link_to "Indicateurs", ville_indicateurs_path(nom: @ville.nom) %>
         </li>
         <li role="presentation" class="active">
@@ -196,9 +199,11 @@
             <br>
             Pendant la même période, les communes françaises de même taille ont augmenté le montant de la taxe d'habitation de <%= number_to_percentage(100*(@comptes_moy_2015[:recette_taxe_habitation]/@comptes_moy_2015[:population])/(@comptes_moy_2008[:recette_taxe_habitation]/@comptes_moy_2008[:population]) - 100, precision: 0) %>,
             à <%= @comptes_moy_2015[:recette_taxe_habitation]/@comptes_moy_2015[:population] %>€ par habitant.
-            <br>
-            <br>
-            <br>
+          </p>
+          <br>
+          <br>
+          <p class="text-center">
+            <%= image_tag "end_text_symbol.png" %>
           </p>
         </div>
       </div>

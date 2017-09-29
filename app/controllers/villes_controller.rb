@@ -28,6 +28,9 @@ before_action :find_ville
   def show_endettement
   end
 
+  def show_synthese
+  end
+
   private
 
   def find_ville
