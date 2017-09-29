@@ -3,21 +3,16 @@
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript">
       google.charts.load('current', {packages: ['corechart', 'bar'], 'language': 'fr'});
-      google.charts.setOnLoadCallback(drawtf);
-      google.charts.setOnLoadCallback(drawth);
+      google.charts.setOnLoadCallback(drawdepenses);
+      google.charts.setOnLoadCallback(drawimpots);
 
-      function drawtf() {
+      function drawdepenses() {
         var data = google.visualization.arrayToDataTable([
-          ['', 'Taxes foncières / habitant <%=escape_javascript @ville[:nom].downcase.capitalize %>', 'Taxes foncières / habitant moyenne'],
-          ["2008", <%= (@comptes_2008[:recette_taxe_fonciere_bati]+@comptes_2008[:recette_taxe_fonciere_non_bati]) / @comptes_2008[:population] %>, <%= (@comptes_moy_2008[:recette_taxe_fonciere_bati]+@comptes_moy_2008[:recette_taxe_fonciere_non_bati]) / @comptes_moy_2008[:population] %>],
-          ["2009", <%= (@comptes_2009[:recette_taxe_fonciere_bati]+@comptes_2009[:recette_taxe_fonciere_non_bati]) / @comptes_2009[:population] %>, <%= (@comptes_moy_2009[:recette_taxe_fonciere_bati]+@comptes_moy_2009[:recette_taxe_fonciere_non_bati]) / @comptes_moy_2009[:population] %>],
-          ["2010", <%= (@comptes_2010[:recette_taxe_fonciere_bati]+@comptes_2010[:recette_taxe_fonciere_non_bati]) / @comptes_2010[:population] %>, <%= (@comptes_moy_2010[:recette_taxe_fonciere_bati]+@comptes_moy_2010[:recette_taxe_fonciere_non_bati]) / @comptes_moy_2010[:population] %>],
-          ["2011", <%= (@comptes_2011[:recette_taxe_fonciere_bati]+@comptes_2011[:recette_taxe_fonciere_non_bati]) / @comptes_2011[:population] %>, <%= (@comptes_moy_2011[:recette_taxe_fonciere_bati]+@comptes_moy_2011[:recette_taxe_fonciere_non_bati]) / @comptes_moy_2011[:population] %>],
-          ["2012", <%= (@comptes_2012[:recette_taxe_fonciere_bati]+@comptes_2012[:recette_taxe_fonciere_non_bati]) / @comptes_2012[:population] %>, <%= (@comptes_moy_2012[:recette_taxe_fonciere_bati]+@comptes_moy_2012[:recette_taxe_fonciere_non_bati]) / @comptes_moy_2012[:population] %>],
-          ["2013", <%= (@comptes_2013[:recette_taxe_fonciere_bati]+@comptes_2013[:recette_taxe_fonciere_non_bati]) / @comptes_2013[:population] %>, <%= (@comptes_moy_2013[:recette_taxe_fonciere_bati]+@comptes_moy_2013[:recette_taxe_fonciere_non_bati]) / @comptes_moy_2013[:population] %>],
-          ["2014", <%= (@comptes_2014[:recette_taxe_fonciere_bati]+@comptes_2014[:recette_taxe_fonciere_non_bati]) / @comptes_2014[:population] %>, <%= (@comptes_moy_2014[:recette_taxe_fonciere_bati]+@comptes_moy_2014[:recette_taxe_fonciere_non_bati]) / @comptes_moy_2014[:population] %>],
-          ["2015", <%= (@comptes_2015[:recette_taxe_fonciere_bati]+@comptes_2015[:recette_taxe_fonciere_non_bati]) / @comptes_2015[:population] %>, <%= (@comptes_moy_2015[:recette_taxe_fonciere_bati]+@comptes_moy_2015[:recette_taxe_fonciere_non_bati]) / @comptes_moy_2015[:population] %>]
-        ]);
+        ['Echelon', 'Commune', 'Intercommunalité', 'Département', 'Région',
+        { role: 'annotation' } ],
+        ['2015', 105, 105, 105, 105, ''],
+        ['Moyenne France', 100, 100, 100, 100, ''],
+      ]);
 
         var options = {
           'width' : 750,
@@ -26,7 +21,7 @@
             'width': 400,
             'height': 250
           },
-          colors: ['#2196F3','#B0BEC5'],
+          colors: ['#346ac9','#9C27B0', '#279423', '#fc9826'],
           'legend' : {
             'alignment': 'center'
           },
@@ -40,32 +35,20 @@
               }
             },
           },
-          series: {
-            2: {
-              targetAxisIndex: 1
-            },
-            3: {
-              targetAxisIndex: 1
-            },
-          },
+          isStacked: true,
         };
 
-        var tfchart = new google.charts.Bar(document.getElementById('tf_chart_div'));
-        tfchart.draw(data, google.charts.Bar.convertOptions(options));
+        var depenseschart = new google.visualization.ColumnChart(document.getElementById('depenses_chart_div'));
+        depenseschart.draw(data, google.charts.Bar.convertOptions(options));
       }
 
-      function drawth() {
+      function drawimpots() {
         var data = google.visualization.arrayToDataTable([
-          ['', "Taxe d'habitation / habitant <%=escape_javascript @ville[:nom].downcase.capitalize %>", "Taxe d'habitation / habitant moyenne"],
-          ["2008", <%= @comptes_2008[:recette_taxe_habitation] / @comptes_2008[:population] %>, <%= @comptes_moy_2008[:recette_taxe_habitation] / @comptes_moy_2008[:population] %>],
-          ["2009", <%= @comptes_2009[:recette_taxe_habitation] / @comptes_2009[:population] %>, <%= @comptes_moy_2009[:recette_taxe_habitation] / @comptes_moy_2009[:population] %>],
-          ["2010", <%= @comptes_2010[:recette_taxe_habitation] / @comptes_2010[:population] %>, <%= @comptes_moy_2010[:recette_taxe_habitation] / @comptes_moy_2010[:population] %>],
-          ["2011", <%= @comptes_2011[:recette_taxe_habitation] / @comptes_2011[:population] %>, <%= @comptes_moy_2011[:recette_taxe_habitation] / @comptes_moy_2011[:population] %>],
-          ["2012", <%= @comptes_2012[:recette_taxe_habitation] / @comptes_2012[:population] %>, <%= @comptes_moy_2012[:recette_taxe_habitation] / @comptes_moy_2012[:population] %>],
-          ["2013", <%= @comptes_2013[:recette_taxe_habitation] / @comptes_2013[:population] %>, <%= @comptes_moy_2013[:recette_taxe_habitation] / @comptes_moy_2013[:population] %>],
-          ["2014", <%= @comptes_2014[:recette_taxe_habitation] / @comptes_2014[:population] %>, <%= @comptes_moy_2014[:recette_taxe_habitation] / @comptes_moy_2014[:population] %>],
-          ["2015", <%= @comptes_2015[:recette_taxe_habitation] / @comptes_2015[:population] %>, <%= @comptes_moy_2015[:recette_taxe_habitation] / @comptes_moy_2015[:population] %>]
-        ]);
+        ['Echelon', 'Commune', 'Intercommunalité', 'Département', 'Région',
+        { role: 'annotation' } ],
+        ['2015', 105, 105, 105, 105, ''],
+        ['Moyenne France', 100, 100, 100, 100, ''],
+      ]);
 
         var options = {
           'width' : 750,
@@ -74,7 +57,7 @@
             'width': 400,
             'height': 250
           },
-          colors: ['#2196F3','#B0BEC5'],
+          colors: ['#346ac9','#9C27B0', '#279423', '#fc9826'],
           'legend' : {
             'alignment': 'center'
           },
@@ -88,18 +71,11 @@
               }
             },
           },
-          series: {
-            2: {
-              targetAxisIndex: 1
-            },
-            3: {
-              targetAxisIndex: 1
-            },
-          },
+          isStacked: true,
         };
 
-        var thchart = new google.charts.Bar(document.getElementById('th_chart_div'));
-        thchart.draw(data, google.charts.Bar.convertOptions(options));
+        var impotschart = new google.visualization.ColumnChart(document.getElementById('impots_chart_div'));
+        impotschart.draw(data, google.charts.Bar.convertOptions(options));
       }
     </script>
 <% end %>
@@ -112,9 +88,12 @@
     <div class="col-md-11 col-sm-12">
       <br>
       <div class="entity-title">
-        <h1>
+        <h2>
           <strong><%= @ville[:nom]%></strong>
-        </h1>
+        </h2>
+      </div>
+      <div class="text-center">
+        <%= image_tag "town_illustration.png" %>
       </div>
       <br>
       <ul class="nav nav-tabs">
@@ -138,37 +117,27 @@
       <div class="card">
         <div class="card-title">
           <br>
-          <h4><strong>Dépenses et impôts à <%= @ville[:nom].downcase.capitalize%></strong></h4>
-          <br>
+          <h4><strong>Dépenses publiques à <%= @ville[:nom].downcase.capitalize%></strong></h4>
+          <p>
+          Dépenses par habitant de <%= @ville[:nom].downcase.capitalize%> pour chaque échelon des collectivités locales.
+          </p>
           <div class="card-tab">
-            <table class="table">
-              <thead>
-                <tr>
-                  <th class="text-center">
-                    Capacité d'autofinancement
-                  </th>
-                  <th class="text-center">
-                    Capacité à rembourser la dette
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td class="text-center">
-                    <div class="card-tab">
-                      <div id="th_chart_div"></div>
-                    </div>
-                  </td>
-                  <td class="text-center">
-                    <div class="card-tab">
-                      <div id="tf_chart_div"></div>
-                    </div>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
+            <div class="card-tab">
+              <div id="depenses_chart_div"></div>
+            </div>
+          <h4><strong>Impôts locaux à <%= @ville[:nom].downcase.capitalize%></strong></h4>
+          <p>
+          Impôts locaux par habitant de <%= @ville[:nom].downcase.capitalize%> pour chaque échelon des collectivités locales.
+          </p>
+            <div class="card-tab">
+              <div id="impots_chart_div"></div>
+            </div>
           </div>
         </div>
+        <p class="text-center">
+          <%= image_tag "end_text_symbol.png" %>
+        </p>
+        <br>
       </div>
     </div>
   </div>
