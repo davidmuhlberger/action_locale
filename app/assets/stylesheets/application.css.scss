@@ -39,3 +39,8 @@ html, body {
 a:hover {
   text-decoration: none;
 }
+
+@font-face {
+  font-family: 'brush';
+  src: asset-url('brushscript.ttf');
+}
