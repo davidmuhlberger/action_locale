@@ -1,0 +1,40 @@
+@font-face {
+  font-family: 'brush';
+  src: url(/assets/brushscript.eot);
+  src: url(/assets/brushscript.eot?#iefix) format("embedded-opentype"),
+    url(/assets/brushscript.ttf) format("truetype"),
+    url(/assets/brushscript.woff) format("woff"),
+    url(/assets/brushscript.svg#brushscript) format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+
+.picback {
+  background-image: url(home_image.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  border-radius: 50% 25%;
+  position: relative;
+  height: 500px;
+}
+
+.picback h1 {
+  font-size: 50px;
+  font-weight: bold;}
+
+.layer {
+    background-color: rgba(248, 247, 216, 0.7);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 50% 25%;
+}
+
+.sub_blue {
+  color: rgb(0,32,96);
+  font-family: 'brush', "Helvetica";
+  font-size: 50px;
+}
