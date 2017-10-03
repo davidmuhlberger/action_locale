@@ -1,14 +1,10 @@
 @font-face {
   font-family: 'brush';
-  src: font-url(/assets/brushscript.eot);
-  src: font-url(/assets/brushscript.eot?#iefix) format("embedded-opentype"),
-    font-url(/assets/brushscript.ttf) format("truetype"),
-    font-url(/assets/brushscript.woff) format("woff"),
-    font-url(/assets/brushscript.svg#brushscript) format("svg");
+  src: font-url("/assets/brushscript.eot");
+  src: font-url("/assets/brushscript.eot?#iefix") format("embedded-opentype"), font-url("/assets/brushscript.svg#brushscript") format("svg"), font-url("/assets/brushscript.woff") format("woff"), font-url("/assets/brushscript.ttf") format("truetype");
   font-weight: normal;
   font-style: normal;
 }
-
 
 .picback {
   background-image: url(home_image.jpg);
