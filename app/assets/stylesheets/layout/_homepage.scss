@@ -1,10 +1,10 @@
 @font-face {
   font-family: 'brush';
-  src: url(/assets/brushscript.eot);
-  src: url(/assets/brushscript.eot?#iefix) format("embedded-opentype"),
-    url(/assets/brushscript.ttf) format("truetype"),
-    url(/assets/brushscript.woff) format("woff"),
-    url(/assets/brushscript.svg#brushscript) format("svg");
+  src: font-url(/assets/brushscript.eot);
+  src: font-url(/assets/brushscript.eot?#iefix) format("embedded-opentype"),
+    font-url(/assets/brushscript.ttf) format("truetype"),
+    font-url(/assets/brushscript.woff) format("woff"),
+    font-url(/assets/brushscript.svg#brushscript) format("svg");
   font-weight: normal;
   font-style: normal;
 }
