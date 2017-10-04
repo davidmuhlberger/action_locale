@@ -47,7 +47,6 @@
   font-size: 15px;
   border-style: solid;
   border-width: 3px;
-  border-color: #F48024;
   z-index:0;
 }
 
@@ -55,4 +54,22 @@
   background-color: #F48024;
   font-weight: bold;
   color: #F8F8FF;
+}
+
+.orange{
+  color: #F48024;
+}
+
+#buttonsubscribe {
+  background-color: #A9A9A9;
+  font-weight: bold;
+  color: #F8F8FF;
+}
+
+.orangeform {
+  border-color: #F48024;
+}
+
+.greyform {
+  border-color: #A9A9A9;
 }
