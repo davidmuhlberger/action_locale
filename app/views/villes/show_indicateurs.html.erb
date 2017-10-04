@@ -247,7 +247,7 @@
             Les dépenses de fonctionnement s'élevaient en 2015 à
             <%= number_with_precision(@comptes_2015[:charge_total_fonctionnement]/(@comptes_2015[:population] +  @comptes_2015[:nb_res_secondaires]), options = {delimiter: " ", precision: 0}) %> € par habitant, correspondant
             à un niveau de dépenses <%= @charge_fct_comp %> à la moyenne des communes de même taille. Pour une analyse
-            détaillé de la situation financière de la commune, vous pouvez consulter l'onglet
+            détaillée de la situation financière de la commune, vous pouvez consulter l'onglet
             <%= link_to "Finances", ville_finances_path(nom: @ville.nom) %> et nos pages dédiées à
             la <%= link_to "structure des budgets", pages_structure_path %> ou à
             l'<a href="#">analyse des budgets des collectivités locales</a>.
