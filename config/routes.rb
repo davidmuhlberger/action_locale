@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
+  resources :search_suggestions
   root to: 'pages#home'
 
+  get "search" => 'villes#search', as: 'search'
   get "/villes/:nom/indicateurs" => "villes#show_indicateurs", as: 'ville_indicateurs'
   get "/villes/:nom/depenses" => "villes#show_depenses", as: 'ville_depenses'
   get "/villes/:nom/finances" => "villes#show_finances", as: 'ville_finances'

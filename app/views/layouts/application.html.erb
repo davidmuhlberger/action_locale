@@ -16,14 +16,10 @@
     <div class="navbar">
       <%=link_to(image_tag("logo_full.png"), pages_home_path, class: "logo") %>
       <div class="navbar-right hidden-xs hidden-sm">
-        <form class="navbar-form navbar-left" role="search">
-          <div class="form-group">
-            <input type="text" class="form-control" placeholder="Chercher une collectivité">
-          </div>
-          <button type="submit" class="btn btn-default">
-            <i class="fa fa-search"></i>
-          </button>
-        </form>
+        <%= form_tag(search_path, method: 'get', class: 'navbar-form navbar-right') do %>
+          <%= search_field_tag 'search', nil, class: 'form-control', placeholder: 'Search'  %>
+          <%= submit_tag "Submit", class: 'btn btn-default', :name => nil %>
+        <% end %>
         <%= link_to "Projet", pages_projet_path, class: "navbar-link navbar-item" %>
           <div class="dropdown">
             <p class="navbar-link navbar-item dropdown-toggle" data-toggle="dropdown">Documentation</p>

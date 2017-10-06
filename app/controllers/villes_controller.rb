@@ -1,7 +1,8 @@
 class VillesController < ApplicationController
-before_action :find_ville
 
   def show_indicateurs
+    find_ville
+    find_years
     if @comptes_2015[:charge_total_fonctionnement]/@comptes_2015[:population] >= @comptes_moy_2015[:charge_total_fonctionnement]/@comptes_moy_2015[:population]
       @charge_fct_comp = "supérieur"
     else
@@ -19,24 +20,57 @@ before_action :find_ville
     end
   end
 
+  def search
+   @ville = Ville.where(nom: params[:search]).first
+   find_years
+   if @comptes_2015[:charge_total_fonctionnement]/@comptes_2015[:population] >= @comptes_moy_2015[:charge_total_fonctionnement]/@comptes_moy_2015[:population]
+      @charge_fct_comp = "supérieur"
+    else
+      @charge_fct_comp = "inférieur"
+    end
+
+    if @ville[:decile_revenu] == 1
+      @decile_comp = "dans les 10% des revenus médians les plus faibles du pays"
+    elsif @ville[:decile_revenu] == 10
+      @decile_comp = "dans les 10% des revenus médians les plus élevés du pays"
+    elsif @ville[:decile_revenu] <= 5
+      @decile_comp = "entre les #{(@ville[:decile_revenu] - 1) * 10}% et #{@ville[:decile_revenu] * 10}% des revenus médians les plus faibles du pays"
+    else
+      @decile_comp = "entre les #{(@ville[:decile_revenu] - 1) * 10}% et #{@ville[:decile_revenu] * 10}% des revenus médians les plus élevés du pays"
+    end
+   render action: 'show_indicateurs'
+
+  end
+
   def show_fiscalite
-  end
-
-  def show_budget
-  end
-
-  def show_endettement
+    find_ville
+    find_years
   end
 
   def show_synthese
+    find_ville
+    find_years
   end
+
+  def show_depenses
+    find_ville
+    find_years
+  end
+
+  def show_finances
+    find_ville
+    find_years
+  end
+
 
   private
 
   def find_ville
     nom = params[:nom]
     @ville = Ville.where(nom: nom).first
+  end
 
+  def find_years
     if @ville.annees.where(annee: 2015).first
       @comptes_2015 = @ville.annees.where(annee: 2015).first
     else
