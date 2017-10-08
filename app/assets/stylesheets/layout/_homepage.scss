@@ -42,7 +42,7 @@
   position: relative;
 }
 
-#inlineFormInputGroup {
+.inlineFormInputGroup {
   width: 500px;
   font-size: 15px;
   border-style: solid;
@@ -50,9 +50,14 @@
   z-index:0;
 }
 
-#buttonsearch {
+.buttonsearch {
   background-color: #F48024;
   font-weight: bold;
+  color: #F8F8FF;
+}
+
+.buttonsearch:hover {
+  background-color: #c3661c;
   color: #F8F8FF;
 }
 
@@ -73,3 +78,5 @@
 .greyform {
   border-color: #A9A9A9;
 }
+
+

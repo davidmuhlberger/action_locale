@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171005202759) do
+ActiveRecord::Schema.define(version: 20171008174909) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -56,8 +56,8 @@ ActiveRecord::Schema.define(version: 20171005202759) do
   create_table "villes", force: :cascade do |t|
     t.string   "nom"
     t.integer  "cog"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
     t.string   "catpop"
     t.float    "taux_hlm_legal"
     t.float    "taux_hlm_2015"
@@ -65,6 +65,10 @@ ActiveRecord::Schema.define(version: 20171005202759) do
     t.float    "uc_par_menage"
     t.float    "revenu_median_uc"
     t.integer  "decile_revenu"
+    t.string   "nom_propre"
+    t.string   "nom_propre_et_dep"
+    t.string   "region"
+    t.string   "departement"
   end
 
   add_foreign_key "annees", "villes"

@@ -1,0 +1,5 @@
+class AddRegionToVilles < ActiveRecord::Migration[5.0]
+  def change
+    add_column :villes, :region, :string
+  end
+end

@@ -101,13 +101,13 @@
             <br>
             <strong>1.</strong> La part de l'épargne brute dans le budget de fonctionnement indique la capacité
             de la commune à financer elle-même ses investissements et à faire face à des imprévus.
-            A <%= @ville[:nom].downcase.capitalize %> en 2015 elle était de <%= number_with_precision(100*(@comptes_2015[:recette_total_fonctionnement] - @comptes_2015[:charge_total_fonctionnement])/@comptes_2015[:recette_total_fonctionnement], options = {delimiter: " ", precision: 0}) %>%
+            A <%= @ville[:nom_propre].downcase.capitalize %> en 2015 elle était de <%= number_with_precision(100*(@comptes_2015[:recette_total_fonctionnement] - @comptes_2015[:charge_total_fonctionnement])/@comptes_2015[:recette_total_fonctionnement], options = {delimiter: " ", precision: 0}) %>%
             contre 11% en moyenne en France.
             <br>
             <br>
             <strong>2.</strong> Le niveau d'endettement par rapport à l'épargne brute révèle la soutenabilité de la
              dette de la commune et donc sa capacité à emprunter à nouveau pour financer ses investissements.
-             A <%= @ville[:nom].downcase.capitalize %> l'endettement représentait <%= number_with_precision(@comptes_2015[:endettement_encours] / (@comptes_2015[:recette_total_fonctionnement] - @comptes_2015[:charge_total_fonctionnement]), options = {delimiter: " ", precision: 0}) %>
+             A <%= @ville[:nom_propre].downcase.capitalize %> l'endettement représentait <%= number_with_precision(@comptes_2015[:endettement_encours] / (@comptes_2015[:recette_total_fonctionnement] - @comptes_2015[:charge_total_fonctionnement]), options = {delimiter: " ", precision: 0}) %>
              fois l'épargne brute annuelle en 2015, contre 7 fois en moyenne en France
             <br>
             <br>

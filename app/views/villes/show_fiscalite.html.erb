@@ -8,7 +8,7 @@
 
       function drawtf() {
         var data = google.visualization.arrayToDataTable([
-          ['', 'Taxes foncières / habitant <%=escape_javascript @ville[:nom].downcase.capitalize %>', 'Taxes foncières / habitant moyenne'],
+          ['', 'Taxes foncières / habitant <%=escape_javascript @ville[:nom_propre].downcase.capitalize %>', 'Taxes foncières / habitant moyenne'],
           ["2008", <%= (@comptes_2008[:recette_taxe_fonciere_bati]+@comptes_2008[:recette_taxe_fonciere_non_bati]) / @comptes_2008[:population] %>, <%= (@comptes_moy_2008[:recette_taxe_fonciere_bati]+@comptes_moy_2008[:recette_taxe_fonciere_non_bati]) / @comptes_moy_2008[:population] %>],
           ["2009", <%= (@comptes_2009[:recette_taxe_fonciere_bati]+@comptes_2009[:recette_taxe_fonciere_non_bati]) / @comptes_2009[:population] %>, <%= (@comptes_moy_2009[:recette_taxe_fonciere_bati]+@comptes_moy_2009[:recette_taxe_fonciere_non_bati]) / @comptes_moy_2009[:population] %>],
           ["2010", <%= (@comptes_2010[:recette_taxe_fonciere_bati]+@comptes_2010[:recette_taxe_fonciere_non_bati]) / @comptes_2010[:population] %>, <%= (@comptes_moy_2010[:recette_taxe_fonciere_bati]+@comptes_moy_2010[:recette_taxe_fonciere_non_bati]) / @comptes_moy_2010[:population] %>],
@@ -56,7 +56,7 @@
 
       function drawth() {
         var data = google.visualization.arrayToDataTable([
-          ['', "Taxe d'habitation / habitant <%=escape_javascript @ville[:nom].downcase.capitalize %>", "Taxe d'habitation / habitant moyenne"],
+          ['', "Taxe d'habitation / habitant <%=escape_javascript @ville[:nom_propre].downcase.capitalize %>", "Taxe d'habitation / habitant moyenne"],
           ["2008", <%= @comptes_2008[:recette_taxe_habitation] / @comptes_2008[:population] %>, <%= @comptes_moy_2008[:recette_taxe_habitation] / @comptes_moy_2008[:population] %>],
           ["2009", <%= @comptes_2009[:recette_taxe_habitation] / @comptes_2009[:population] %>, <%= @comptes_moy_2009[:recette_taxe_habitation] / @comptes_moy_2009[:population] %>],
           ["2010", <%= @comptes_2010[:recette_taxe_habitation] / @comptes_2010[:population] %>, <%= @comptes_moy_2010[:recette_taxe_habitation] / @comptes_moy_2010[:population] %>],

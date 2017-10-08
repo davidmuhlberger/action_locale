@@ -47,7 +47,7 @@
               <tr>
                 <th></th>
                 <th class="text-center">
-                  <%= @ville[:nom].downcase.capitalize %>
+                  <%= @ville[:nom_propre] %>
                   <br>(2015)
                 </th>
                 <th class="text-center">
@@ -223,7 +223,7 @@
           <br>
           <br>
           <p>
-            Le revenu moyen par ménage de <%= @ville[:nom].downcase.capitalize %> est de
+            Le revenu moyen par ménage de <%= @ville[:nom_propre].downcase.capitalize %> est de
             <%=  number_with_precision(@ville[:uc_par_menage] * @ville[:revenu_median_uc], options = {delimiter: " ", precision: 0}) %>€.
             <br>
             Ce niveau classe la commune dans le <%=  @ville[:decile_revenu] %><%= @ville[:decile_revenu] == 1 ? ("er") : ("ème") %> décile.

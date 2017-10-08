@@ -15,7 +15,7 @@
   <body>
     <div class="navbar">
       <%=link_to(image_tag("logo_full.png"), pages_home_path, class: "logo") %>
-      <div class="navbar-right hidden-xs hidden-sm">
+      <div class="navbar-right">
         <%= form_tag(search_path, method: 'get', class: 'navbar-form navbar-right') do %>
           <%= search_field_tag 'search', nil, class: 'form-control', placeholder: 'Chercher une collectivité', data: {autocomplete_source: search_suggestions_path}  %>
           <%= button_tag(type: 'submit', class: "btn btn-primary") do %>

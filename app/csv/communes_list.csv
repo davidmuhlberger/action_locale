@@ -1,13 +1,13 @@
-nom,cog,catpop,taux_hlm_legal,taux_hlm_2015,nb_menages_2013,uc_par_menage,revenu_median_uc,decile_revenu
-MARSEILLE,13055,Plus de 200 000 habitants,25.0,0.20,385378,1.77,17828.0,2
-MARTIGUES,13056,Entre 20 000 et 49 999 habitants,,,20724,1.83,20149.0,6
-MONCEAUX-EN-BESSIN,14436,Entre 500 et 999 habitants,,,208,2.02,22163.0,8
-HENIN-BEAUMONT,62427,Entre 20 000 et 49 999 habitants,,,11033,1.88,16538.0,1
-JOIGNY,89206,Entre 10 000 et 19 999 habitants,,,4326,1.72,16464.0,1
-MEGEVE,74173,Entre 3 500 et 9 999 habitants,,,1571,1.69,21185.0,7
-LEVALLOIS-PERRET,92044,Entre 50 000 et 99 999 habitants,25.0,0.19,31324,1.72,29642.0,10
-RUEIL-MALMAISON,92063,Entre 50 000 et 99 999 habitants,25.0,0.25,33540,1.88,30013.0,10
-BORDEAUX,33063,Plus de 200 000 habitants,25.0,0.17,133536,1.54,20865.0,7
-ENSUES-LA-REDONNE,13033,Entre 3 500 et 9 999 habitants,25.0,0.01,2105,2.01,25221.0,9
-LYON,69123,Plus de 200 000 habitants,25.0,0.20,252430,1.62,21883.0,8
-STRASBOURG,67482,Plus de 200 000 habitants,,,129558,1.69,18254.0,3
+nom,cog,catpop,nom_propre,departement,region,nom_propre_et_dep,taux_hlm_legal,taux_hlm_2015,nb_menages_2013,uc_par_menage,revenu_median_uc,decile_revenu
+MARSEILLE,13055,Plus de 200 000 habitants,Marseille,13,93.0,Marseille (13),25.0,0.20,385378,1.77,17828.0,2
+MARTIGUES,13056,Entre 20 000 et 49 999 habitants,Martigues,13,93.0,Martigues (13),,,20724,1.83,20149.0,6
+MONCEAUX-EN-BESSIN,14436,Entre 500 et 999 habitants,Monceaux-en-Bessin,14,28.0,Monceaux-en-Bessin (14),,,208,2.02,22163.0,8
+HENIN-BEAUMONT,62427,Entre 20 000 et 49 999 habitants,Hénin-Beaumont,62,32.0,Hénin-Beaumont (62),,,11033,1.88,16538.0,1
+JOIGNY,89206,Entre 10 000 et 19 999 habitants,Joigny,89,27.0,Joigny (89),,,4326,1.72,16464.0,1
+MEGEVE,74173,Entre 3 500 et 9 999 habitants,Megève,74,84.0,Megève (74),,,1571,1.69,21185.0,7
+LEVALLOIS-PERRET,92044,Entre 50 000 et 99 999 habitants,Levallois-Perret,92,11.0,Levallois-Perret (92),25.0,0.19,31324,1.72,29642.0,10
+RUEIL-MALMAISON,92063,Entre 50 000 et 99 999 habitants,Rueil-Malmaison,92,11.0,Rueil-Malmaison (92),25.0,0.25,33540,1.88,30013.0,10
+BORDEAUX,33063,Plus de 200 000 habitants,Bordeaux,33,75.0,Bordeaux (33),25.0,0.17,133536,1.54,20865.0,7
+ENSUES-LA-REDONNE,13033,Entre 3 500 et 9 999 habitants,Ensuès-la-Redonne,13,93.0,Ensuès-la-Redonne (13),25.0,0.01,2105,2.01,25221.0,9
+LYON,69123,Plus de 200 000 habitants,Lyon,69,84.0,Lyon (69),25.0,0.20,252430,1.62,21883.0,8
+STRASBOURG,67482,Plus de 200 000 habitants,Strasbourg,67,44.0,Strasbourg (67),,,129558,1.69,18254.0,3

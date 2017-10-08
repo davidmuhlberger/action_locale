@@ -21,7 +21,7 @@ class VillesController < ApplicationController
   end
 
   def search
-   @ville = Ville.where(nom: params[:search]).first
+   @ville = Ville.where(nom_propre_et_dep: params[:search]).first
    find_years
    if @comptes_2015[:charge_total_fonctionnement]/@comptes_2015[:population] >= @comptes_moy_2015[:charge_total_fonctionnement]/@comptes_moy_2015[:population]
       @charge_fct_comp = "supérieur"

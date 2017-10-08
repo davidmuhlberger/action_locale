@@ -117,17 +117,17 @@
       <div class="card">
         <div class="card-title">
           <br>
-          <h4><strong>Dépenses publiques à <%= @ville[:nom].downcase.capitalize%></strong></h4>
+          <h4><strong>Dépenses publiques à <%= @ville[:nom_propre]%></strong></h4>
           <p>
-          Dépenses par habitant de <%= @ville[:nom].downcase.capitalize%> pour chaque échelon des collectivités locales.
+          Dépenses par habitant de <%= @ville[:nom_propre] %> pour chaque échelon des collectivités locales.
           </p>
           <div class="card-tab">
             <div class="card-tab">
               <div id="depenses_chart_div"></div>
             </div>
-          <h4><strong>Impôts locaux à <%= @ville[:nom].downcase.capitalize%></strong></h4>
+          <h4><strong>Impôts locaux à <%= @ville[:nom_propre] %></strong></h4>
           <p>
-          Impôts locaux par habitant de <%= @ville[:nom].downcase.capitalize%> pour chaque échelon des collectivités locales.
+          Impôts locaux par habitant de <%= @ville[:nom_propre] %> pour chaque échelon des collectivités locales.
           </p>
             <div class="card-tab">
               <div id="impots_chart_div"></div>
