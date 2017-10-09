@@ -66,8 +66,8 @@ class VillesController < ApplicationController
   private
 
   def find_ville
-    nom = params[:nom]
-    @ville = Ville.where(nom: nom).first
+    nom_propre_et_dep = params[:nom_propre_et_dep]
+    @ville = Ville.where(nom_propre_et_dep: nom_propre_et_dep).first
   end
 
   def find_years

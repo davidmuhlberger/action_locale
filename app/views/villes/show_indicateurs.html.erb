@@ -15,19 +15,19 @@
       <br>
       <ul class="nav nav-tabs">
         <li role="presentation">
-          <%= link_to "Synthèse", ville_synthese_path(nom: @ville.nom) %>
+          <%= link_to "Synthèse", ville_synthese_path(nom_propre_et_dep: @ville.nom_propre_et_dep) %>
         </li>
         <li role="presentation" class= "active" >
-          <%= link_to "Indicateurs", ville_indicateurs_path(nom: @ville.nom) %>
+          <%= link_to "Indicateurs", ville_indicateurs_path(nom_propre_et_dep: @ville.nom_propre_et_dep) %>
         </li>
         <li role="presentation">
-          <%= link_to "Fiscalité", ville_fiscalite_path(nom: @ville.nom) %>
+          <%= link_to "Fiscalité", ville_fiscalite_path(nom_propre_et_dep: @ville.nom_propre_et_dep) %>
         </li>
         <li role="presentation">
-          <%= link_to "Dépenses", ville_depenses_path(nom: @ville.nom) %>
+          <%= link_to "Dépenses", ville_depenses_path(nom_propre_et_dep: @ville.nom_propre_et_dep) %>
         </li>
         <li role="presentation">
-          <%= link_to "Finances", ville_finances_path(nom: @ville.nom) %>
+          <%= link_to "Finances", ville_finances_path(nom_propre_et_dep: @ville.nom_propre_et_dep) %>
         </li>
       </ul>
       <br>
@@ -223,7 +223,7 @@
           <br>
           <br>
           <p>
-            Le revenu moyen par ménage de <%= @ville[:nom_propre].downcase.capitalize %> est de
+            Le revenu moyen par ménage de <%= @ville[:nom_propre]%> est de
             <%=  number_with_precision(@ville[:uc_par_menage] * @ville[:revenu_median_uc], options = {delimiter: " ", precision: 0}) %>€.
             <br>
             Ce niveau classe la commune dans le <%=  @ville[:decile_revenu] %><%= @ville[:decile_revenu] == 1 ? ("er") : ("ème") %> décile.
@@ -241,14 +241,14 @@
               de moins que la moyenne des villes de taille comparable.
             <% end %>
             Vous pouvez consulter plus en détail le niveau des prélèvements et son évolution dans
-            l'onglet <%= link_to "fiscalité", ville_fiscalite_path(nom: @ville.nom) %>.
+            l'onglet <%= link_to "fiscalité", ville_fiscalite_path(nom_propre_et_dep: @ville.nom_propre_et_dep) %>.
             <br>
             <br>
             Les dépenses de fonctionnement s'élevaient en 2015 à
             <%= number_with_precision(@comptes_2015[:charge_total_fonctionnement]/(@comptes_2015[:population] +  @comptes_2015[:nb_res_secondaires]), options = {delimiter: " ", precision: 0}) %> € par habitant, correspondant
             à un niveau de dépenses <%= @charge_fct_comp %> à la moyenne des communes de même taille. Pour une analyse
             détaillée de la situation financière de la commune, vous pouvez consulter l'onglet
-            <%= link_to "Finances", ville_finances_path(nom: @ville.nom) %> et nos pages dédiées à
+            <%= link_to "Finances", ville_finances_path(nom_propre_et_dep: @ville.nom_propre_et_dep) %> et nos pages dédiées à
             la <%= link_to "structure des budgets", pages_structure_path %> ou à
             l'<a href="#">analyse des budgets des collectivités locales</a>.
           </p>

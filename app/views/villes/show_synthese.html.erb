@@ -98,46 +98,41 @@
       <br>
       <ul class="nav nav-tabs">
         <li role="presentation" class="active">
-          <%= link_to "Synthèse", ville_synthese_path(nom: @ville.nom) %>
+          <%= link_to "Synthèse", ville_synthese_path(nom_propre_et_dep: @ville.nom_propre_et_dep) %>
         </li>
         <li role="presentation">
-          <%= link_to "Indicateurs", ville_indicateurs_path(nom: @ville.nom) %>
+          <%= link_to "Indicateurs", ville_indicateurs_path(nom_propre_et_dep: @ville.nom_propre_et_dep) %>
         </li>
         <li role="presentation">
-          <%= link_to "Fiscalité", ville_fiscalite_path(nom: @ville.nom) %>
+          <%= link_to "Fiscalité", ville_fiscalite_path(nom_propre_et_dep: @ville.nom_propre_et_dep) %>
         </li>
         <li role="presentation">
-          <%= link_to "Dépenses", ville_depenses_path(nom: @ville.nom) %>
+          <%= link_to "Dépenses", ville_depenses_path(nom_propre_et_dep: @ville.nom_propre_et_dep) %>
         </li>
         <li role="presentation">
-          <%= link_to "Finances", ville_finances_path(nom: @ville.nom) %>
+          <%= link_to "Finances", ville_finances_path(nom_propre_et_dep: @ville.nom_propre_et_dep) %>
         </li>
       </ul>
       <br>
       <div class="card">
-        <div class="card-title">
-          <br>
-          <h4><strong>Dépenses publiques à <%= @ville[:nom_propre]%></strong></h4>
-          <p>
-          Dépenses par habitant de <%= @ville[:nom_propre] %> pour chaque échelon des collectivités locales.
-          </p>
-          <div class="card-tab">
-            <div class="card-tab">
-              <div id="depenses_chart_div"></div>
-            </div>
-          <h4><strong>Impôts locaux à <%= @ville[:nom_propre] %></strong></h4>
-          <p>
-          Impôts locaux par habitant de <%= @ville[:nom_propre] %> pour chaque échelon des collectivités locales.
-          </p>
-            <div class="card-tab">
-              <div id="impots_chart_div"></div>
-            </div>
-          </div>
-        </div>
-        <p class="text-center">
-          <%= image_tag "end_text_symbol.png" %>
-        </p>
         <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <div class="text-wrapper">
+          <h1>Page en construction</h1>
+          <br>
+          <br>
+          <br>
+          <br>
+          <br>
+          <br>
+          <br>
+          <br>
+        </div>
       </div>
     </div>
   </div>
