@@ -62,7 +62,9 @@
                     <% end %>
                   </td>
                   <td class="text-center">
-                    <% if 100 * @comptes_2015[:endettement_encours] / (@comptes_2015[:recette_total_fonctionnement] - @comptes_2015[:charge_total_fonctionnement]) > 1000 %>
+                    <% if 100 * @comptes_2015[:endettement_encours] / (@comptes_2015[:recette_total_fonctionnement] - @comptes_2015[:charge_total_fonctionnement]) < 0 %>
+                      <%= image_tag "capa_fin_min.png" %>
+                    <% elsif 100 * @comptes_2015[:endettement_encours] / (@comptes_2015[:recette_total_fonctionnement] - @comptes_2015[:charge_total_fonctionnement]) > 1000 %>
                       <%= image_tag "capa_fin_min.png" %>
                     <% elsif 100 * @comptes_2015[:endettement_encours] / (@comptes_2015[:recette_total_fonctionnement] - @comptes_2015[:charge_total_fonctionnement]) > 750 %>
                       <%= image_tag "capa_fin_small_min.png" %>
