@@ -6,7 +6,7 @@
     <br>
       <div class="entity-title">
         <h2>
-          <strong><%= @ville[:nom]%></strong>
+          <strong><%= @ville[:nom_propre].upcase%></strong>
         </h2>
       </div>
       <div class="text-center">
@@ -18,7 +18,7 @@
           <%= link_to "Synthèse", ville_synthese_path(nom_propre_et_dep: @ville.nom_propre_et_dep) %>
         </li>
         <li role="presentation" class= "active" >
-          <%= link_to "Indicateurs", ville_indicateurs_path(nom_propre_et_dep: @ville.nom_propre_et_dep) %>
+          <%= link_to "Chiffres clés", ville_indicateurs_path(nom_propre_et_dep: @ville.nom_propre_et_dep) %>
         </li>
         <li role="presentation">
           <%= link_to "Fiscalité", ville_fiscalite_path(nom_propre_et_dep: @ville.nom_propre_et_dep) %>
@@ -76,7 +76,11 @@
                 <td class="text-center"></td>
               </tr>
               <tr>
-                <th scope="row">Revenu médian par ménage</th>
+                <th scope="row">Revenu médian par ménage
+                <a data-toggle="modal" data-target="#modalMedian">
+                  <i class="fa fa-question-circle" aria-hidden="true"></i>
+                </a>
+                </th>
                 <td class="text-center">
                   <%=  number_with_precision(@ville[:uc_par_menage] * @ville[:revenu_median_uc], options = {delimiter: " ", precision: 0}) %>
                 </td>
@@ -128,7 +132,13 @@
                 <td class="text-center"></td>
               </tr>
               <tr>
-                <th scope="row">Taxe d'habitation / habitant (€)</th>
+                <th scope="row">
+                Taxe d'habitation
+                <a data-toggle="modal" data-target="#modalTh">
+                  <i class="fa fa-question-circle" aria-hidden="true"></i>
+                </a>
+                 / habitant (€)
+                </th>
                 <td class="text-center">
                   <%= number_with_precision(@comptes_2015[:recette_taxe_habitation] / (@comptes_2015[:population] +  @comptes_2015[:nb_res_secondaires]), options = {delimiter: " ", precision: 0}) %>
                 </td>
@@ -148,7 +158,12 @@
                 </td>
               </tr>
               <tr>
-                <th scope="row">Taxe foncière / habitant (€)</th>
+                <th scope="row">Taxe foncière
+                <a data-toggle="modal" data-target="#modalTf">
+                  <i class="fa fa-question-circle" aria-hidden="true"></i>
+                </a>
+                / habitant (€)
+                </th>
                 <td class="text-center">
                   <%= number_with_precision((@comptes_2015[:recette_taxe_fonciere_bati]+@comptes_2015[:recette_taxe_fonciere_non_bati]) / (@comptes_2015[:population] +  @comptes_2015[:nb_res_secondaires]), options = {delimiter: " ", precision: 0}) %>
                 </td>
@@ -176,7 +191,12 @@
                 <td class="text-center"></td>
               </tr>
               <tr>
-                <th scope="row">Dépenses de fonctionnement / habitant (€)</th>
+                <th scope="row">Dépenses de fonctionnement
+                <a data-toggle="modal" data-target="#modalFonctionnement">
+                  <i class="fa fa-question-circle" aria-hidden="true"></i>
+                </a>
+                 / habitant (€)
+                </th>
                 <td class="text-center">
                   <%= number_with_precision(@comptes_2015[:charge_total_fonctionnement] / (@comptes_2015[:population] +  @comptes_2015[:nb_res_secondaires]), options = {delimiter: " ", precision: 0})%>
                 </td>
@@ -237,7 +257,7 @@
               <%= number_to_percentage(100*((@comptes_2015[:recette_taxe_habitation]+@comptes_2015[:recette_taxe_fonciere_bati]+@comptes_2015[:recette_taxe_fonciere_non_bati]) / (@comptes_2015[:population] +  @comptes_2015[:nb_res_secondaires]))/((@comptes_moy_2015[:recette_taxe_habitation]+@comptes_moy_2015[:recette_taxe_fonciere_bati]+@comptes_moy_2015[:recette_taxe_fonciere_non_bati]) / (@comptes_moy_2015[:population] +  @comptes_moy_2015[:nb_res_secondaires]))-100, precision: 0) %>
               de plus que la moyenne des villes de taille comparable.
             <% else %>
-              <%= number_to_percentage(100*((@comptes_2015[:recette_taxe_habitation]+@comptes_2015[:recette_taxe_fonciere_bati]+@comptes_2015[:recette_taxe_fonciere_non_bati]) / (@comptes_2015[:population] +  @comptes_2015[:nb_res_secondaires]))/((@comptes_moy_2015[:recette_taxe_habitation]+@comptes_moy_2015[:recette_taxe_fonciere_bati]+@comptes_moy_2015[:recette_taxe_fonciere_non_bati]) / (@comptes_moy_2015[:population] +  @comptes_moy_2015[:nb_res_secondaires]))-100, precision: 0) %>
+              <%= number_to_percentage(-(100*((@comptes_2015[:recette_taxe_habitation]+@comptes_2015[:recette_taxe_fonciere_bati]+@comptes_2015[:recette_taxe_fonciere_non_bati]) / (@comptes_2015[:population] +  @comptes_2015[:nb_res_secondaires]))/((@comptes_moy_2015[:recette_taxe_habitation]+@comptes_moy_2015[:recette_taxe_fonciere_bati]+@comptes_moy_2015[:recette_taxe_fonciere_non_bati]) / (@comptes_moy_2015[:population] +  @comptes_moy_2015[:nb_res_secondaires]))-100), precision: 0) %>
               de moins que la moyenne des villes de taille comparable.
             <% end %>
             Vous pouvez consulter plus en détail le niveau des prélèvements et son évolution dans
@@ -249,7 +269,7 @@
             à un niveau de dépenses <%= @charge_fct_comp %> à la moyenne des communes de même taille. Pour une analyse
             détaillée de la situation financière de la commune, vous pouvez consulter l'onglet
             <%= link_to "Finances", ville_finances_path(nom_propre_et_dep: @ville.nom_propre_et_dep) %> et nos pages dédiées à
-            la <%= link_to "structure des budgets", pages_structure_path %> ou à
+            la <%= link_to "structure des budgets", pages_notice_structure_path %> ou à
             l'<a href="#">analyse des budgets des collectivités locales</a>.
           </p>
           <br>
@@ -262,3 +282,161 @@
     </div>
   </div>
 </div>
+
+  <!-- Button trigger modal -->
+
+
+<!-- Modal TH -->
+<div class="modal fade" id="modalTh" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel"><strong>La taxe d'habitation</strong></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      <p>
+        La taxe d'habitation est due par le foyer occupant d'un logement.
+        Elle est prélevée par la commune et l'intercommunalité.
+        <br>
+        <br>
+        Elle est calculée à partir des bases cadastrales qui sont des estimations des revenus locatifs
+        que génère ou pourrait générer un bien. Des taux votés par la commune et l'intercommunalité sont
+        ensuite appliqués à cette base.
+        <br>
+        Les foyers avec de faibles revenus sont totalement ou partiellement exonérés de taxe d'habitation.
+        <br>
+        <br>
+        La taxe d'habitation finance donc le budget de fonctionnement des communes et collectivités (achats, personnel, entretien).
+        L'année dernière elle a rapporté 16,5 Md€ aux collectivités.
+      </p>
+      </div>
+      <div class="modal-footer">
+        <p>
+        Source : Les Collectivités locales en chiffres, DGCL, 2017
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Modal TF -->
+<div class="modal fade" id="modalTf" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel"><strong>Les taxes foncières</strong></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      <p>
+        Il existe une taxe foncière sur le foncier bâti (immeubles, maisons, appartements, bureaux...)
+        et une taxe foncière sur le foncier non bâti (terrains nus)
+        <br>
+        <br>
+        La taxe foncière est dûe par le propriétaire d'un bien immobilier.
+        <br>
+        <br>
+        Elle est calculée à partir des bases cadastrales qui sont des estimations des revenus locatifs
+        que génère ou pourrait générer un bien. Des taux voté par la commune, l'intercommunalité et le département sont
+        ensuite appliqués à cette base.
+        <br>
+        Les foyers avec de faibles revenus ou âgés peuvent bénéficier d'un abattement.
+        <br>
+        <br>
+        La taxe sur le foncier bâti a rapporté 31,9 Md€ en 2016, et la taxe sur le foncier non bâti 1 Md€. Leur produit
+        finance pour un peu plus de la moitié les communes et intercommunalités et pour le reste les départements.
+      </p>
+      </div>
+      <div class="modal-footer">
+        <p>
+        Source : Les Collectivités locales en chiffres, DGCL, 2017
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Revenu médian -->
+<div class="modal fade" id="modalMedian" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel"><strong>Le revenu médian par ménage</strong></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      <p>
+        Le revenu médian par ménage est le revenu qui sépare la population de sorte que 50% des ménages gagnent
+        plus que ce revenu et 50% des ménages gagnent moins. C'est une donnée capitale pour apprécier le niveau des
+        prélèvements dans une commune. Les ressources fiscales ont un potentiel bien plus important dans les communes
+        avec un revenu médian élevé que dans les communes avec un revenu médian plus faible.
+        <br>
+        <br>
+        Il est calculé par l'INSEE à partir du revenu fiscal déclaré par les ménages.
+        <br>
+        <br>
+        En France, le revenu médian par ménage est de l'ordre de 20 000€ en 2014.
+        <br>
+        Le revenu médian se distingue du revenu moyen, basé sur la moyenne des revenus des ménages.
+        Ce dernier est généralement supérieur au revenu médian car la moyenne peut fortement
+        être tirée par le haut par quelques revenus très élevés mais très minoritaires.
+        <br>
+        <br>
+        La plupart des statistiques nationales privilégient de ce fait le revenu médian. Pour des informations
+        plus détaillées, vous pouvez consulter notre <%= link_to "notice méthodologique", pages_notice_methodologie_path %>
+      </p>
+      </div>
+      <div class="modal-footer">
+        <p>
+        Source : INSEE
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Dépenses de fonctionnement -->
+<div class="modal fade" id="modalFonctionnement" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel"><strong>Les dépenses de fonctionnement</strong></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      <p>
+        Les dépenses de fonctionnement correspondent aux dépenses récurrentes de la commune.
+        <br>
+        <br>
+        Ces dépenses représentaient en 2016 pour les collectivités locales 169 milliards d'euros, soit 79% du total des dépenses.
+        <br>
+        <br>
+        Les principaux types de dépenses de fonctionnement sont les suivantes:
+        <br>
+        - Charges de personnel : 61 milliards d'euros en 2016 soit 36% des dépenses de fonctionnement
+        <br>
+        - Dépenses d'intervention liées directement à l'action de la collectivité locale
+        (voir notre <%= link_to "notice sur les compétences", pages_notice_competences_path %>):
+        68 milliards d'euros en 2015 soit 40% des dépenses de fonctionnement
+        <br>
+        - Achats et charges externes telles que les fournitures, mobilier, électricité, téléphonie,
+        prestations de services diverses : 30 milliards d'euros en 2016, soit 18% des dépenses de fonctionnement
+        <br>
+        - Intérêts de la dette : environ 3% des dépenses de fonctionnement
+      </p>
+      </div>
+      <div class="modal-footer">
+        <p>
+        Source : collectivites-locales.gouv.fr, Fipeco
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+

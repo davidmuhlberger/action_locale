@@ -46,7 +46,7 @@
       <br>
       <div class="entity-title">
         <h2>
-          <strong><%= @ville[:nom]%></strong>
+          <strong><%= @ville[:nom_propre].upcase%></strong>
         </h2>
       </div>
       <div class="text-center">
@@ -58,7 +58,7 @@
           <%= link_to "Synthèse", ville_synthese_path(nom_propre_et_dep: @ville.nom_propre_et_dep) %>
         </li>
         <li role="presentation">
-          <%= link_to "Indicateurs", ville_indicateurs_path(nom_propre_et_dep: @ville.nom_propre_et_dep) %>
+          <%= link_to "Chiffres clés", ville_indicateurs_path(nom_propre_et_dep: @ville.nom_propre_et_dep) %>
         </li>
         <li role="presentation">
           <%= link_to "Fiscalité", ville_fiscalite_path(nom_propre_et_dep: @ville.nom_propre_et_dep) %>

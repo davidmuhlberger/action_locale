@@ -113,7 +113,7 @@
       <br>
       <div class="entity-title">
         <h2>
-          <strong><%= @ville[:nom]%></strong>
+          <strong><%= @ville[:nom_propre].upcase%></strong>
         </h2>
       </div>
       <div class="text-center">
@@ -125,7 +125,7 @@
           <%= link_to "Synthèse", ville_synthese_path(nom_propre_et_dep: @ville.nom_propre_et_dep) %>
         </li>
         <li role="presentation">
-          <%= link_to "Indicateurs", ville_indicateurs_path(nom_propre_et_dep: @ville.nom_propre_et_dep) %>
+          <%= link_to "Chiffres clés", ville_indicateurs_path(nom_propre_et_dep: @ville.nom_propre_et_dep) %>
         </li>
         <li role="presentation" class="active">
           <%= link_to "Fiscalité", ville_fiscalite_path(nom_propre_et_dep: @ville.nom_propre_et_dep) %>
@@ -145,13 +145,13 @@
           <br>
           <p>
             Ces graphiques présentent l'évolution des deux principaux impôts locaux,
-            c'est-à-dire
+            c'est-à-dire la taxe d'habitation
             <a data-toggle="modal" data-target="#modalTh">
-              la taxe d'habitation
+              <i class="fa fa-question-circle" aria-hidden="true"></i>
             </a>
-             et
+              et les taxes foncières
             <a data-toggle="modal" data-target="#modalTf">
-              les taxes foncières
+              <i class="fa fa-question-circle" aria-hidden="true"></i>
             </a>
             , entre les années 2008 et 2015,
             et la compare, sur la même période, à l'évolution de ces impôts en moyenne pour
@@ -178,8 +178,8 @@
             mais le coût des services d'une commune dépend bien de son nombre d'habitants.
             <br>
             <br>
-            Pour plus d'informations sur la nature de chacune de ses taxes,
-            vous pouvez consulter la section impôts et taxes du <%= link_to "lexique", pages_lexique_path %>.
+            Pour plus d'informations sur la nature de chacune de ces taxes,
+            vous pouvez consulter notre <%= link_to "notice sur la fiscalité", pages_notice_fiscalite_path %>.
             <br>
             <br>
             <% if 100*(@comptes_2015[:recette_taxe_fonciere_bati]/@comptes_2015[:population])/(@comptes_2008[:recette_taxe_fonciere_bati]/@comptes_2008[:population]) - 100 >= 0 %>
@@ -271,7 +271,7 @@
         et une taxe foncière sur le foncier non bâti (terrains nus)
         <br>
         <br>
-        La taxe foncière est dûe par le propriétaire d'un bien immobilier. Elle
+        La taxe foncière est dûe par le propriétaire d'un bien immobilier.
         <br>
         <br>
         Elle est calculée à partir des bases cadastrales qui sont des estimations des revenus locatifs
