@@ -46,7 +46,7 @@
       <br>
       <div class="entity-title">
         <h2>
-          <strong><%= @ville[:nom_propre].upcase%></strong>
+          <strong><%= @ville[:nom_propre].mb_chars.upcase%></strong>
         </h2>
       </div>
       <div class="text-center">
