@@ -141,20 +141,21 @@
         </div>
         <div class="card-tab">
           <div id="fonctionnement_chart_div"></div>
+          <br>
+          <br>
+          <p>
+          Le graphique ci-dessous compare le niveau de dépenses d’investissement par habitant
+          à <%= @ville[:nom_propre] %> avec la moyenne des villes de même taille.
+          Dans les petites communes, ces dépenses peuvent fortement varier d’une année sur
+          l’autre, car il n’y a pas forcément d’investissements importants à réaliser chaque année.
+          Des équipements peuvent aussi être mutualisés avec d’autres communes.
+          <br>
+          Dans les communes de plus grande taille, des dépenses beaucoup plus faibles que
+          la moyenne ne sont pas forcément vertueuses. Si la ville est dotée de peu d’équipements
+          (gymnase, conservatoires, salles d’associations…) les habitants devront payer des
+          abonnements plus importants dans les villes voisines, en plus des impôts locaux de leur ville.
+          </p>
         </div>
-        <br>
-        <p>
-        Le graphique ci-dessous compare le niveau de dépenses d’investissement par habitant
-        à <%= @ville[:nom_propre] %> avec la moyenne des villes de même taille.
-        Dans les petites communes, ces dépenses peuvent fortement varier d’une année sur
-        l’autre, car il n’y a pas forcément d’investissements importants à réaliser chaque année.
-        Des équipements peuvent aussi être mutualisés avec d’autres communes.
-        <br>
-        Dans les communes de plus grande taille, des dépenses beaucoup plus faibles que
-        la moyenne ne sont pas forcément vertueuses. Si la ville est dotée de peu d’équipements
-        (gymnase, conservatoires, salles d’associations…) les habitants devront payer des
-        abonnements plus importants dans les villes voisines, en plus des impôts locaux de leur ville.
-        </p>
         <div class="card-tab">
           <div id="investissement_chart_div"></div>
         </div>

@@ -74,13 +74,13 @@
                     <% end %>
                   </td>
                   <td class="text-center">
-                    <% if 100 * @comptes_2016[:endettement_16] / (@produits_fonctionnement_2016 + @charges_fonctionnement_2016) < 0 %>
+                    <% if 100 * @comptes_2016[:endettement_16].to_i / (@produits_fonctionnement_2016 + @charges_fonctionnement_2016) < 0 %>
                       <%= image_tag "capa_fin_min.png" %>
-                    <% elsif 100 * @comptes_2016[:endettement_16] / (@produits_fonctionnement_2016 + @charges_fonctionnement_2016) > 1500 %>
+                    <% elsif 100 * @comptes_2016[:endettement_16].to_i / (@produits_fonctionnement_2016 + @charges_fonctionnement_2016) > 1500 %>
                       <%= image_tag "capa_fin_min.png" %>
-                    <% elsif 100 * @comptes_2016[:endettement_16] / (@produits_fonctionnement_2016 + @charges_fonctionnement_2016) > 1200 %>
+                    <% elsif 100 * @comptes_2016[:endettement_16].to_i / (@produits_fonctionnement_2016 + @charges_fonctionnement_2016) > 1200 %>
                       <%= image_tag "capa_fin_small_min.png" %>
-                    <% elsif 100 * @comptes_2016[:endettement_16] / (@produits_fonctionnement_2016 + @charges_fonctionnement_2016) > 800 %>
+                    <% elsif 100 * @comptes_2016[:endettement_16].to_i / (@produits_fonctionnement_2016 + @charges_fonctionnement_2016) > 800 %>
                       <%= image_tag "capa_fin_small_max.png" %>
                     <% else %>
                       <%= image_tag "capa_fin_max.png" %>
@@ -119,7 +119,7 @@
             <br>
             <strong>2.</strong> Le niveau d'endettement par rapport à l'épargne brute indique la soutenabilité de la
              dette de la commune et donc sa capacité à emprunter à nouveau pour financer ses investissements.
-             A <%= @ville[:nom_propre] %> l'endettement représentait <%= number_with_precision(@comptes_2016[:endettement_16] / (@produits_fonctionnement_2016 + @charges_fonctionnement_2016), options = {delimiter: " ", precision: 0}) %>
+             A <%= @ville[:nom_propre] %> l'endettement représentait <%= number_with_precision(@comptes_2016[:endettement_16].to_i / (@produits_fonctionnement_2016 + @charges_fonctionnement_2016), options = {delimiter: " ", precision: 0}) %>
              fois l'épargne brute annuelle en 2015, contre 7 fois en moyenne en France
             <br>
             <br>
@@ -154,64 +154,127 @@
                 <tr>
                   <th scope="row">Recettes de fonctionnement (M€) (1)</th>
                   <td class="text-center">
-                    <%= number_with_precision(@comptes_2010[:recette_total_fonctionnement]/1000000.0, options = {delimiter: " ", precision: 1}) %>
+                    <%= number_with_precision(@produits_fonctionnement_2011/1000000.0, options = {delimiter: " ", precision: 1}) %>
                   </td>
                   <td class="text-center">
-                    <%= number_with_precision(@comptes_2011[:recette_total_fonctionnement]/1000000.0, options = {delimiter: " ", precision: 1}) %>
+                    <%= number_with_precision(@produits_fonctionnement_2012/1000000.0, options = {delimiter: " ", precision: 1}) %>
                   </td>
                   <td class="text-center">
-                    <%= number_with_precision(@comptes_2012[:recette_total_fonctionnement]/1000000.0, options = {delimiter: " ", precision: 1}) %>
+                    <%= number_with_precision(@produits_fonctionnement_2013/1000000.0, options = {delimiter: " ", precision: 1}) %>
                   </td>
                   <td class="text-center">
-                    <%= number_with_precision(@comptes_2013[:recette_total_fonctionnement]/1000000.0, options = {delimiter: " ", precision: 1}) %>
+                    <%= number_with_precision(@produits_fonctionnement_2014/1000000.0, options = {delimiter: " ", precision: 1}) %>
                   </td>
                   <td class="text-center">
-                    <%= number_with_precision(@comptes_2014[:recette_total_fonctionnement]/1000000.0, options = {delimiter: " ", precision: 1}) %>
+                    <%= number_with_precision(@produits_fonctionnement_2015/1000000.0, options = {delimiter: " ", precision: 1}) %>
                   </td>
                   <td class="text-center">
-                    <%= number_with_precision(@comptes_2015[:recette_total_fonctionnement]/1000000.0, options = {delimiter: " ", precision: 1}) %>
-                  </td>
-                </tr>
-                <tr>
-                  <th scope="row"><i class="subcategory">Dont impôts (M€)</i></th>
-                  <td class="text-center">
-                    <i class="subcategory"><%= number_with_precision((@comptes_2010[:recette_taxe_habitation]+@comptes_2010[:recette_taxe_fonciere_non_bati]+@comptes_2010[:recette_taxe_fonciere_bati]+@comptes_2010[:recette_taxe_surfaces_commerciales]+@comptes_2010[:recette_autres_impots_taxes])/1000000.0, options = {delimiter: " ", precision: 1}) %></i>
-                  </td>
-                  <td class="text-center">
-                    <i class="subcategory"><%= number_with_precision((@comptes_2011[:recette_taxe_habitation]+@comptes_2011[:recette_taxe_fonciere_non_bati]+@comptes_2011[:recette_taxe_fonciere_bati]+@comptes_2011[:recette_taxe_surfaces_commerciales]+@comptes_2011[:recette_autres_impots_taxes])/1000000.0, options = {delimiter: " ", precision: 1}) %></i>
-                  </td>
-                  <td class="text-center">
-                    <i class="subcategory"><%= number_with_precision((@comptes_2012[:recette_taxe_habitation]+@comptes_2012[:recette_taxe_fonciere_non_bati]+@comptes_2012[:recette_taxe_fonciere_bati]+@comptes_2012[:recette_taxe_surfaces_commerciales]+@comptes_2012[:recette_autres_impots_taxes])/1000000.0, options = {delimiter: " ", precision: 1}) %></i>
-                  </td>
-                  <td class="text-center">
-                    <i class="subcategory"><%= number_with_precision((@comptes_2013[:recette_taxe_habitation]+@comptes_2013[:recette_taxe_fonciere_non_bati]+@comptes_2013[:recette_taxe_fonciere_bati]+@comptes_2013[:recette_taxe_surfaces_commerciales]+@comptes_2013[:recette_autres_impots_taxes])/1000000.0, options = {delimiter: " ", precision: 1}) %></i>
-                  </td>
-                  <td class="text-center">
-                    <i class="subcategory"><%= number_with_precision((@comptes_2014[:recette_taxe_habitation]+@comptes_2014[:recette_taxe_fonciere_non_bati]+@comptes_2014[:recette_taxe_fonciere_bati]+@comptes_2014[:recette_taxe_surfaces_commerciales]+@comptes_2014[:recette_autres_impots_taxes])/1000000.0, options = {delimiter: " ", precision: 1}) %></i>
-                  </td>
-                  <td class="text-center">
-                    <i class="subcategory"><%= number_with_precision((@comptes_2015[:recette_taxe_habitation]+@comptes_2015[:recette_taxe_fonciere_non_bati]+@comptes_2015[:recette_taxe_fonciere_bati]+@comptes_2015[:recette_taxe_surfaces_commerciales]+@comptes_2015[:recette_autres_impots_taxes])/1000000.0, options = {delimiter: " ", precision: 1}) %></i>
+                    <%= number_with_precision(@produits_fonctionnement_2016/1000000.0, options = {delimiter: " ", precision: 1}) %>
                   </td>
                 </tr>
                 <tr>
-                  <th scope="row"><i class="subcategory">Dont dotation de l'Etat (M€)</i></th>
+                  <th scope="row"><i class="subcategory">Dont impôts locaux (M€)</i></th>
                   <td class="text-center">
-                    <i class="subcategory"><%= number_with_precision(@comptes_2010[:recette_dotation_fonctionnement]/1000000.0, options = {delimiter: " ", precision: 1}) %></i>
+                    <i class="subcategory"><%= number_with_precision(@comptes_2011[:impots_locaux_7].to_i/1000000.0, options = {delimiter: " ", precision: 1}) %></i>
                   </td>
                   <td class="text-center">
-                    <i class="subcategory"><%= number_with_precision(@comptes_2011[:recette_dotation_fonctionnement]/1000000.0, options = {delimiter: " ", precision: 1}) %></i>
+                    <i class="subcategory"><%= number_with_precision(@comptes_2012[:impots_locaux_7].to_i/1000000.0, options = {delimiter: " ", precision: 1}) %></i>
                   </td>
                   <td class="text-center">
-                    <i class="subcategory"><%= number_with_precision(@comptes_2012[:recette_dotation_fonctionnement]/1000000.0, options = {delimiter: " ", precision: 1}) %></i>
+                    <i class="subcategory"><%= number_with_precision(@comptes_2013[:impots_locaux_7].to_i/1000000.0, options = {delimiter: " ", precision: 1}) %></i>
                   </td>
                   <td class="text-center">
-                    <i class="subcategory"><%= number_with_precision(@comptes_2013[:recette_dotation_fonctionnement]/1000000.0, options = {delimiter: " ", precision: 1}) %></i>
+                    <i class="subcategory"><%= number_with_precision(@comptes_2014[:impots_locaux_7].to_i/1000000.0, options = {delimiter: " ", precision: 1}) %></i>
                   </td>
                   <td class="text-center">
-                    <i class="subcategory"><%= number_with_precision(@comptes_2014[:recette_dotation_fonctionnement]/1000000.0, options = {delimiter: " ", precision: 1}) %></i>
+                    <i class="subcategory"><%= number_with_precision(@comptes_2015[:impots_locaux_7].to_i/1000000.0, options = {delimiter: " ", precision: 1}) %></i>
                   </td>
                   <td class="text-center">
-                    <i class="subcategory"><%= number_with_precision(@comptes_2015[:recette_dotation_fonctionnement]/1000000.0, options = {delimiter: " ", precision: 1}) %></i>
+                    <i class="subcategory"><%= number_with_precision(@comptes_2016[:impots_locaux_7].to_i/1000000.0, options = {delimiter: " ", precision: 1}) %></i>
+                  </td>
+                </tr>
+                <tr>
+                  <th scope="row"><i class="subcategory">Dont autres ressources fiscales (M€)</i></th>
+                  <td class="text-center">
+                    <i class="subcategory"><%= number_with_precision((@comptes_2011[:fiscalite_reversee_7].to_i+@comptes_2011[:autres_impots_taxes_7].to_i)/1000000.0, options = {delimiter: " ", precision: 1}) %></i>
+                  </td>
+                  <td class="text-center">
+                    <i class="subcategory"><%= number_with_precision((@comptes_2012[:fiscalite_reversee_7].to_i+@comptes_2012[:autres_impots_taxes_7].to_i)/1000000.0, options = {delimiter: " ", precision: 1}) %></i>
+                  </td>
+                  <td class="text-center">
+                    <i class="subcategory"><%= number_with_precision((@comptes_2013[:fiscalite_reversee_7].to_i+@comptes_2013[:autres_impots_taxes_7].to_i)/1000000.0, options = {delimiter: " ", precision: 1}) %></i>
+                  </td>
+                  <td class="text-center">
+                    <i class="subcategory"><%= number_with_precision((@comptes_2014[:fiscalite_reversee_7].to_i+@comptes_2014[:autres_impots_taxes_7].to_i)/1000000.0, options = {delimiter: " ", precision: 1}) %></i>
+                  </td>
+                  <td class="text-center">
+                    <i class="subcategory"><%= number_with_precision((@comptes_2015[:fiscalite_reversee_7].to_i+@comptes_2015[:autres_impots_taxes_7].to_i)/1000000.0, options = {delimiter: " ", precision: 1}) %></i>
+                  </td>
+                  <td class="text-center">
+                    <i class="subcategory"><%= number_with_precision((@comptes_2016[:fiscalite_reversee_7].to_i+@comptes_2016[:autres_impots_taxes_7].to_i)/1000000.0, options = {delimiter: " ", precision: 1}) %></i>
+                  </td>
+                </tr>
+                <tr>
+                  <th scope="row"><i class="subcategory">Dont dotations et subventions (M€)</i></th>
+                  <td class="text-center">
+                    <i class="subcategory"><%= number_with_precision((@comptes_2011[:dotations_etat_7].to_i+@comptes_2011[:suventions_participations_7].to_i)/1000000.0, options = {delimiter: " ", precision: 1}) %></i>
+                  </td>
+                  <td class="text-center">
+                    <i class="subcategory"><%= number_with_precision((@comptes_2012[:dotations_etat_7].to_i+@comptes_2012[:suventions_participations_7].to_i)/1000000.0, options = {delimiter: " ", precision: 1}) %></i>
+                  </td>
+                  <td class="text-center">
+                    <i class="subcategory"><%= number_with_precision((@comptes_2013[:dotations_etat_7].to_i+@comptes_2013[:suventions_participations_7].to_i)/1000000.0, options = {delimiter: " ", precision: 1}) %></i>
+                  </td>
+                  <td class="text-center">
+                    <i class="subcategory"><%= number_with_precision((@comptes_2014[:dotations_etat_7].to_i+@comptes_2014[:suventions_participations_7].to_i)/1000000.0, options = {delimiter: " ", precision: 1}) %></i>
+                  </td>
+                  <td class="text-center">
+                    <i class="subcategory"><%= number_with_precision((@comptes_2015[:dotations_etat_7].to_i+@comptes_2015[:suventions_participations_7].to_i)/1000000.0, options = {delimiter: " ", precision: 1}) %></i>
+                  </td>
+                  <td class="text-center">
+                    <i class="subcategory"><%= number_with_precision((@comptes_2016[:dotations_etat_7].to_i+@comptes_2016[:suventions_participations_7].to_i)/1000000.0, options = {delimiter: " ", precision: 1}) %></i>
+                  </td>
+                </tr>
+                <tr>
+                  <th scope="row"><i class="subcategory">Dont autres recettes courantes (M€)</i></th>
+                  <td class="text-center">
+                    <i class="subcategory"><%= number_with_precision((@comptes_2011[:ventes_biens_services_7].to_i+@comptes_2011[:autres_produits_fonctionnement_7].to_i)/1000000.0, options = {delimiter: " ", precision: 1}) %></i>
+                  </td>
+                  <td class="text-center">
+                    <i class="subcategory"><%= number_with_precision((@comptes_2012[:ventes_biens_services_7].to_i+@comptes_2012[:autres_produits_fonctionnement_7].to_i)/1000000.0, options = {delimiter: " ", precision: 1}) %></i>
+                  </td>
+                  <td class="text-center">
+                    <i class="subcategory"><%= number_with_precision((@comptes_2013[:ventes_biens_services_7].to_i+@comptes_2013[:autres_produits_fonctionnement_7].to_i)/1000000.0, options = {delimiter: " ", precision: 1}) %></i>
+                  </td>
+                  <td class="text-center">
+                    <i class="subcategory"><%= number_with_precision((@comptes_2014[:ventes_biens_services_7].to_i+@comptes_2014[:autres_produits_fonctionnement_7].to_i)/1000000.0, options = {delimiter: " ", precision: 1}) %></i>
+                  </td>
+                  <td class="text-center">
+                    <i class="subcategory"><%= number_with_precision((@comptes_2015[:ventes_biens_services_7].to_i+@comptes_2015[:autres_produits_fonctionnement_7].to_i)/1000000.0, options = {delimiter: " ", precision: 1}) %></i>
+                  </td>
+                  <td class="text-center">
+                    <i class="subcategory"><%= number_with_precision((@comptes_2016[:ventes_biens_services_7].to_i+@comptes_2016[:autres_produits_fonctionnement_7].to_i)/1000000.0, options = {delimiter: " ", precision: 1}) %></i>
+                  </td>
+                </tr>
+                <tr>
+                  <th scope="row"><i class="subcategory">Dont recettes exceptionnelles (M€)</i></th>
+                  <td class="text-center">
+                    <i class="subcategory"><%= number_with_precision((@comptes_2011[:produits_cessions_7].to_i+@comptes_2011[:produits_fonctionnement_exceptionnels_7].to_i)/1000000.0, options = {delimiter: " ", precision: 1}) %></i>
+                  </td>
+                  <td class="text-center">
+                    <i class="subcategory"><%= number_with_precision((@comptes_2012[:produits_cessions_7].to_i+@comptes_2012[:produits_fonctionnement_exceptionnels_7].to_i)/1000000.0, options = {delimiter: " ", precision: 1}) %></i>
+                  </td>
+                  <td class="text-center">
+                    <i class="subcategory"><%= number_with_precision((@comptes_2013[:produits_cessions_7].to_i+@comptes_2013[:produits_fonctionnement_exceptionnels_7].to_i)/1000000.0, options = {delimiter: " ", precision: 1}) %></i>
+                  </td>
+                  <td class="text-center">
+                    <i class="subcategory"><%= number_with_precision((@comptes_2014[:produits_cessions_7].to_i+@comptes_2014[:produits_fonctionnement_exceptionnels_7].to_i)/1000000.0, options = {delimiter: " ", precision: 1}) %></i>
+                  </td>
+                  <td class="text-center">
+                    <i class="subcategory"><%= number_with_precision((@comptes_2015[:produits_cessions_7].to_i+@comptes_2015[:produits_fonctionnement_exceptionnels_7].to_i)/1000000.0, options = {delimiter: " ", precision: 1}) %></i>
+                  </td>
+                  <td class="text-center">
+                    <i class="subcategory"><%= number_with_precision((@comptes_2016[:produits_cessions_7].to_i+@comptes_2016[:produits_fonctionnement_exceptionnels_7].to_i)/1000000.0, options = {delimiter: " ", precision: 1}) %></i>
                   </td>
                 </tr>
                 <tr>
@@ -222,64 +285,169 @@
                    (M€) (2)
                   </th>
                   <td class="text-center">
-                    <%= number_with_precision(@comptes_2010[:charge_total_fonctionnement]/1000000.0, options = {delimiter: " ", precision: 1}) %>
+                    <%= number_with_precision(-@charges_fonctionnement_2011/1000000.0, options = {delimiter: " ", precision: 1}) %>
                   </td>
                   <td class="text-center">
-                    <%= number_with_precision(@comptes_2011[:charge_total_fonctionnement]/1000000.0, options = {delimiter: " ", precision: 1}) %>
+                    <%= number_with_precision(-@charges_fonctionnement_2012/1000000.0, options = {delimiter: " ", precision: 1}) %>
                   </td>
                   <td class="text-center">
-                    <%= number_with_precision(@comptes_2012[:charge_total_fonctionnement]/1000000.0, options = {delimiter: " ", precision: 1}) %>
+                    <%= number_with_precision(-@charges_fonctionnement_2013/1000000.0, options = {delimiter: " ", precision: 1}) %>
                   </td>
                   <td class="text-center">
-                    <%= number_with_precision(@comptes_2013[:charge_total_fonctionnement]/1000000.0, options = {delimiter: " ", precision: 1}) %>
+                    <%= number_with_precision(-@charges_fonctionnement_2014/1000000.0, options = {delimiter: " ", precision: 1}) %>
                   </td>
                   <td class="text-center">
-                    <%= number_with_precision(@comptes_2014[:charge_total_fonctionnement]/1000000.0, options = {delimiter: " ", precision: 1}) %>
+                    <%= number_with_precision(-@charges_fonctionnement_2015/1000000.0, options = {delimiter: " ", precision: 1}) %>
                   </td>
                   <td class="text-center">
-                    <%= number_with_precision(@comptes_2015[:charge_total_fonctionnement]/1000000.0, options = {delimiter: " ", precision: 1}) %>
+                    <%= number_with_precision(-@charges_fonctionnement_2016/1000000.0, options = {delimiter: " ", precision: 1}) %>
+                  </td>
+                </tr>
+                <tr>
+                  <th scope="row"><i class="subcategory">Dont charges de personnel (M€)</i></th>
+                  <td class="text-center">
+                    <i class="subcategory"><%= number_with_precision(-@comptes_2011[:personnel_6].to_i/1000000.0, options = {delimiter: " ", precision: 1}) %></i>
+                  </td>
+                  <td class="text-center">
+                    <i class="subcategory"><%= number_with_precision(-@comptes_2012[:personnel_6].to_i/1000000.0, options = {delimiter: " ", precision: 1}) %></i>
+                  </td>
+                  <td class="text-center">
+                    <i class="subcategory"><%= number_with_precision(-@comptes_2013[:personnel_6].to_i/1000000.0, options = {delimiter: " ", precision: 1}) %></i>
+                  </td>
+                  <td class="text-center">
+                    <i class="subcategory"><%= number_with_precision(-@comptes_2014[:personnel_6].to_i/1000000.0, options = {delimiter: " ", precision: 1}) %></i>
+                  </td>
+                  <td class="text-center">
+                    <i class="subcategory"><%= number_with_precision(-@comptes_2015[:personnel_6].to_i/1000000.0, options = {delimiter: " ", precision: 1}) %></i>
+                  </td>
+                  <td class="text-center">
+                    <i class="subcategory"><%= number_with_precision(-@comptes_2016[:personnel_6].to_i/1000000.0, options = {delimiter: " ", precision: 1}) %></i>
+                  </td>
+                </tr>
+                <tr>
+                  <th scope="row"><i class="subcategory">Dont achats et charges externes (M€)</i></th>
+                  <td class="text-center">
+                    <i class="subcategory"><%= number_with_precision(-@comptes_2011[:achats_charges_externes_6].to_i/1000000.0, options = {delimiter: " ", precision: 1}) %></i>
+                  </td>
+                  <td class="text-center">
+                    <i class="subcategory"><%= number_with_precision(-@comptes_2012[:achats_charges_externes_6].to_i/1000000.0, options = {delimiter: " ", precision: 1}) %></i>
+                  </td>
+                  <td class="text-center">
+                    <i class="subcategory"><%= number_with_precision(-@comptes_2013[:achats_charges_externes_6].to_i/1000000.0, options = {delimiter: " ", precision: 1}) %></i>
+                  </td>
+                  <td class="text-center">
+                    <i class="subcategory"><%= number_with_precision(-@comptes_2014[:achats_charges_externes_6].to_i/1000000.0, options = {delimiter: " ", precision: 1}) %></i>
+                  </td>
+                  <td class="text-center">
+                    <i class="subcategory"><%= number_with_precision(-@comptes_2015[:achats_charges_externes_6].to_i/1000000.0, options = {delimiter: " ", precision: 1}) %></i>
+                  </td>
+                  <td class="text-center">
+                    <i class="subcategory"><%= number_with_precision(-@comptes_2016[:achats_charges_externes_6].to_i/1000000.0, options = {delimiter: " ", precision: 1}) %></i>
+                  </td>
+                </tr>
+                <tr>
+                  <th scope="row"><i class="subcategory">Dont subventions et interventions (M€)</i></th>
+                  <td class="text-center">
+                    <i class="subcategory"><%= number_with_precision((-@comptes_2011[:subventions_versees_6].to_i-@comptes_2011[:intervention_hors_suventions_6].to_i)/1000000.0, options = {delimiter: " ", precision: 1}) %></i>
+                  </td>
+                  <td class="text-center">
+                    <i class="subcategory"><%= number_with_precision((-@comptes_2012[:subventions_versees_6].to_i-@comptes_2012[:intervention_hors_suventions_6].to_i)/1000000.0, options = {delimiter: " ", precision: 1}) %></i>
+                  </td>
+                  <td class="text-center">
+                    <i class="subcategory"><%= number_with_precision((-@comptes_2013[:subventions_versees_6].to_i-@comptes_2013[:intervention_hors_suventions_6].to_i)/1000000.0, options = {delimiter: " ", precision: 1}) %></i>
+                  </td>
+                  <td class="text-center">
+                    <i class="subcategory"><%= number_with_precision((-@comptes_2014[:subventions_versees_6].to_i-@comptes_2014[:intervention_hors_suventions_6].to_i)/1000000.0, options = {delimiter: " ", precision: 1}) %></i>
+                  </td>
+                  <td class="text-center">
+                    <i class="subcategory"><%= number_with_precision((-@comptes_2015[:subventions_versees_6].to_i-@comptes_2015[:intervention_hors_suventions_6].to_i)/1000000.0, options = {delimiter: " ", precision: 1}) %></i>
+                  </td>
+                  <td class="text-center">
+                    <i class="subcategory"><%= number_with_precision((-@comptes_2016[:subventions_versees_6].to_i-@comptes_2016[:intervention_hors_suventions_6].to_i)/1000000.0, options = {delimiter: " ", precision: 1}) %></i>
+                  </td>
+                </tr>
+                <tr>
+                  <th scope="row"><i class="subcategory">Dont autres dépenses courantes (M€)</i></th>
+                  <td class="text-center">
+                    <i class="subcategory"><%= number_with_precision((-@comptes_2011[:frais_elus_6].to_i-@comptes_2011[:impots_6].to_i-@comptes_2011[:autres_6].to_i-@comptes_2011[:frais_financiers_6].to_i)/1000000.0, options = {delimiter: " ", precision: 1}) %></i>
+                  </td>
+                  <td class="text-center">
+                    <i class="subcategory"><%= number_with_precision((-@comptes_2012[:frais_elus_6].to_i-@comptes_2012[:impots_6].to_i-@comptes_2012[:autres_6].to_i-@comptes_2012[:frais_financiers_6].to_i)/1000000.0, options = {delimiter: " ", precision: 1}) %></i>
+                  </td>
+                  <td class="text-center">
+                    <i class="subcategory"><%= number_with_precision((-@comptes_2013[:frais_elus_6].to_i-@comptes_2013[:impots_6].to_i-@comptes_2013[:autres_6].to_i-@comptes_2013[:frais_financiers_6].to_i)/1000000.0, options = {delimiter: " ", precision: 1}) %></i>
+                  </td>
+                  <td class="text-center">
+                    <i class="subcategory"><%= number_with_precision((-@comptes_2014[:frais_elus_6].to_i-@comptes_2014[:impots_6].to_i-@comptes_2014[:autres_6].to_i-@comptes_2014[:frais_financiers_6].to_i)/1000000.0, options = {delimiter: " ", precision: 1}) %></i>
+                  </td>
+                  <td class="text-center">
+                    <i class="subcategory"><%= number_with_precision((-@comptes_2015[:frais_elus_6].to_i-@comptes_2015[:impots_6].to_i-@comptes_2015[:autres_6].to_i-@comptes_2015[:frais_financiers_6].to_i)/1000000.0, options = {delimiter: " ", precision: 1}) %></i>
+                  </td>
+                  <td class="text-center">
+                    <i class="subcategory"><%= number_with_precision((-@comptes_2016[:frais_elus_6].to_i-@comptes_2016[:impots_6].to_i-@comptes_2016[:autres_6].to_i-@comptes_2016[:frais_financiers_6].to_i)/1000000.0, options = {delimiter: " ", precision: 1}) %></i>
+                  </td>
+                </tr>
+                <tr>
+                  <th scope="row"><i class="subcategory">Dont charges exceptionnelles (M€)</i></th>
+                  <td class="text-center">
+                    <i class="subcategory"><%= number_with_precision(-@comptes_2011[:exceptionnel_6].to_i/1000000.0, options = {delimiter: " ", precision: 1}) %></i>
+                  </td>
+                  <td class="text-center">
+                    <i class="subcategory"><%= number_with_precision(-@comptes_2012[:exceptionnel_6].to_i/1000000.0, options = {delimiter: " ", precision: 1}) %></i>
+                  </td>
+                  <td class="text-center">
+                    <i class="subcategory"><%= number_with_precision(-@comptes_2013[:exceptionnel_6].to_i/1000000.0, options = {delimiter: " ", precision: 1}) %></i>
+                  </td>
+                  <td class="text-center">
+                    <i class="subcategory"><%= number_with_precision(-@comptes_2014[:exceptionnel_6].to_i/1000000.0, options = {delimiter: " ", precision: 1}) %></i>
+                  </td>
+                  <td class="text-center">
+                    <i class="subcategory"><%= number_with_precision(-@comptes_2015[:exceptionnel_6].to_i/1000000.0, options = {delimiter: " ", precision: 1}) %></i>
+                  </td>
+                  <td class="text-center">
+                    <i class="subcategory"><%= number_with_precision(-@comptes_2016[:exceptionnel_6].to_i/1000000.0, options = {delimiter: " ", precision: 1}) %></i>
                   </td>
                 </tr>
                 <tr>
                   <th scope="row">Epargne brute (M€) (1)-(2)</th>
                   <td class="text-center">
-                    <%= number_with_precision((@comptes_2010[:recette_total_fonctionnement] - @comptes_2010[:charge_total_fonctionnement])/1000000.0, options = {delimiter: " ", precision: 1}) %>
+                    <%= number_with_precision((@produits_fonctionnement_2011 + @charges_fonctionnement_2011)/1000000.0, options = {delimiter: " ", precision: 1}) %>
                   </td>
                   <td class="text-center">
-                    <%= number_with_precision((@comptes_2011[:recette_total_fonctionnement] - @comptes_2011[:charge_total_fonctionnement])/1000000.0, options = {delimiter: " ", precision: 1}) %>
+                    <%= number_with_precision((@produits_fonctionnement_2012 + @charges_fonctionnement_2012)/1000000.0, options = {delimiter: " ", precision: 1}) %>
                   </td>
                   <td class="text-center">
-                    <%= number_with_precision((@comptes_2012[:recette_total_fonctionnement] - @comptes_2012[:charge_total_fonctionnement])/1000000.0, options = {delimiter: " ", precision: 1}) %>
+                    <%= number_with_precision((@produits_fonctionnement_2013 + @charges_fonctionnement_2013)/1000000.0, options = {delimiter: " ", precision: 1}) %>
                   </td>
                   <td class="text-center">
-                    <%= number_with_precision((@comptes_2013[:recette_total_fonctionnement] - @comptes_2013[:charge_total_fonctionnement])/1000000.0, options = {delimiter: " ", precision: 1}) %>
+                    <%= number_with_precision((@produits_fonctionnement_2014 + @charges_fonctionnement_2014)/1000000.0, options = {delimiter: " ", precision: 1}) %>
                   </td>
                   <td class="text-center">
-                    <%= number_with_precision((@comptes_2014[:recette_total_fonctionnement] - @comptes_2014[:charge_total_fonctionnement])/1000000.0, options = {delimiter: " ", precision: 1}) %>
+                    <%= number_with_precision((@produits_fonctionnement_2015 + @charges_fonctionnement_2015)/1000000.0, options = {delimiter: " ", precision: 1}) %>
                   </td>
                   <td class="text-center">
-                    <%= number_with_precision((@comptes_2015[:recette_total_fonctionnement] - @comptes_2015[:charge_total_fonctionnement])/1000000.0, options = {delimiter: " ", precision: 1}) %>
+                    <%= number_with_precision((@produits_fonctionnement_2016 + @charges_fonctionnement_2016)/1000000.0, options = {delimiter: " ", precision: 1}) %>
                   </td>
                 </tr>
                 <tr>
                   <th scope="row" class="category">Epargne brute / recettes</th>
                   <td class="text-center category">
-                    <%= number_with_precision(100*(@comptes_2010[:recette_total_fonctionnement] - @comptes_2010[:charge_total_fonctionnement])/@comptes_2010[:recette_total_fonctionnement], options = {delimiter: " ", precision: 0}) %>%
+                    <%= number_with_precision(100*(@produits_fonctionnement_2011 + @charges_fonctionnement_2011)/@produits_fonctionnement_2011, options = {delimiter: " ", precision: 0}) %>%
                   </td>
                   <td class="text-center category">
-                    <%= number_with_precision(100*(@comptes_2011[:recette_total_fonctionnement] - @comptes_2011[:charge_total_fonctionnement])/@comptes_2011[:recette_total_fonctionnement], options = {delimiter: " ", precision: 0}) %>%
+                    <%= number_with_precision(100*(@produits_fonctionnement_2012 + @charges_fonctionnement_2012)/@produits_fonctionnement_2012, options = {delimiter: " ", precision: 0}) %>%
                   </td>
                   <td class="text-center category">
-                    <%= number_with_precision(100*(@comptes_2012[:recette_total_fonctionnement] - @comptes_2012[:charge_total_fonctionnement])/@comptes_2012[:recette_total_fonctionnement], options = {delimiter: " ", precision: 0}) %>%
+                    <%= number_with_precision(100*(@produits_fonctionnement_2013 + @charges_fonctionnement_2013)/@produits_fonctionnement_2013, options = {delimiter: " ", precision: 0}) %>%
                   </td>
                   <td class="text-center category">
-                    <%= number_with_precision(100*(@comptes_2013[:recette_total_fonctionnement] - @comptes_2013[:charge_total_fonctionnement])/@comptes_2013[:recette_total_fonctionnement], options = {delimiter: " ", precision: 0}) %>%
+                    <%= number_with_precision(100*(@produits_fonctionnement_2014 + @charges_fonctionnement_2014)/@produits_fonctionnement_2014, options = {delimiter: " ", precision: 0}) %>%
                   </td>
                   <td class="text-center category">
-                    <%= number_with_precision(100*(@comptes_2014[:recette_total_fonctionnement] - @comptes_2014[:charge_total_fonctionnement])/@comptes_2014[:recette_total_fonctionnement], options = {delimiter: " ", precision: 0}) %>%
+                    <%= number_with_precision(100*(@produits_fonctionnement_2015 + @charges_fonctionnement_2015)/@produits_fonctionnement_2015, options = {delimiter: " ", precision: 0}) %>%
                   </td>
                   <td class="text-center category">
-                    <%= number_with_precision(100*(@comptes_2015[:recette_total_fonctionnement] - @comptes_2015[:charge_total_fonctionnement])/@comptes_2015[:recette_total_fonctionnement], options = {delimiter: " ", precision: 0}) %>%
+                    <%= number_with_precision(100*(@produits_fonctionnement_2016 + @charges_fonctionnement_2016)/@produits_fonctionnement_2016, options = {delimiter: " ", precision: 0}) %>%
                   </td>
                 </tr>
                 <tr>
@@ -290,22 +458,64 @@
                    (M€)
                   </th>
                   <td class="text-center">
-                    <%= number_with_precision(@comptes_2010[:depense_equipement] / 1000000.0, options = {delimiter: " ", precision: 1}) %>
+                    <%= number_with_precision(-@charges_investissement_2011 / 1000000.0, options = {delimiter: " ", precision: 1}) %>
                   </td>
                   <td class="text-center">
-                    <%= number_with_precision(@comptes_2011[:depense_equipement] / 1000000.0, options = {delimiter: " ", precision: 1}) %>
+                    <%= number_with_precision(-@charges_investissement_2012 / 1000000.0, options = {delimiter: " ", precision: 1}) %>
                   </td>
                   <td class="text-center">
-                    <%= number_with_precision(@comptes_2012[:depense_equipement] / 1000000.0, options = {delimiter: " ", precision: 1}) %>
+                    <%= number_with_precision(-@charges_investissement_2013 / 1000000.0, options = {delimiter: " ", precision: 1}) %>
                   </td>
                   <td class="text-center">
-                    <%= number_with_precision(@comptes_2013[:depense_equipement] / 1000000.0, options = {delimiter: " ", precision: 1}) %>
+                    <%= number_with_precision(-@charges_investissement_2014 / 1000000.0, options = {delimiter: " ", precision: 1}) %>
                   </td>
                   <td class="text-center">
-                    <%= number_with_precision(@comptes_2014[:depense_equipement] / 1000000.0, options = {delimiter: " ", precision: 1}) %>
+                    <%= number_with_precision(-@charges_investissement_2015 / 1000000.0, options = {delimiter: " ", precision: 1}) %>
                   </td>
                   <td class="text-center">
-                    <%= number_with_precision(@comptes_2015[:depense_equipement] / 1000000.0, options = {delimiter: " ", precision: 1}) %>
+                    <%= number_with_precision(-@charges_investissement_2016 / 1000000.0, options = {delimiter: " ", precision: 1}) %>
+                  </td>
+                </tr>
+                <tr>
+                  <th scope="row"><i class="subcategory">Dont investissements (M€)</i></th>
+                  <td class="text-center">
+                    <i class="subcategory"><%= number_with_precision(-@comptes_2011[:depenses_equipement_2].to_i/1000000.0, options = {delimiter: " ", precision: 1}) %></i>
+                  </td>
+                  <td class="text-center">
+                    <i class="subcategory"><%= number_with_precision(-@comptes_2012[:depenses_equipement_2].to_i/1000000.0, options = {delimiter: " ", precision: 1}) %></i>
+                  </td>
+                  <td class="text-center">
+                    <i class="subcategory"><%= number_with_precision(-@comptes_2013[:depenses_equipement_2].to_i/1000000.0, options = {delimiter: " ", precision: 1}) %></i>
+                  </td>
+                  <td class="text-center">
+                    <i class="subcategory"><%= number_with_precision(-@comptes_2014[:depenses_equipement_2].to_i/1000000.0, options = {delimiter: " ", precision: 1}) %></i>
+                  </td>
+                  <td class="text-center">
+                    <i class="subcategory"><%= number_with_precision(-@comptes_2015[:depenses_equipement_2].to_i/1000000.0, options = {delimiter: " ", precision: 1}) %></i>
+                  </td>
+                  <td class="text-center">
+                    <i class="subcategory"><%= number_with_precision(-@comptes_2016[:depenses_equipement_2].to_i/1000000.0, options = {delimiter: " ", precision: 1}) %></i>
+                  </td>
+                </tr>
+                <tr>
+                  <th scope="row"><i class="subcategory">Dont autres (M€)</i></th>
+                  <td class="text-center">
+                    <i class="subcategory"><%= number_with_precision((-@comptes_2011[:subventions_equipement_versees_2].to_i-@comptes_2011[:autres_depenses_equipement_2].to_i-@comptes_2011[:autres_depenses_equipement_1].to_i-@comptes_2011[:depenses_operations_tiers_4].to_i)/1000000.0, options = {delimiter: " ", precision: 1}) %></i>
+                  </td>
+                  <td class="text-center">
+                    <i class="subcategory"><%= number_with_precision((-@comptes_2012[:subventions_equipement_versees_2].to_i-@comptes_2012[:autres_depenses_equipement_2].to_i-@comptes_2012[:autres_depenses_equipement_1].to_i-@comptes_2012[:depenses_operations_tiers_4].to_i)/1000000.0, options = {delimiter: " ", precision: 1}) %></i>
+                  </td>
+                  <td class="text-center">
+                    <i class="subcategory"><%= number_with_precision((-@comptes_2013[:subventions_equipement_versees_2].to_i-@comptes_2013[:autres_depenses_equipement_2].to_i-@comptes_2013[:autres_depenses_equipement_1].to_i-@comptes_2013[:depenses_operations_tiers_4].to_i)/1000000.0, options = {delimiter: " ", precision: 1}) %></i>
+                  </td>
+                  <td class="text-center">
+                    <i class="subcategory"><%= number_with_precision((-@comptes_2014[:subventions_equipement_versees_2].to_i-@comptes_2014[:autres_depenses_equipement_2].to_i-@comptes_2014[:autres_depenses_equipement_1].to_i-@comptes_2014[:depenses_operations_tiers_4].to_i)/1000000.0, options = {delimiter: " ", precision: 1}) %></i>
+                  </td>
+                  <td class="text-center">
+                    <i class="subcategory"><%= number_with_precision((-@comptes_2015[:subventions_equipement_versees_2].to_i-@comptes_2015[:autres_depenses_equipement_2].to_i-@comptes_2015[:autres_depenses_equipement_1].to_i-@comptes_2015[:depenses_operations_tiers_4].to_i)/1000000.0, options = {delimiter: " ", precision: 1}) %></i>
+                  </td>
+                  <td class="text-center">
+                    <i class="subcategory"><%= number_with_precision((-@comptes_2016[:subventions_equipement_versees_2].to_i-@comptes_2016[:autres_depenses_equipement_2].to_i-@comptes_2016[:autres_depenses_equipement_1].to_i-@comptes_2016[:depenses_operations_tiers_4].to_i)/1000000.0, options = {delimiter: " ", precision: 1}) %></i>
                   </td>
                 </tr>
                 <tr>
@@ -316,106 +526,163 @@
                    (M€)
                   </th>
                   <td class="text-center">
-                    <%= number_with_precision((@comptes_2010[:recette_total_investissement]-@comptes_2010[:souscription_emprunts]) / 1000000.0, options = {delimiter: " ", precision: 1}) %>
+                    <%= number_with_precision((+@comptes_2011[:fctva_1].to_i+@comptes_2011[:subventions_equipement_recues_1].to_i+@comptes_2011[:autres_recettes_equipement_2].to_i+@comptes_2011[:autres_dotations_subventions_equipement_1].to_i+@comptes_2011[:recettes_operations_tiers_4].to_i) / 1000000.0, options = {delimiter: " ", precision: 1}) %>
                   </td>
-                  <td class="text-center">
-                    <%= number_with_precision((@comptes_2011[:recette_total_investissement]-@comptes_2011[:souscription_emprunts]) / 1000000.0, options = {delimiter: " ", precision: 1}) %>
+                  <td class="text+center">
+                    <%= number_with_precision((+@comptes_2012[:fctva_1].to_i+@comptes_2012[:subventions_equipement_recues_1].to_i+@comptes_2012[:autres_recettes_equipement_2].to_i+@comptes_2012[:autres_dotations_subventions_equipement_1].to_i+@comptes_2012[:recettes_operations_tiers_4].to_i) / 1000000.0, options = {delimiter: " ", precision: 1}) %>
                   </td>
-                  <td class="text-center">
-                    <%= number_with_precision((@comptes_2012[:recette_total_investissement]-@comptes_2012[:souscription_emprunts]) / 1000000.0, options = {delimiter: " ", precision: 1}) %>
+                  <td class="text+center">
+                    <%= number_with_precision((+@comptes_2013[:fctva_1].to_i+@comptes_2013[:subventions_equipement_recues_1].to_i+@comptes_2013[:autres_recettes_equipement_2].to_i+@comptes_2013[:autres_dotations_subventions_equipement_1].to_i+@comptes_2013[:recettes_operations_tiers_4].to_i) / 1000000.0, options = {delimiter: " ", precision: 1}) %>
                   </td>
-                  <td class="text-center">
-                    <%= number_with_precision((@comptes_2013[:recette_total_investissement]-@comptes_2013[:souscription_emprunts]) / 1000000.0, options = {delimiter: " ", precision: 1}) %>
+                  <td class="text+center">
+                    <%= number_with_precision((+@comptes_2014[:fctva_1].to_i+@comptes_2014[:subventions_equipement_recues_1].to_i+@comptes_2014[:autres_recettes_equipement_2].to_i+@comptes_2014[:autres_dotations_subventions_equipement_1].to_i+@comptes_2014[:recettes_operations_tiers_4].to_i) / 1000000.0, options = {delimiter: " ", precision: 1}) %>
                   </td>
-                  <td class="text-center">
-                    <%= number_with_precision((@comptes_2014[:recette_total_investissement]-@comptes_2014[:souscription_emprunts]) / 1000000.0, options = {delimiter: " ", precision: 1}) %>
+                  <td class="text+center">
+                    <%= number_with_precision((+@comptes_2015[:fctva_1].to_i+@comptes_2015[:subventions_equipement_recues_1].to_i+@comptes_2015[:autres_recettes_equipement_2].to_i+@comptes_2015[:autres_dotations_subventions_equipement_1].to_i+@comptes_2015[:recettes_operations_tiers_4].to_i) / 1000000.0, options = {delimiter: " ", precision: 1}) %>
                   </td>
-                  <td class="text-center">
-                    <%= number_with_precision((@comptes_2015[:recette_total_investissement]-@comptes_2015[:souscription_emprunts]) / 1000000.0, options = {delimiter: " ", precision: 1}) %>
+                  <td class="text+center">
+                    <%= number_with_precision((+@comptes_2016[:fctva_1].to_i+@comptes_2016[:subventions_equipement_recues_1].to_i+@comptes_2016[:autres_recettes_equipement_2].to_i+@comptes_2016[:autres_dotations_subventions_equipement_1].to_i+@comptes_2016[:recettes_operations_tiers_4].to_i) / 1000000.0, options = {delimiter: " ", precision: 1}) %>
                   </td>
                 </tr>
                 <tr>
-                  <th scope="row"><i class="subcategory">Dont subventions reçues (M€)</i> </th>
+                  <th scope="row"><i class="subcategory">Dont subventions et FCTVA (M€)</i></th>
                   <td class="text-center">
-                    <i class="subcategory"><%= number_with_precision(@comptes_2010[:recette_subventions] / 1000000.0, options = {delimiter: " ", precision: 1}) %></i>
+                    <i class="subcategory"><%= number_with_precision((@comptes_2011[:fctva_1].to_i+@comptes_2011[:subventions_equipement_recues_1].to_i)/1000000.0, options = {delimiter: " ", precision: 1}) %></i>
                   </td>
                   <td class="text-center">
-                    <i class="subcategory"><%= number_with_precision(@comptes_2011[:recette_subventions] / 1000000.0, options = {delimiter: " ", precision: 1}) %></i>
+                    <i class="subcategory"><%= number_with_precision((@comptes_2012[:fctva_1].to_i+@comptes_2012[:subventions_equipement_recues_1].to_i)/1000000.0, options = {delimiter: " ", precision: 1}) %></i>
                   </td>
                   <td class="text-center">
-                    <i class="subcategory"><%= number_with_precision(@comptes_2012[:recette_subventions] / 1000000.0, options = {delimiter: " ", precision: 1}) %></i>
+                    <i class="subcategory"><%= number_with_precision((@comptes_2013[:fctva_1].to_i+@comptes_2013[:subventions_equipement_recues_1].to_i)/1000000.0, options = {delimiter: " ", precision: 1}) %></i>
                   </td>
                   <td class="text-center">
-                    <i class="subcategory"><%= number_with_precision(@comptes_2013[:recette_subventions] / 1000000.0, options = {delimiter: " ", precision: 1}) %></i>
+                    <i class="subcategory"><%= number_with_precision((@comptes_2014[:fctva_1].to_i+@comptes_2014[:subventions_equipement_recues_1].to_i)/1000000.0, options = {delimiter: " ", precision: 1}) %></i>
                   </td>
                   <td class="text-center">
-                    <i class="subcategory"><%= number_with_precision(@comptes_2014[:recette_subventions] / 1000000.0, options = {delimiter: " ", precision: 1}) %></i>
+                    <i class="subcategory"><%= number_with_precision((@comptes_2015[:fctva_1].to_i+@comptes_2015[:subventions_equipement_recues_1].to_i)/1000000.0, options = {delimiter: " ", precision: 1}) %></i>
                   </td>
                   <td class="text-center">
-                    <i class="subcategory"><%= number_with_precision(@comptes_2015[:recette_subventions] / 1000000.0, options = {delimiter: " ", precision: 1}) %></i>
+                    <i class="subcategory"><%= number_with_precision((@comptes_2016[:fctva_1].to_i+@comptes_2016[:subventions_equipement_recues_1].to_i)/1000000.0, options = {delimiter: " ", precision: 1}) %></i>
+                  </td>
+                </tr>
+                <tr>
+                  <th scope="row"><i class="subcategory">Dont autres recettes d'équipement (M€)</i></th>
+                  <td class="text-center">
+                    <i class="subcategory"><%= number_with_precision((@comptes_2011[:autres_recettes_equipement_2].to_i+@comptes_2011[:autres_dotations_subventions_equipement_1].to_i+@comptes_2011[:recettes_operations_tiers_4].to_i)/1000000.0, options = {delimiter: " ", precision: 1}) %></i>
+                  </td>
+                  <td class="text-center">
+                    <i class="subcategory"><%= number_with_precision((@comptes_2012[:autres_recettes_equipement_2].to_i+@comptes_2012[:autres_dotations_subventions_equipement_1].to_i+@comptes_2012[:recettes_operations_tiers_4].to_i)/1000000.0, options = {delimiter: " ", precision: 1}) %></i>
+                  </td>
+                  <td class="text-center">
+                    <i class="subcategory"><%= number_with_precision((@comptes_2013[:autres_recettes_equipement_2].to_i+@comptes_2013[:autres_dotations_subventions_equipement_1].to_i+@comptes_2013[:recettes_operations_tiers_4].to_i)/1000000.0, options = {delimiter: " ", precision: 1}) %></i>
+                  </td>
+                  <td class="text-center">
+                    <i class="subcategory"><%= number_with_precision((@comptes_2014[:autres_recettes_equipement_2].to_i+@comptes_2014[:autres_dotations_subventions_equipement_1].to_i+@comptes_2014[:recettes_operations_tiers_4].to_i)/1000000.0, options = {delimiter: " ", precision: 1}) %></i>
+                  </td>
+                  <td class="text-center">
+                    <i class="subcategory"><%= number_with_precision((@comptes_2015[:autres_recettes_equipement_2].to_i+@comptes_2015[:autres_dotations_subventions_equipement_1].to_i+@comptes_2015[:recettes_operations_tiers_4].to_i)/1000000.0, options = {delimiter: " ", precision: 1}) %></i>
+                  </td>
+                  <td class="text-center">
+                    <i class="subcategory"><%= number_with_precision((@comptes_2016[:autres_recettes_equipement_2].to_i+@comptes_2016[:autres_dotations_subventions_equipement_1].to_i+@comptes_2016[:recettes_operations_tiers_4].to_i)/1000000.0, options = {delimiter: " ", precision: 1}) %></i>
                   </td>
                 </tr>
                 <tr>
                   <th scope="row">Endettement (M€) </th>
                   <td class="text-center">
-                    <%= number_with_precision((@comptes_2010[:endettement_encours]) / 1000000.0, options = {delimiter: " ", precision: 1}) %>
+                    <%= number_with_precision((@comptes_2011[:endettement_16]) / 1000000.0, options = {delimiter: " ", precision: 1}) %>
                   </td>
                   <td class="text-center">
-                    <%= number_with_precision((@comptes_2011[:endettement_encours]) / 1000000.0, options = {delimiter: " ", precision: 1}) %>
+                    <%= number_with_precision((@comptes_2012[:endettement_16]) / 1000000.0, options = {delimiter: " ", precision: 1}) %>
                   </td>
                   <td class="text-center">
-                    <%= number_with_precision((@comptes_2012[:endettement_encours]) / 1000000.0, options = {delimiter: " ", precision: 1}) %>
+                    <%= number_with_precision((@comptes_2013[:endettement_16]) / 1000000.0, options = {delimiter: " ", precision: 1}) %>
                   </td>
                   <td class="text-center">
-                    <%= number_with_precision((@comptes_2013[:endettement_encours]) / 1000000.0, options = {delimiter: " ", precision: 1}) %>
+                    <%= number_with_precision((@comptes_2014[:endettement_16]) / 1000000.0, options = {delimiter: " ", precision: 1}) %>
                   </td>
                   <td class="text-center">
-                    <%= number_with_precision((@comptes_2014[:endettement_encours]) / 1000000.0, options = {delimiter: " ", precision: 1}) %>
+                    <%= number_with_precision((@comptes_2015[:endettement_16]) / 1000000.0, options = {delimiter: " ", precision: 1}) %>
                   </td>
                   <td class="text-center">
-                    <%= number_with_precision((@comptes_2015[:endettement_encours]) / 1000000.0, options = {delimiter: " ", precision: 1}) %>
+                    <%= number_with_precision((@comptes_2016[:endettement_16]) / 1000000.0, options = {delimiter: " ", precision: 1}) %>
                   </td>
                 </tr>
                 <tr>
                   <th scope="row" class="category">Endettement / épargne brute</th>
                   <td class="text-center category">
-                    <%= number_with_precision(@comptes_2010[:endettement_encours] / (@comptes_2010[:recette_total_fonctionnement] - @comptes_2010[:charge_total_fonctionnement]), options = {delimiter: " ", precision: 0}) %>x
+                    <% if @comptes_2011[:endettement_16] / (@produits_fonctionnement_2011 + @charges_fonctionnement_2011) < 0 %>
+                    ns
+                    <% elsif @comptes_2011[:endettement_16] / (@produits_fonctionnement_2011 + @charges_fonctionnement_2011) >=50 %>
+                    ns
+                    <% else %>
+                    <%= number_with_precision(@comptes_2011[:endettement_16] / (@produits_fonctionnement_2011 + @charges_fonctionnement_2011), options = {delimiter: " ", precision: 0}) %>x
+                    <% end %>
                   </td>
                   <td class="text-center category">
-                    <%= number_with_precision(@comptes_2011[:endettement_encours] / (@comptes_2011[:recette_total_fonctionnement] - @comptes_2011[:charge_total_fonctionnement]), options = {delimiter: " ", precision: 0}) %>x
+                    <% if @comptes_2012[:endettement_16] / (@produits_fonctionnement_2012 + @charges_fonctionnement_2012) < 0 %>
+                    ns
+                    <% elsif @comptes_2012[:endettement_16] / (@produits_fonctionnement_2012 + @charges_fonctionnement_2012) >=50 %>
+                    ns
+                    <% else %>
+                    <%= number_with_precision(@comptes_2012[:endettement_16] / (@produits_fonctionnement_2012 + @charges_fonctionnement_2012), options = {delimiter: " ", precision: 0}) %>x
+                    <% end %>
                   </td>
                   <td class="text-center category">
-                    <%= number_with_precision(@comptes_2012[:endettement_encours] / (@comptes_2012[:recette_total_fonctionnement] - @comptes_2012[:charge_total_fonctionnement]), options = {delimiter: " ", precision: 0}) %>x
+                    <% if @comptes_2013[:endettement_16] / (@produits_fonctionnement_2013 + @charges_fonctionnement_2013) < 0 %>
+                    ns
+                    <% elsif @comptes_2013[:endettement_16] / (@produits_fonctionnement_2013 + @charges_fonctionnement_2013) >=50 %>
+                    ns
+                    <% else %>
+                    <%= number_with_precision(@comptes_2013[:endettement_16] / (@produits_fonctionnement_2013 + @charges_fonctionnement_2013), options = {delimiter: " ", precision: 0}) %>x
+                    <% end %>
                   </td>
                   <td class="text-center category">
-                    <%= number_with_precision(@comptes_2013[:endettement_encours] / (@comptes_2013[:recette_total_fonctionnement] - @comptes_2013[:charge_total_fonctionnement]), options = {delimiter: " ", precision: 0}) %>x
+                    <% if @comptes_2014[:endettement_16] / (@produits_fonctionnement_2014 + @charges_fonctionnement_2014) < 0 %>
+                    ns
+                    <% elsif @comptes_2014[:endettement_16] / (@produits_fonctionnement_2014 + @charges_fonctionnement_2014) >=50 %>
+                    ns
+                    <% else %>
+                    <%= number_with_precision(@comptes_2014[:endettement_16] / (@produits_fonctionnement_2014 + @charges_fonctionnement_2014), options = {delimiter: " ", precision: 0}) %>x
+                    <% end %>
                   </td>
                   <td class="text-center category">
-                    <%= number_with_precision(@comptes_2014[:endettement_encours] / (@comptes_2014[:recette_total_fonctionnement] - @comptes_2014[:charge_total_fonctionnement]), options = {delimiter: " ", precision: 0}) %>x
+                    <% if @comptes_2015[:endettement_16] / (@produits_fonctionnement_2015 + @charges_fonctionnement_2015) < 0 %>
+                    ns
+                    <% elsif @comptes_2015[:endettement_16] / (@produits_fonctionnement_2015 + @charges_fonctionnement_2015) >=50 %>
+                    ns
+                    <% else %>
+                    <%= number_with_precision(@comptes_2015[:endettement_16] / (@produits_fonctionnement_2015 + @charges_fonctionnement_2015), options = {delimiter: " ", precision: 0}) %>x
+                    <% end %>
                   </td>
                   <td class="text-center category">
-                    <%= number_with_precision(@comptes_2015[:endettement_encours] / (@comptes_2015[:recette_total_fonctionnement] - @comptes_2015[:charge_total_fonctionnement]), options = {delimiter: " ", precision: 0}) %>x
+                    <% if @comptes_2016[:endettement_16] / (@produits_fonctionnement_2016 + @charges_fonctionnement_2016) < 0 %>
+                    ns
+                    <% elsif @comptes_2016[:endettement_16] / (@produits_fonctionnement_2016 + @charges_fonctionnement_2016) >=50 %>
+                    ns
+                    <% else %>
+                    <%= number_with_precision(@comptes_2016[:endettement_16] / (@produits_fonctionnement_2016 + @charges_fonctionnement_2016), options = {delimiter: " ", precision: 0}) %>x
+                    <% end %>
                   </td>
                 </tr>
                 <tr>
                   <th scope="row" class="category">Endettement / habitant</th>
                   <td class="text-center category">
-                    <%= number_with_precision(@comptes_2010[:endettement_encours] / (@comptes_2010[:population]), options = {delimiter: " ", precision: 0}) %>€
+                    <%= number_with_precision(@comptes_2011[:endettement_16] / (@comptes_2011[:population]), options = {delimiter: " ", precision: 0}) %>€
                   </td>
                   <td class="text-center category">
-                    <%= number_with_precision(@comptes_2011[:endettement_encours] / (@comptes_2011[:population]), options = {delimiter: " ", precision: 0}) %>€
+                    <%= number_with_precision(@comptes_2012[:endettement_16] / (@comptes_2012[:population]), options = {delimiter: " ", precision: 0}) %>€
                   </td>
                   <td class="text-center category">
-                    <%= number_with_precision(@comptes_2012[:endettement_encours] / (@comptes_2012[:population]), options = {delimiter: " ", precision: 0}) %>€
+                    <%= number_with_precision(@comptes_2013[:endettement_16] / (@comptes_2013[:population]), options = {delimiter: " ", precision: 0}) %>€
                   </td>
                   <td class="text-center category">
-                    <%= number_with_precision(@comptes_2013[:endettement_encours] / (@comptes_2013[:population]), options = {delimiter: " ", precision: 0}) %>€
+                    <%= number_with_precision(@comptes_2014[:endettement_16] / (@comptes_2014[:population]), options = {delimiter: " ", precision: 0}) %>€
                   </td>
                   <td class="text-center category">
-                    <%= number_with_precision(@comptes_2014[:endettement_encours] / (@comptes_2014[:population]), options = {delimiter: " ", precision: 0}) %>€
+                    <%= number_with_precision(@comptes_2015[:endettement_16] / (@comptes_2015[:population]), options = {delimiter: " ", precision: 0}) %>€
                   </td>
                   <td class="text-center category">
-                    <%= number_with_precision(@comptes_2015[:endettement_encours] / (@comptes_2015[:population]), options = {delimiter: " ", precision: 0}) %>€
+                    <%= number_with_precision(@comptes_2016[:endettement_16] / (@comptes_2016[:population]), options = {delimiter: " ", precision: 0}) %>€
                   </td>
                 </tr>
               </tbody>
@@ -443,7 +710,6 @@
             trop élevée par rapport aux équipements disponibles. En effet, à la différence
             d’un ménage, une commune n’épargne généralement pas, ses investissements sont
             financés par des emprunts qui sont remboursés par son épargne brute.
-
           </p>
           <br>
           <br>
