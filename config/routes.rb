@@ -7,7 +7,6 @@ Rails.application.routes.draw do
   get "/villes/:nom_propre_et_dep/depenses" => "villes#show_depenses", as: 'ville_depenses'
   get "/villes/:nom_propre_et_dep/finances" => "villes#show_finances", as: 'ville_finances'
   get "/villes/:nom_propre_et_dep/fiscalite" => "villes#show_fiscalite", as: 'ville_fiscalite'
-  get "/villes/:nom_propre_et_dep/synthese" => "villes#show_synthese", as: 'ville_synthese'
   get "/projet" => "pages#projet", as: 'pages_projet'
   get "/home" => "pages#home", as: 'pages_home'
   get "/blog" => "pages#blog", as: 'pages_blog'

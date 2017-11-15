@@ -4,18 +4,17 @@
     <script type="text/javascript">
       google.charts.load('current', {packages: ['corechart', 'bar'], 'language': 'fr'});
       google.charts.setOnLoadCallback(drawFonctionnement);
+      google.charts.setOnLoadCallback(drawInvestissement);
 
       function drawFonctionnement() {
         var data = google.visualization.arrayToDataTable([
-          ['', "Dépenses de fonctionnement / habitant", "Dépenses de fonctionnement / habitant moyenne"],
-          ["2008", <%= @comptes_2008[:charge_total_fonctionnement] / @comptes_2008[:population] %>, <%= @comptes_moy_2008[:charge_total_fonctionnement] / @comptes_moy_2008[:population] %>],
-          ["2009", <%= @comptes_2009[:charge_total_fonctionnement] / @comptes_2009[:population] %>, <%= @comptes_moy_2008[:charge_total_fonctionnement] / @comptes_moy_2008[:population] %>],
-          ["2010", <%= @comptes_2010[:charge_total_fonctionnement] / @comptes_2010[:population] %>, <%= @comptes_moy_2008[:charge_total_fonctionnement] / @comptes_moy_2008[:population] %>],
-          ["2011", <%= @comptes_2011[:charge_total_fonctionnement] / @comptes_2011[:population] %>, <%= @comptes_moy_2008[:charge_total_fonctionnement] / @comptes_moy_2008[:population] %>],
-          ["2012", <%= @comptes_2012[:charge_total_fonctionnement] / @comptes_2012[:population] %>, <%= @comptes_moy_2008[:charge_total_fonctionnement] / @comptes_moy_2008[:population] %>],
-          ["2013", <%= @comptes_2013[:charge_total_fonctionnement] / @comptes_2013[:population] %>, <%= @comptes_moy_2008[:charge_total_fonctionnement] / @comptes_moy_2008[:population] %>],
-          ["2014", <%= @comptes_2014[:charge_total_fonctionnement] / @comptes_2014[:population] %>, <%= @comptes_moy_2008[:charge_total_fonctionnement] / @comptes_moy_2008[:population] %>],
-          ["2015", <%= @comptes_2015[:charge_total_fonctionnement] / @comptes_2015[:population] %>, <%= @comptes_moy_2008[:charge_total_fonctionnement] / @comptes_moy_2008[:population] %>],
+          ['', "Dépenses de fonctionnement commune", "Dépenses de fonctionnement moyenne"],
+          ["2011", <%= -@charges_fonctionnement_2011 / @comptes_2011[:population] %>, <%= -@charges_fonctionnement_moy_2011 / @comptes_moy_2011[:population] %>],
+          ["2012", <%= -@charges_fonctionnement_2012 / @comptes_2012[:population] %>, <%= -@charges_fonctionnement_moy_2012 / @comptes_moy_2012[:population] %>],
+          ["2013", <%= -@charges_fonctionnement_2013 / @comptes_2013[:population] %>, <%= -@charges_fonctionnement_moy_2013 / @comptes_moy_2013[:population] %>],
+          ["2014", <%= -@charges_fonctionnement_2014 / @comptes_2014[:population] %>, <%= -@charges_fonctionnement_moy_2014 / @comptes_moy_2014[:population] %>],
+          ["2015", <%= -@charges_fonctionnement_2015 / @comptes_2015[:population] %>, <%= -@charges_fonctionnement_moy_2015 / @comptes_moy_2015[:population] %>],
+          ["2015", <%= -@charges_fonctionnement_2016 / @comptes_2016[:population] %>, <%= -@charges_fonctionnement_moy_2016 / @comptes_moy_2016[:population] %>],
         ]);
 
 
@@ -32,7 +31,36 @@
           },
         };
 
-        var investissementchart = new google.charts.Bar(document.getElementById('fonctionnement_chart_div'));
+        var fonctionnementchart = new google.charts.Bar(document.getElementById('fonctionnement_chart_div'));
+        fonctionnementchart.draw(data, google.charts.Bar.convertOptions(options));
+      };
+
+      function drawInvestissement() {
+        var data = google.visualization.arrayToDataTable([
+          ['', "Dépenses de fonctionnement commune", "Dépenses de fonctionnement moyenne"],
+          ["2011", <%= -@charges_investissement_2011 / @comptes_2011[:population] %>, <%= -@charges_investissement_moy_2011 / @comptes_moy_2011[:population] %>],
+          ["2012", <%= -@charges_investissement_2012 / @comptes_2012[:population] %>, <%= -@charges_investissement_moy_2012 / @comptes_moy_2012[:population] %>],
+          ["2013", <%= -@charges_investissement_2013 / @comptes_2013[:population] %>, <%= -@charges_investissement_moy_2013 / @comptes_moy_2013[:population] %>],
+          ["2014", <%= -@charges_investissement_2014 / @comptes_2014[:population] %>, <%= -@charges_investissement_moy_2014 / @comptes_moy_2014[:population] %>],
+          ["2015", <%= -@charges_investissement_2015 / @comptes_2015[:population] %>, <%= -@charges_investissement_moy_2015 / @comptes_moy_2015[:population] %>],
+          ["2015", <%= -@charges_investissement_2016 / @comptes_2016[:population] %>, <%= -@charges_investissement_moy_2016 / @comptes_moy_2016[:population] %>],
+        ]);
+
+
+        var options = {
+          'width' : 750,
+          'height' : 350,
+          'chartArea' : {
+            'width': 400,
+            'height': 200
+          },
+          colors: ['#2196F3','#B0BEC5'],
+          'legend' : {
+            'alignment': 'center'
+          },
+        };
+
+        var investissementchart = new google.charts.Bar(document.getElementById('investissement_chart_div'));
         investissementchart.draw(data, google.charts.Bar.convertOptions(options));
       }
 
@@ -55,9 +83,6 @@
       <br>
       <ul class="nav nav-tabs">
         <li role="presentation">
-          <%= link_to "Synthèse", ville_synthese_path(nom_propre_et_dep: @ville.nom_propre_et_dep) %>
-        </li>
-        <li role="presentation">
           <%= link_to "Chiffres clés", ville_indicateurs_path(nom_propre_et_dep: @ville.nom_propre_et_dep) %>
         </li>
         <li role="presentation">
@@ -77,15 +102,40 @@
           <h4><strong>Niveau des dépenses de la commune</strong></h4>
           <br>
           <p>
-            Une commune ne doit pas seulement garder une marge de manoeuvre financière.
+            Les communes ont un nombre important de compétences à assumer :
+            entretien du domaine public, action sociale, police municipale,
+            activités culturelles. Ces actions sont financées par les recettes de la commune,
+            principalement fiscales.
             <br>
-            Elle doit dans l'idéal fournir un bon niveau de services à sa population, pour un coût
-            qui reste le plus raisonnable possible.
+            <br>
+            <strong>Une commune doit donc fournir un certain niveau de services à sa population,
+            qui peut être variable selon la politique de chaque ville,
+            mais doit se faire au meilleur coût pour les habitants.</strong>
             <br>
             <br>
-            Le graphique ci-dessous compare le niveau de dépenses de fonctionnement par habitant pour <%= @ville[:nom_propre] %>
-            avec la moyenne des villes de même taille. Un montant de dépenses élevé devrait correspondre à une qualité
-            de services municipaux supérieure à la moyenne.
+            Les dépenses d’une commune se classent en deux catégories :
+            <br>
+            <strong> - Les dépenses de fonctionnement </strong> correspondent
+            aux dépenses quotidiennes de la ville (salaires, petit entretien, achats)
+            <br>
+            <strong> - Les dépenses d’investissement </strong> sont par nature
+            non récurrentes. Il s’agit de constructions et d’achat de biens amortissables
+            (bâtiments, véhicules municipaux, création de parcs…)
+            <br>
+            <br>
+            Le graphique ci-dessous compare le niveau de dépenses de fonctionnement
+            par habitant pour <%= @ville[:nom_propre] %> avec la moyenne des villes de même taille.
+            Un montant de dépenses élevé devrait correspondre à une qualité de services
+            municipaux supérieure à la moyenne.
+            <% if @ville[:nb_res_secondaires] / @comptes_2016[:population] >= 0.5 %>
+              <p>
+              <br>
+              <br>
+              Attention. Il y a dans cette commune une part importante de résidences secondaires :
+              <%= @ville[:nb_res_secondaires] %> résidences secondaires pour une population de <%= @comptes_2016[:population] %> habitants.
+              Les données fiscales et financières par habitant peuvent donc sembler artificiellement élevées.
+              </p>
+            <% end %>
           </p>
           <br>
         </div>
@@ -93,6 +143,21 @@
           <div id="fonctionnement_chart_div"></div>
         </div>
         <br>
+        <p>
+        Le graphique ci-dessous compare le niveau de dépenses d’investissement par habitant
+        à <%= @ville[:nom_propre] %> avec la moyenne des villes de même taille.
+        Dans les petites communes, ces dépenses peuvent fortement varier d’une année sur
+        l’autre, car il n’y a pas forcément d’investissements importants à réaliser chaque année.
+        Des équipements peuvent aussi être mutualisés avec d’autres communes.
+        <br>
+        Dans les communes de plus grande taille, des dépenses beaucoup plus faibles que
+        la moyenne ne sont pas forcément vertueuses. Si la ville est dotée de peu d’équipements
+        (gymnase, conservatoires, salles d’associations…) les habitants devront payer des
+        abonnements plus importants dans les villes voisines, en plus des impôts locaux de leur ville.
+        </p>
+        <div class="card-tab">
+          <div id="investissement_chart_div"></div>
+        </div>
         <br>
         <p class="text-center">
           <%= image_tag "end_text_symbol.png" %>

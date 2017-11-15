@@ -15,9 +15,6 @@
       <br>
       <ul class="nav nav-tabs">
         <li role="presentation">
-          <%= link_to "Synthèse", ville_synthese_path(nom_propre_et_dep: @ville.nom_propre_et_dep) %>
-        </li>
-        <li role="presentation">
           <%= link_to "Chiffres clés", ville_indicateurs_path(nom_propre_et_dep: @ville.nom_propre_et_dep) %>
         </li>
         <li role="presentation">
@@ -36,6 +33,15 @@
           <br>
           <h4><strong>Situation financière de la commune</strong></h4>
           <br>
+          <% if @comptes_2016[:population] < 1000 %>
+            <p>
+              Attention, <%= @ville[:nom_propre] %> est une petite commune,
+              de moins de 1000 habitants. Ses ratios financiers peuvent être très sensibles
+              à des variations ponctuelles de certains comptes ou à des investissements qui
+              vont augmenter sa dette mais ne présentent pas de risques si leur remboursement
+              est correctement anticipé.
+            </p>
+          <% else %>
           <div class="card-tab">
             <table class="table">
               <thead>
@@ -57,24 +63,24 @@
               <tbody>
                 <tr>
                   <td class="text-center">
-                    <% if 100 * (@comptes_2015[:recette_total_fonctionnement] - @comptes_2015[:charge_total_fonctionnement])/@comptes_2015[:recette_total_fonctionnement] <5 %>
+                    <% if 100 * (@produits_fonctionnement_2016 + @charges_fonctionnement_2016)/@produits_fonctionnement_2016 <7 %>
                       <%= image_tag "capa_fin_min.png" %>
-                    <% elsif 100 * (@comptes_2015[:recette_total_fonctionnement] - @comptes_2015[:charge_total_fonctionnement])/@comptes_2015[:recette_total_fonctionnement] < 7 %>
+                    <% elsif 100 * (@produits_fonctionnement_2016 + @charges_fonctionnement_2016)/@produits_fonctionnement_2016 < 10 %>
                       <%= image_tag "capa_fin_small_min.png" %>
-                    <% elsif 100 * (@comptes_2015[:recette_total_fonctionnement] - @comptes_2015[:charge_total_fonctionnement])/@comptes_2015[:recette_total_fonctionnement] < 10 %>
+                    <% elsif 100 * (@produits_fonctionnement_2016 + @charges_fonctionnement_2016)/@produits_fonctionnement_2016 < 13 %>
                       <%= image_tag "capa_fin_small_max.png" %>
                     <% else %>
                       <%= image_tag "capa_fin_max.png" %>
                     <% end %>
                   </td>
                   <td class="text-center">
-                    <% if 100 * @comptes_2015[:endettement_encours] / (@comptes_2015[:recette_total_fonctionnement] - @comptes_2015[:charge_total_fonctionnement]) < 0 %>
+                    <% if 100 * @comptes_2016[:endettement_16] / (@produits_fonctionnement_2016 + @charges_fonctionnement_2016) < 0 %>
                       <%= image_tag "capa_fin_min.png" %>
-                    <% elsif 100 * @comptes_2015[:endettement_encours] / (@comptes_2015[:recette_total_fonctionnement] - @comptes_2015[:charge_total_fonctionnement]) > 1000 %>
+                    <% elsif 100 * @comptes_2016[:endettement_16] / (@produits_fonctionnement_2016 + @charges_fonctionnement_2016) > 1500 %>
                       <%= image_tag "capa_fin_min.png" %>
-                    <% elsif 100 * @comptes_2015[:endettement_encours] / (@comptes_2015[:recette_total_fonctionnement] - @comptes_2015[:charge_total_fonctionnement]) > 750 %>
+                    <% elsif 100 * @comptes_2016[:endettement_16] / (@produits_fonctionnement_2016 + @charges_fonctionnement_2016) > 1200 %>
                       <%= image_tag "capa_fin_small_min.png" %>
-                    <% elsif 100 * @comptes_2015[:endettement_encours] / (@comptes_2015[:recette_total_fonctionnement] - @comptes_2015[:charge_total_fonctionnement]) > 500 %>
+                    <% elsif 100 * @comptes_2016[:endettement_16] / (@produits_fonctionnement_2016 + @charges_fonctionnement_2016) > 800 %>
                       <%= image_tag "capa_fin_small_max.png" %>
                     <% else %>
                       <%= image_tag "capa_fin_max.png" %>
@@ -84,9 +90,7 @@
               </tbody>
             </table>
           </div>
-          <br>
-          <br>
-          <br>
+          <% end %>
           <p>
             Le budget d'une commune se compose de deux parties :
             <br>
@@ -109,13 +113,13 @@
             <br>
             <strong>1.</strong> La part de l'épargne brute dans le budget de fonctionnement indique la capacité
             de la commune à financer elle-même ses investissements et à faire face à des imprévus.
-            A <%= @ville[:nom_propre] %> en 2015 elle était de <%= number_with_precision(100*(@comptes_2015[:recette_total_fonctionnement] - @comptes_2015[:charge_total_fonctionnement])/@comptes_2015[:recette_total_fonctionnement], options = {delimiter: " ", precision: 0}) %>%
+            A <%= @ville[:nom_propre] %> en 2016 elle était de <%= number_with_precision(100*(@produits_fonctionnement_2016 + @charges_fonctionnement_2016)/@produits_fonctionnement_2016, options = {delimiter: " ", precision: 0}) %>%
             contre 11% en moyenne en France.
             <br>
             <br>
-            <strong>2.</strong> Le niveau d'endettement par rapport à l'épargne brute révèle la soutenabilité de la
+            <strong>2.</strong> Le niveau d'endettement par rapport à l'épargne brute indique la soutenabilité de la
              dette de la commune et donc sa capacité à emprunter à nouveau pour financer ses investissements.
-             A <%= @ville[:nom_propre] %> l'endettement représentait <%= number_with_precision(@comptes_2015[:endettement_encours] / (@comptes_2015[:recette_total_fonctionnement] - @comptes_2015[:charge_total_fonctionnement]), options = {delimiter: " ", precision: 0}) %>
+             A <%= @ville[:nom_propre] %> l'endettement représentait <%= number_with_precision(@comptes_2016[:endettement_16] / (@produits_fonctionnement_2016 + @charges_fonctionnement_2016), options = {delimiter: " ", precision: 0}) %>
              fois l'épargne brute annuelle en 2015, contre 7 fois en moyenne en France
             <br>
             <br>
@@ -126,9 +130,6 @@
               <thead>
                 <tr>
                   <th></th>
-                  <th class="text-center">
-                    2010
-                  </th>
                   <th class="text-center">
                     2011
                   </th>
@@ -143,6 +144,9 @@
                   </th>
                   <th class="text-center">
                     2015
+                  </th>
+                  <th class="text-center">
+                    2016
                   </th>
                 </tr>
               </thead>
@@ -416,6 +420,30 @@
                 </tr>
               </tbody>
             </table>
+          </p>
+          <p>
+            Pour bien appréhender l’évolution des finances de votre commune, il faut être
+            attentif aux tendances dans le temps. Un taux d’épargne brute qui se dégrade
+            sous 10% doit poser question :
+            <br>
+            - pourquoi les recettes ou les dépenses de la commune diminuent-elles ?
+            <br>
+            - comment va-t-elle pouvoir retrouver une épargne brute qui lui permette de
+            financer des investissements ? La fiscalité doit elle être augmentée ou les
+            dépenses rationalisées ?
+            <br>
+            De même une épargne brute excessive peut révéler un niveau d’imposition trop
+            important par rapport aux services rendus.
+            <br>
+            <br>
+            L’endettement doit être maîtrisé et, d’une manière générale, ne jamais dépasser
+            15 fois l’épargne brute puisque la durée moyenne d’un emprunt est de 15 ans.
+            Cependant, un endettement très faible ou nul dans une ville de plus de 5 000
+            habitants est généralement le signe d’un sous-investissement et d’une imposition
+            trop élevée par rapport aux équipements disponibles. En effet, à la différence
+            d’un ménage, une commune n’épargne généralement pas, ses investissements sont
+            financés par des emprunts qui sont remboursés par son épargne brute.
+
           </p>
           <br>
           <br>

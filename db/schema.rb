@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171008174909) do
+ActiveRecord::Schema.define(version: 20170507203516) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -18,57 +18,66 @@ ActiveRecord::Schema.define(version: 20171008174909) do
   create_table "annees", force: :cascade do |t|
     t.integer  "ville_id"
     t.integer  "annee"
-    t.string   "nom"
-    t.integer  "population"
-    t.bigint   "recette_dotation_fonctionnement"
-    t.bigint   "charge_contingents"
-    t.bigint   "endettement_annuite"
-    t.bigint   "endettement_encours"
-    t.bigint   "depense_equipement"
-    t.bigint   "recette_fctva"
-    t.bigint   "charge_charges_financieres"
-    t.bigint   "recette_taxe_habitation"
-    t.bigint   "recette_taxe_fonciere_non_bati"
-    t.bigint   "charge_total_fonctionnement"
-    t.bigint   "recette_total_fonctionnement"
-    t.bigint   "recette_autres_impots_taxes"
-    t.bigint   "charge_subventions"
-    t.bigint   "recette_taxe_fonciere_bati"
-    t.bigint   "charge_achats"
-    t.bigint   "recette_subventions"
-    t.bigint   "recette_taxe_surfaces_commerciales"
-    t.bigint   "charge_personnel"
-    t.datetime "created_at",                         null: false
-    t.datetime "updated_at",                         null: false
-    t.bigint   "nb_res_secondaires"
-    t.bigint   "souscription_emprunts"
-    t.bigint   "recette_total_investissement"
+    t.string   "cog"
+    t.bigint   "population"
+    t.bigint   "endettement_16"
+    t.bigint   "autres_depenses_equipement_1"
+    t.bigint   "autres_dotations_subventions_equipement_1"
+    t.bigint   "fctva_1"
+    t.bigint   "subventions_equipement_recues_1"
+    t.bigint   "autres_depenses_equipement_2"
+    t.bigint   "autres_recettes_equipement_2"
+    t.bigint   "depenses_equipement_2"
+    t.bigint   "subventions_equipement_versees_2"
+    t.bigint   "depenses_operations_tiers_4"
+    t.bigint   "recettes_operations_tiers_4"
+    t.bigint   "achats_charges_externes_6"
+    t.bigint   "autres_6"
+    t.bigint   "exceptionnel_6"
+    t.bigint   "frais_elus_6"
+    t.bigint   "frais_financiers_6"
+    t.bigint   "impots_6"
+    t.bigint   "intervention_hors_suventions_6"
+    t.bigint   "personnel_6"
+    t.bigint   "subventions_versees_6"
+    t.bigint   "autres_impots_taxes_7"
+    t.bigint   "autres_produits_fonctionnement_7"
+    t.bigint   "dotations_etat_7"
+    t.bigint   "fiscalite_reversee_7"
+    t.bigint   "impots_locaux_7"
+    t.bigint   "produits_cessions_7"
+    t.bigint   "produits_fonctionnement_exceptionnels_7"
+    t.bigint   "suventions_participations_7"
+    t.bigint   "ventes_biens_services_7"
+    t.bigint   "tfb_produit_commune"
+    t.bigint   "tfb_produit_epci"
+    t.bigint   "tfb_produit_syndicat"
+    t.bigint   "tfnb_produit_commune"
+    t.bigint   "tfnb_produit_epci"
+    t.bigint   "tfnb_produit_syndicat"
+    t.bigint   "th_produit_commune"
+    t.bigint   "th_produit_epci"
+    t.bigint   "th_produit_syndicat"
+    t.datetime "created_at",                                null: false
+    t.datetime "updated_at",                                null: false
     t.index ["ville_id"], name: "index_annees_on_ville_id", using: :btree
-  end
-
-  create_table "search_suggestions", force: :cascade do |t|
-    t.string   "term"
-    t.integer  "popularity"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "villes", force: :cascade do |t|
     t.string   "nom"
-    t.integer  "cog"
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
+    t.string   "cog"
     t.string   "catpop"
-    t.float    "taux_hlm_legal"
-    t.float    "taux_hlm_2015"
-    t.bigint   "nb_menages_2013"
-    t.float    "uc_par_menage"
-    t.float    "revenu_median_uc"
-    t.integer  "decile_revenu"
     t.string   "nom_propre"
     t.string   "nom_propre_et_dep"
-    t.string   "region"
-    t.string   "departement"
+    t.integer  "nb_menages_2013"
+    t.integer  "revenu_median_uc"
+    t.integer  "decile_revenu"
+    t.integer  "nb_res_secondaires"
+    t.float    "taux_hlm_legal"
+    t.float    "taux_hlm_2015"
+    t.float    "uc_par_menage"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
   end
 
   add_foreign_key "annees", "villes"
