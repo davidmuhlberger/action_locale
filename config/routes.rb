@@ -15,7 +15,6 @@ Rails.application.routes.draw do
   get "/rejoindre" => "pages#rejoindre", as: 'pages_rejoindre'
   get "/mentions" => "pages#mentions", as: 'pages_mentions'
   get "/notice-fiscalite" => "pages#notice_fiscalite", as: 'pages_notice_fiscalite'
-  get "/notice-structure" => "pages#notice_structure", as: 'pages_notice_structure'
   get "/notice-analyse" => "pages#notice_analyse", as: 'pages_notice_analyse'
   get "/notice-competences" => "pages#notice_competences", as: 'pages_notice_competences'
   get "/notice-historique" => "pages#notice_historique", as: 'pages_notice_historique'

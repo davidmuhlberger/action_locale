@@ -8,7 +8,7 @@
 
       function drawFonctionnement() {
         var data = google.visualization.arrayToDataTable([
-          ['', "Dépenses de fonctionnement commune", "Dépenses de fonctionnement moyenne"],
+          ['', "Dépenses réelles de fonctionnement commune", "Dépenses réelles de fonctionnement moyenne"],
           ["2011", <%= -@charges_fonctionnement_2011 / @comptes_2011[:population] %>, <%= -@charges_fonctionnement_moy_2011 / @comptes_moy_2011[:population] %>],
           ["2012", <%= -@charges_fonctionnement_2012 / @comptes_2012[:population] %>, <%= -@charges_fonctionnement_moy_2012 / @comptes_moy_2012[:population] %>],
           ["2013", <%= -@charges_fonctionnement_2013 / @comptes_2013[:population] %>, <%= -@charges_fonctionnement_moy_2013 / @comptes_moy_2013[:population] %>],
@@ -37,7 +37,7 @@
 
       function drawInvestissement() {
         var data = google.visualization.arrayToDataTable([
-          ['', "Dépenses de fonctionnement commune", "Dépenses de fonctionnement moyenne"],
+          ['', "Dépenses réelles d'investissement commune", "Dépenses réelles d'investissement moyenne"],
           ["2011", <%= -@charges_investissement_2011 / @comptes_2011[:population] %>, <%= -@charges_investissement_moy_2011 / @comptes_moy_2011[:population] %>],
           ["2012", <%= -@charges_investissement_2012 / @comptes_2012[:population] %>, <%= -@charges_investissement_moy_2012 / @comptes_moy_2012[:population] %>],
           ["2013", <%= -@charges_investissement_2013 / @comptes_2013[:population] %>, <%= -@charges_investissement_moy_2013 / @comptes_moy_2013[:population] %>],
@@ -107,10 +107,13 @@
             activités culturelles. Ces actions sont financées par les recettes de la commune,
             principalement fiscales.
             <br>
+            Des informations sur les compétences des communes sont disponibles dans notre
+            notice traitant des <%= link_to "compétences des collectivités locales", pages_notice_competences_path %>.
             <br>
-            <strong>Une commune doit donc fournir un certain niveau de services à sa population,
-            qui peut être variable selon la politique de chaque ville,
-            mais doit se faire au meilleur coût pour les habitants.</strong>
+            <br>
+            <strong>Une commune doit donc fournir un certain niveau de services au meilleur coût
+            pour les habitants.
+            Ce niveau de services peut être variable selon la politique de chaque ville.</strong>
             <br>
             <br>
             Les dépenses d’une commune se classent en deux catégories :
@@ -123,7 +126,7 @@
             (bâtiments, véhicules municipaux, création de parcs…)
             <br>
             <br>
-            Le graphique ci-dessous compare le niveau de dépenses de fonctionnement
+            Le graphique ci-dessous compare le niveau de dépenses réelles de fonctionnement
             par habitant pour <%= @ville[:nom_propre] %> avec la moyenne des villes de même taille.
             Un montant de dépenses élevé devrait correspondre à une qualité de services
             municipaux supérieure à la moyenne.
@@ -144,7 +147,7 @@
           <br>
           <br>
           <p>
-          Le graphique ci-dessous compare le niveau de dépenses d’investissement par habitant
+          Le graphique ci-dessous compare le niveau des dépenses réelles d’investissement par habitant
           à <%= @ville[:nom_propre] %> avec la moyenne des villes de même taille.
           Dans les petites communes, ces dépenses peuvent fortement varier d’une année sur
           l’autre, car il n’y a pas forcément d’investissements importants à réaliser chaque année.

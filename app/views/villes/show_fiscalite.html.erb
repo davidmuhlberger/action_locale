@@ -28,12 +28,6 @@
             'alignment': 'center'
           },
           'isStacked': true,
-          vAxis: {
-            viewWindow: {
-              max: 1100,
-              min: 0
-            }
-          },
           vAxes: {
             1: {
               gridlines: {
@@ -79,12 +73,6 @@
             'alignment': 'center'
           },
           'isStacked': true,
-          vAxis: {
-            viewWindow: {
-              max: 1100,
-              min: 0
-            }
-          },
           vAxes: {
             1: {
               gridlines: {
@@ -192,11 +180,17 @@
             avec un niveau plus ou moins élevé d’intégration. Les comparaisons doivent donc se faire en
             considérant la somme de la fiscalité prélevée par la commune et par son groupement,
             pour bien prendre en compte les mêmes compétences.
+            <br>
+            <br>
+            Le détail des impôts et taxes applicables dans une commune sont disponible dans notre
+            notice traitant de la <%= link_to "fiscalité locale", pages_notice_fiscalite_path %>.
+            <br>
+            <br>
             <% if @comptes_2016[:th_produit_epci]+@comptes_2016[:th_produit_syndicat]+@comptes_2016[:tfb_produit_epci]+@comptes_2016[:tfb_produit_syndicat]  == 0 %>
               <p>
               <br>
               <br>
-              <%= @ville[:nom_propre] %> ne fait pas partir d'un groupement de communes qui impose ses habitants. Le niveau
+              <%= @ville[:nom_propre] %> ne fait pas partie d'un groupement de communes qui impose ses habitants. Le niveau
               de fiscalité par habitant doit néanmoins être comparé à la fiscalité moyenne des commune et des
               groupements pour les villes de taille comparable.
               </p>
@@ -211,20 +205,20 @@
               </p>
             <% end %>
             <div class="card-tab">
-            <h4><strong>Taxe d'habitation par habitant</strong></h4>
+            <h4><strong>Taxe d'habitation (€ par habitant)</strong></h4>
               <div id="th_chart_div"></div>
             </div>
             <div class="card-tab">
-            <h4><strong>Taxe foncière par habitant</strong></h4>
+            <h4><strong>Taxe foncière (€ par habitant)</strong></h4>
               <div id="tf_chart_div"></div>
             </div>
             <br>
             <p>
-              D’autres impôts taxes sont collectés par la commune, principalement la taxe d’enlèvement des ordures ménagères,
-              la taxe sur la publicité extérieure, les droits de stationnement, les droits funéraires etc.
+              D’autres impôts et taxes sont collectés par la commune, principalement la taxe d’enlèvement des ordures ménagères,
+              la taxe sur la publicité extérieure, les droits de stationnement, les droits funéraires, etc.
             </p>
             <div class="card-tab">
-            <h4><strong>Autres impôts et taxes par habitant</strong></h4>
+            <h4><strong>Autres impôts et taxes (€ par habitant)</strong></h4>
               <div id="autres_chart_div"></div>
             </div>
             <br>
