@@ -25,9 +25,9 @@
 <div class="text-center">
   <br>
   <%= form_tag(search_path, method: 'get', class: 'form-inline') do %>
-    <%= search_field_tag 'search', nil, class: 'form-control custom-form orangeform inlineFormInputGroup', placeholder: 'Choisissez une commune', data: {autocomplete_source: search_suggestions_path}  %>
+    <%= search_field_tag 'search', nil, class: 'form-control custom-form orangeform inlineFormInputGroup', placeholder: 'Votre commune', data: {autocomplete_source: search_suggestions_path}  %>
     <%= button_tag(type: 'submit', class: "btn custom-form buttonsearch") do %>
-      Voir la commune
+      Voir
     <% end %>
   <% end %>
   <br>
