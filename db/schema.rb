@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170507203516) do
+ActiveRecord::Schema.define(version: 20171124181751) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -58,8 +58,9 @@ ActiveRecord::Schema.define(version: 20170507203516) do
     t.bigint   "th_produit_commune"
     t.bigint   "th_produit_epci"
     t.bigint   "th_produit_syndicat"
-    t.datetime "created_at",                                null: false
-    t.datetime "updated_at",                                null: false
+    t.datetime "created_at",                                 null: false
+    t.datetime "updated_at",                                 null: false
+    t.bigint   "fonds_compensation_charges_territoriales_6"
     t.index ["ville_id"], name: "index_annees_on_ville_id", using: :btree
   end
 
@@ -78,6 +79,7 @@ ActiveRecord::Schema.define(version: 20170507203516) do
     t.float    "uc_par_menage"
     t.datetime "created_at",         null: false
     t.datetime "updated_at",         null: false
+    t.string   "metropole"
   end
 
   add_foreign_key "annees", "villes"

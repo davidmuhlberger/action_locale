@@ -176,45 +176,28 @@
                   </td>
                 </tr>
                 <tr>
-                  <th scope="row"><i class="subcategory">Dont impôts locaux (M€)</i></th>
+                  <th scope="row"><i class="subcategory">Dont ressources fiscales (M€)</i></th>
                   <td class="text-center">
-                    <i class="subcategory"><%= number_with_precision(@comptes_2011[:impots_locaux_7].to_i/1000000.0, options = {delimiter: " ", precision: 1}) %></i>
+                    <i class="subcategory"><%= number_with_precision((@comptes_2011[:impots_locaux_7].to_i+@comptes_2011[:fiscalite_reversee_7].to_i+@comptes_2011[:autres_impots_taxes_7].to_i)/1000000.0, options = {delimiter: " ", precision: 1}) %></i>
                   </td>
                   <td class="text-center">
-                    <i class="subcategory"><%= number_with_precision(@comptes_2012[:impots_locaux_7].to_i/1000000.0, options = {delimiter: " ", precision: 1}) %></i>
+                    <i class="subcategory"><%= number_with_precision((@comptes_2012[:impots_locaux_7].to_i+@comptes_2012[:fiscalite_reversee_7].to_i+@comptes_2012[:autres_impots_taxes_7].to_i)/1000000.0, options = {delimiter: " ", precision: 1}) %></i>
                   </td>
                   <td class="text-center">
-                    <i class="subcategory"><%= number_with_precision(@comptes_2013[:impots_locaux_7].to_i/1000000.0, options = {delimiter: " ", precision: 1}) %></i>
+                    <i class="subcategory"><%= number_with_precision((@comptes_2013[:impots_locaux_7].to_i+@comptes_2013[:fiscalite_reversee_7].to_i+@comptes_2013[:autres_impots_taxes_7].to_i)/1000000.0, options = {delimiter: " ", precision: 1}) %></i>
                   </td>
                   <td class="text-center">
-                    <i class="subcategory"><%= number_with_precision(@comptes_2014[:impots_locaux_7].to_i/1000000.0, options = {delimiter: " ", precision: 1}) %></i>
+                    <i class="subcategory"><%= number_with_precision((@comptes_2014[:impots_locaux_7].to_i+@comptes_2014[:fiscalite_reversee_7].to_i+@comptes_2014[:autres_impots_taxes_7].to_i)/1000000.0, options = {delimiter: " ", precision: 1}) %></i>
                   </td>
                   <td class="text-center">
-                    <i class="subcategory"><%= number_with_precision(@comptes_2015[:impots_locaux_7].to_i/1000000.0, options = {delimiter: " ", precision: 1}) %></i>
+                    <i class="subcategory"><%= number_with_precision((@comptes_2015[:impots_locaux_7].to_i+@comptes_2015[:fiscalite_reversee_7].to_i+@comptes_2015[:autres_impots_taxes_7].to_i)/1000000.0, options = {delimiter: " ", precision: 1}) %></i>
                   </td>
                   <td class="text-center">
-                    <i class="subcategory"><%= number_with_precision(@comptes_2016[:impots_locaux_7].to_i/1000000.0, options = {delimiter: " ", precision: 1}) %></i>
-                  </td>
-                </tr>
-                <tr>
-                  <th scope="row"><i class="subcategory">Dont autres ressources fiscales (M€)</i></th>
-                  <td class="text-center">
-                    <i class="subcategory"><%= number_with_precision((@comptes_2011[:fiscalite_reversee_7].to_i+@comptes_2011[:autres_impots_taxes_7].to_i)/1000000.0, options = {delimiter: " ", precision: 1}) %></i>
-                  </td>
-                  <td class="text-center">
-                    <i class="subcategory"><%= number_with_precision((@comptes_2012[:fiscalite_reversee_7].to_i+@comptes_2012[:autres_impots_taxes_7].to_i)/1000000.0, options = {delimiter: " ", precision: 1}) %></i>
-                  </td>
-                  <td class="text-center">
-                    <i class="subcategory"><%= number_with_precision((@comptes_2013[:fiscalite_reversee_7].to_i+@comptes_2013[:autres_impots_taxes_7].to_i)/1000000.0, options = {delimiter: " ", precision: 1}) %></i>
-                  </td>
-                  <td class="text-center">
-                    <i class="subcategory"><%= number_with_precision((@comptes_2014[:fiscalite_reversee_7].to_i+@comptes_2014[:autres_impots_taxes_7].to_i)/1000000.0, options = {delimiter: " ", precision: 1}) %></i>
-                  </td>
-                  <td class="text-center">
-                    <i class="subcategory"><%= number_with_precision((@comptes_2015[:fiscalite_reversee_7].to_i+@comptes_2015[:autres_impots_taxes_7].to_i)/1000000.0, options = {delimiter: " ", precision: 1}) %></i>
-                  </td>
-                  <td class="text-center">
-                    <i class="subcategory"><%= number_with_precision((@comptes_2016[:fiscalite_reversee_7].to_i+@comptes_2016[:autres_impots_taxes_7].to_i)/1000000.0, options = {delimiter: " ", precision: 1}) %></i>
+                    <% if @ville[:metropole] == "MGP" %>
+                    <i class="subcategory"><%= number_with_precision((@comptes_2016[:impots_locaux_7].to_i+@comptes_2016[:fiscalite_reversee_7].to_i+@comptes_2016[:autres_impots_taxes_7].to_i+@comptes_2016[:fonds_compensation_charges_territoriales_6].to_i)/1000000.0, options = {delimiter: " ", precision: 1}) %></i>
+                    <% else %>
+                    <i class="subcategory"><%= number_with_precision((@comptes_2016[:impots_locaux_7].to_i+@comptes_2016[:fiscalite_reversee_7].to_i+@comptes_2016[:autres_impots_taxes_7].to_i)/1000000.0, options = {delimiter: " ", precision: 1}) %></i>
+                    <% end %>
                   </td>
                 </tr>
                 <tr>
@@ -366,7 +349,11 @@
                     <i class="subcategory"><%= number_with_precision((-@comptes_2015[:subventions_versees_6].to_i-@comptes_2015[:intervention_hors_suventions_6].to_i)/1000000.0, options = {delimiter: " ", precision: 1}) %></i>
                   </td>
                   <td class="text-center">
-                    <i class="subcategory"><%= number_with_precision((-@comptes_2016[:subventions_versees_6].to_i-@comptes_2016[:intervention_hors_suventions_6].to_i)/1000000.0, options = {delimiter: " ", precision: 1}) %></i>
+                    <% if @ville[:metropole] == "MGP" %>
+                      <i class="subcategory"><%= number_with_precision((-@comptes_2016[:subventions_versees_6].to_i-@comptes_2016[:intervention_hors_suventions_6].to_i)/1000000.0, options = {delimiter: " ", precision: 1}) %></i>
+                    <% else %>
+                      <i class="subcategory"><%= number_with_precision((-@comptes_2016[:subventions_versees_6].to_i-@comptes_2016[:intervention_hors_suventions_6].to_i-@comptes_2016[:fonds_compensation_charges_territoriales_6].to_i)/1000000.0, options = {delimiter: " ", precision: 1}) %></i>
+                    <% end %>
                   </td>
                 </tr>
                 <tr>
