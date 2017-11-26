@@ -69,12 +69,14 @@
                       <%= image_tag "capa_fin_small_min.png" %>
                     <% elsif 100 * (@produits_fonctionnement_2016 + @charges_fonctionnement_2016)/@produits_fonctionnement_2016 < 13 %>
                       <%= image_tag "capa_fin_small_max.png" %>
-                    <% else %>
+                    <% elsif 100 * (@produits_fonctionnement_2016 + @charges_fonctionnement_2016)/@produits_fonctionnement_2016 < 20 %>
                       <%= image_tag "capa_fin_max.png" %>
+                    <% else %>
+                      <%= image_tag "capa_fin_too_much.png" %>
                     <% end %>
                   </td>
                   <td class="text-center">
-                    <% if 100 * @comptes_2016[:endettement_16].to_i / (@produits_fonctionnement_2016 + @charges_fonctionnement_2016) < 0 %>
+                    <% if @produits_fonctionnement_2016 + @charges_fonctionnement_2016 < 0 %>
                       <%= image_tag "capa_fin_max.png" %>
                     <% elsif 100 * @comptes_2016[:endettement_16].to_i / (@produits_fonctionnement_2016 + @charges_fonctionnement_2016) > 1500 %>
                       <%= image_tag "capa_fin_min.png" %>
@@ -82,8 +84,10 @@
                       <%= image_tag "capa_fin_small_min.png" %>
                     <% elsif 100 * @comptes_2016[:endettement_16].to_i / (@produits_fonctionnement_2016 + @charges_fonctionnement_2016) > 800 %>
                       <%= image_tag "capa_fin_small_max.png" %>
-                    <% else %>
+                      <% elsif 100 * @comptes_2016[:endettement_16].to_i / (@produits_fonctionnement_2016 + @charges_fonctionnement_2016) > 200 %>
                       <%= image_tag "capa_fin_max.png" %>
+                    <% else %>
+                      <%= image_tag "capa_fin_too_much.png" %>
                     <% end %>
                   </td>
                 </tr>

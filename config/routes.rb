@@ -17,7 +17,12 @@ Rails.application.routes.draw do
   get "/notice-fiscalite" => "pages#notice_fiscalite", as: 'pages_notice_fiscalite'
   get "/notice-analyse" => "pages#notice_analyse", as: 'pages_notice_analyse'
   get "/notice-competences" => "pages#notice_competences", as: 'pages_notice_competences'
-  get "/notice-historique" => "pages#notice_historique", as: 'pages_notice_historique'
   get "/notice-methodologie" => "pages#notice_methodologie", as: 'pages_notice_methodologie'
+
+  get "/404", :to => "errors#not_found"
+  get "/422", :to => "errors#unacceptable"
+  get "/500", :to => "errors#internal_error"
+
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

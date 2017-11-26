@@ -143,7 +143,7 @@
       <br>
       <ul class="nav nav-tabs">
         <li role="presentation">
-          <%= link_to "Indicateurs", ville_indicateurs_path(nom: @ville.nom) %>
+          <%= link_to "Chiffres clés", ville_indicateurs_path(nom: @ville.nom) %>
         </li>
         <li role="presentation" class="active">
           <%= link_to "Fiscalité", ville_fiscalite_path(nom: @ville.nom) %>
@@ -204,10 +204,24 @@
               Les données fiscales et financières par habitant peuvent donc sembler artificiellement élevées.
               </p>
             <% end %>
+            <% if @ville[:metropole] == "MGP" %>
+            <br>
+              <p>
+                <strong>Attention, depuis 2016, <%= @ville[:nom_propre] %> reçoit la taxe d'habitation auparavant prélevée par son groupement de commune et la reverse à la Métropole du Grand Paris, son nouveau groupement.</strong>
+              </p>
+            <br>
+            <% end %>
             <div class="card-tab">
             <h4><strong>Taxe d'habitation (€ par habitant)</strong></h4>
               <div id="th_chart_div"></div>
             </div>
+            <% if @ville[:metropole] == "MGL" %>
+            <br>
+              <p>
+                <strong>Attention, depuis 2015, la Métropole du Grand Lyon prélève la part départementale de la taxe d'habitation à <%= @ville[:nom_propre] %></strong>
+              </p>
+            <br>
+            <% end %>
             <div class="card-tab">
             <h4><strong>Taxe foncière (€ par habitant)</strong></h4>
               <div id="tf_chart_div"></div>
