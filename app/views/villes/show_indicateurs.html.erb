@@ -82,7 +82,12 @@
                 <td class="text-center"></td>
               </tr>
               <tr>
-                <th scope="row">Revenu médian : décile</th>
+                <th scope="row">
+                Revenu médian : décile
+                <a data-toggle="modal" data-target="#modalDecile">
+                  <i class="fa fa-question-circle" aria-hidden="true"></i>
+                </a>
+                </th>
                 <td class="text-center">
                   <%=  @ville[:decile_revenu] %>/10
                 </td>
@@ -435,6 +440,38 @@
       <div class="modal-footer">
         <p>
         Source : collectivites-locales.gouv.fr, Fipeco
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Décile -->
+<div class="modal fade" id="modalDecile" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel"><strong>Les déciles de revenu médian</strong></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      <p>
+        Le revenu médian par ménage est le revenu qui sépare la population de sorte que 50% des ménages gagnent plus que ce revenu et 50% des ménages gagnent moins.
+        <br>
+        <br>
+        Il est calculé par l'INSEE à partir du revenu fiscal déclaré par les ménages.
+        <br>
+        <br>
+        Une commune qui est dans le premier décile est une commune dont le revenu médian fait partie des 10% les plus faibles des communes françaises. A l'inverse une commune dans le dixième décile a un revenu médian qui est dans les 10% les plus élevés.
+        <br>
+        <br>
+        En France, le revenu médian par ménage était de l'odre de 35 000€ en 2014.
+      </p>
+      </div>
+      <div class="modal-footer">
+        <p>
+        Source : INSEE
         </p>
       </div>
     </div>

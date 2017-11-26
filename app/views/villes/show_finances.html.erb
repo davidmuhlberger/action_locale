@@ -205,7 +205,12 @@
                   </td>
                 </tr>
                 <tr>
-                  <th scope="row"><i class="subcategory">Dont dotations et subventions (M€)</i></th>
+                  <th scope="row">
+                  <i class="subcategory">Dont dotations et subventions (M€)</i>
+                  <a data-toggle="modal" data-target="#modalRecettesDotations">
+                    <i class="fa fa-question-circle" aria-hidden="true"></i>
+                  </a>
+                  </th>
                   <td class="text-center">
                     <i class="subcategory"><%= number_with_precision((@comptes_2011[:dotations_etat_7].to_i+@comptes_2011[:suventions_participations_7].to_i)/1000000.0, options = {delimiter: " ", precision: 1}) %></i>
                   </td>
@@ -226,7 +231,12 @@
                   </td>
                 </tr>
                 <tr>
-                  <th scope="row"><i class="subcategory">Dont autres recettes courantes (M€)</i></th>
+                  <th scope="row">
+                  <i class="subcategory">Dont autres recettes courantes (M€)</i>
+                  <a data-toggle="modal" data-target="#modalRecettesAutres">
+                    <i class="fa fa-question-circle" aria-hidden="true"></i>
+                  </a>
+                  </th>
                   <td class="text-center">
                     <i class="subcategory"><%= number_with_precision((@comptes_2011[:ventes_biens_services_7].to_i+@comptes_2011[:autres_produits_fonctionnement_7].to_i)/1000000.0, options = {delimiter: " ", precision: 1}) %></i>
                   </td>
@@ -247,7 +257,12 @@
                   </td>
                 </tr>
                 <tr>
-                  <th scope="row"><i class="subcategory">Dont recettes exceptionnelles (M€)</i></th>
+                  <th scope="row">
+                  <i class="subcategory">Dont recettes exceptionnelles (M€)</i>
+                  <a data-toggle="modal" data-target="#modalRecettesExceptionnelles">
+                    <i class="fa fa-question-circle" aria-hidden="true"></i>
+                  </a>
+                  </th>
                   <td class="text-center">
                     <i class="subcategory"><%= number_with_precision((@comptes_2011[:produits_cessions_7].to_i+@comptes_2011[:produits_fonctionnement_exceptionnels_7].to_i)/1000000.0, options = {delimiter: " ", precision: 1}) %></i>
                   </td>
@@ -268,11 +283,7 @@
                   </td>
                 </tr>
                 <tr>
-                  <th scope="row">Dépenses réelles de fonctionnement
-                  <a data-toggle="modal" data-target="#modalFonctionnement">
-                    <i class="fa fa-question-circle" aria-hidden="true"></i>
-                  </a>
-                   (M€) (2)
+                  <th scope="row">Dépenses réelles de fonctionnement (M€) (2)
                   </th>
                   <td class="text-center">
                     <%= number_with_precision(-@charges_fonctionnement_2011/1000000.0, options = {delimiter: " ", precision: 1}) %>
@@ -294,7 +305,12 @@
                   </td>
                 </tr>
                 <tr>
-                  <th scope="row"><i class="subcategory">Dont charges de personnel (M€)</i></th>
+                  <th scope="row">
+                  <i class="subcategory">Dont charges de personnel (M€)</i>
+                  <a data-toggle="modal" data-target="#modalChargesPersonnel">
+                    <i class="fa fa-question-circle" aria-hidden="true"></i>
+                  </a>
+                  </th>
                   <td class="text-center">
                     <i class="subcategory"><%= number_with_precision(-@comptes_2011[:personnel_6].to_i/1000000.0, options = {delimiter: " ", precision: 1}) %></i>
                   </td>
@@ -315,7 +331,12 @@
                   </td>
                 </tr>
                 <tr>
-                  <th scope="row"><i class="subcategory">Dont achats et charges externes (M€)</i></th>
+                  <th scope="row">
+                  <i class="subcategory">Dont achats et charges externes (M€)</i>
+                  <a data-toggle="modal" data-target="#modalChargesAchats">
+                    <i class="fa fa-question-circle" aria-hidden="true"></i>
+                  </a>
+                  </th>
                   <td class="text-center">
                     <i class="subcategory"><%= number_with_precision(-@comptes_2011[:achats_charges_externes_6].to_i/1000000.0, options = {delimiter: " ", precision: 1}) %></i>
                   </td>
@@ -336,7 +357,12 @@
                   </td>
                 </tr>
                 <tr>
-                  <th scope="row"><i class="subcategory">Dont subventions et interventions (M€)</i></th>
+                  <th scope="row">
+                  <i class="subcategory">Dont subventions et interventions (M€)</i>
+                  <a data-toggle="modal" data-target="#modalChargesSubventions">
+                    <i class="fa fa-question-circle" aria-hidden="true"></i>
+                  </a>
+                  </th>
                   <td class="text-center">
                     <i class="subcategory"><%= number_with_precision((-@comptes_2011[:subventions_versees_6].to_i-@comptes_2011[:intervention_hors_suventions_6].to_i)/1000000.0, options = {delimiter: " ", precision: 1}) %></i>
                   </td>
@@ -382,7 +408,12 @@
                   </td>
                 </tr>
                 <tr>
-                  <th scope="row"><i class="subcategory">Dont charges exceptionnelles (M€)</i></th>
+                  <th scope="row">
+                  <i class="subcategory">Dont charges exceptionnelles (M€)</i>
+                  <a data-toggle="modal" data-target="#modalChargesExceptionnelles">
+                    <i class="fa fa-question-circle" aria-hidden="true"></i>
+                  </a>
+                  </th>
                   <td class="text-center">
                     <i class="subcategory"><%= number_with_precision(-@comptes_2011[:exceptionnel_6].to_i/1000000.0, options = {delimiter: " ", precision: 1}) %></i>
                   </td>
@@ -445,11 +476,7 @@
                   </td>
                 </tr>
                 <tr>
-                  <th scope="row">Recettes réelles d'équipement
-                  <a data-toggle="modal" data-target="">
-                    <i class="fa fa-question-circle" aria-hidden="true"></i>
-                  </a>
-                   (M€)
+                  <th scope="row">Recettes réelles d'équipement (M€)
                   </th>
                   <td class="text-center">
                     <%= number_with_precision((+@comptes_2011[:fctva_1].to_i+@comptes_2011[:subventions_equipement_recues_1].to_i+@comptes_2011[:autres_recettes_equipement_2].to_i+@comptes_2011[:autres_dotations_subventions_equipement_1].to_i+@comptes_2011[:recettes_operations_tiers_4].to_i) / 1000000.0, options = {delimiter: " ", precision: 1}) %>
@@ -471,7 +498,11 @@
                   </td>
                 </tr>
                 <tr>
-                  <th scope="row"><i class="subcategory">Dont subventions et FCTVA (M€)</i></th>
+                  <th scope="row">
+                  <i class="subcategory">Dont subventions et FCTVA (M€)</i>
+                  <a data-toggle="modal" data-target="#modalFCTVA">
+                    <i class="fa fa-question-circle" aria-hidden="true"></i>
+                  </a></th>
                   <td class="text-center">
                     <i class="subcategory"><%= number_with_precision((@comptes_2011[:fctva_1].to_i+@comptes_2011[:subventions_equipement_recues_1].to_i)/1000000.0, options = {delimiter: " ", precision: 1}) %></i>
                   </td>
@@ -492,7 +523,8 @@
                   </td>
                 </tr>
                 <tr>
-                  <th scope="row"><i class="subcategory">Dont autres recettes d'équipement (M€)</i></th>
+                  <th scope="row">
+                  <i class="subcategory">Dont autres recettes d'équipement (M€)</i></th>
                   <td class="text-center">
                     <i class="subcategory"><%= number_with_precision((@comptes_2011[:autres_recettes_equipement_2].to_i+@comptes_2011[:autres_dotations_subventions_equipement_1].to_i+@comptes_2011[:recettes_operations_tiers_4].to_i)/1000000.0, options = {delimiter: " ", precision: 1}) %></i>
                   </td>
@@ -514,9 +546,6 @@
                 </tr>
                 <tr>
                   <th scope="row">Dépenses réelles d'équipement
-                  <a data-toggle="modal" data-target="#modalEquipement">
-                    <i class="fa fa-question-circle" aria-hidden="true"></i>
-                  </a>
                    (M€)
                   </th>
                   <td class="text-center">
@@ -539,7 +568,12 @@
                   </td>
                 </tr>
                 <tr>
-                  <th scope="row"><i class="subcategory">Dont investissements (M€)</i></th>
+                  <th scope="row">
+                  <i class="subcategory">Dont investissements (M€)</i>
+                  <a data-toggle="modal" data-target="#modalInvestissements">
+                    <i class="fa fa-question-circle" aria-hidden="true"></i>
+                  </a>
+                  </th>
                   <td class="text-center">
                     <i class="subcategory"><%= number_with_precision(-@comptes_2011[:depenses_equipement_2].to_i/1000000.0, options = {delimiter: " ", precision: 1}) %></i>
                   </td>
@@ -560,7 +594,12 @@
                   </td>
                 </tr>
                 <tr>
-                  <th scope="row"><i class="subcategory">Dont autres (M€)</i></th>
+                  <th scope="row">
+                  <i class="subcategory">Dont autres (M€)</i>
+                  <a data-toggle="modal" data-target="#modalAutresInvestissements">
+                    <i class="fa fa-question-circle" aria-hidden="true"></i>
+                  </a>
+                  </th>
                   <td class="text-center">
                     <i class="subcategory"><%= number_with_precision((-@comptes_2011[:subventions_equipement_versees_2].to_i-@comptes_2011[:autres_depenses_equipement_2].to_i-@comptes_2011[:autres_depenses_equipement_1].to_i-@comptes_2011[:depenses_operations_tiers_4].to_i)/1000000.0, options = {delimiter: " ", precision: 1}) %></i>
                   </td>
@@ -796,91 +835,244 @@
   </div>
 </div>
 
-<!-- Dépenses de fonctionnement -->
-<div class="modal fade" id="modalFonctionnement" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<!-- Modale Recettes dotations et subventions -->
+<div class="modal fade" id="modalRecettesDotations" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel"><strong>Les dépenses de fonctionnement</strong></h5>
+        <h5 class="modal-title" id="exampleModalLabel"><strong>Dotations et subventions</strong></h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
       <p>
-        Les dépenses de fonctionnement correspondent aux dépenses récurrentes de la commune.
+        Ce poste de recettes comprend principalement la dotation générale de fonctionnement (DGF) versée par l'Etat aux
+        collectivités locales. La DGF est en partie un outil de péréquation, puisque son montant par habitant est
+        généralement supérieur dans les communes dont la population est défavorisée, pour compenser des recettes fiscales moindres
+        et une capacité à investir inférieure à d'autres communes du territoire.
         <br>
         <br>
-        Ces dépenses représentaient en 2016 pour les collectivités locales 169 milliards d'euros, soit 79% du total des dépenses.
-        <br>
-        <br>
-        Les principaux types de dépenses de fonctionnement sont les suivantes:
-        <br>
-        - Charges de personnel : 61 milliards d'euros en 2016 soit 36% des dépenses de fonctionnement
-        <br>
-        - Dépenses d'intervention liées directement à l'action de la collectivité locale
-        (voir notre <%= link_to "notice sur les compétences", pages_notice_competences_path %>):
-        68 milliards d'euros en 2015 soit 40% des dépenses de fonctionnement
-        <br>
-        - Achats et charges externes telles que les fournitures, mobilier, électricité, téléphonie,
-        prestations de services diverses : 30 milliards d'euros en 2016, soit 18% des dépenses de fonctionnement
-        <br>
-        - Intérêts de la dette : environ 3% des dépenses de fonctionnement
+        Il inclut également des subventions d'organismes publics
       </p>
-      </div>
-      <div class="modal-footer">
-        <p>
-        Source : collectivites-locales.gouv.fr, Fipeco
-        </p>
       </div>
     </div>
   </div>
 </div>
 
-
-<!-- Dépenses d'équipement' -->
-<div class="modal fade" id="modalEquipement" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<!-- Modale autres recettes de fonctionnement -->
+<div class="modal fade" id="modalRecettesAutres" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel"><strong>Les dépenses d'équipement</strong></h5>
+        <h5 class="modal-title" id="exampleModalLabel"><strong>Autres recettes de fonctionnement</strong></h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
       <p>
-        Les dépenses d'investissement ou d'équipement modifient la valeur du patrimoine de la collectivité :
-        <br>
-        - Travaux d'équipement, d'infrastructures, construction ou rénovation de bâtiments
-        <br>
-        - Acquisition de valeurs mobilières ou immobilières
-        <br>
-        - Achats de produits "durables" (parc automobile, …)
-        <br>
-        - Subventions d'investissement versées à des acteurs locaux
-        <br>
-        <br>
-        Ces dépenses d'investissement ont représenté en 2015 51 milliards d'euros soit 23% des dépenses totales
-        <br>
-        59% de l'effort d'investissement est effectué au niveau de la commune et des communautés de commune,
-        contre 22% pour les départements et 19% pour les régions.
-        <br>
-        <br>
-        Pour plus d'information sur la structure des budgets, vous pouvez consulter
-        notre <%= link_to "notice dédiée", pages_notice_analyse_path %>)
-        <br>
-        Pour plus d'information sur la comptabilité des communes, vous pouvez consulter
-        notre <%= link_to "notice méthodologique", pages_notice_methodologie_path %>)
+        Ce poste inclut principalement les recettes pour ventes de biens et services de la commune (abonnements,
+        places de stationnement, services payants en mairie, etc.)
       </p>
-      </div>
-      <div class="modal-footer">
-        <p>
-        Source : collectivites-locales.gouv.fr, Fipeco
-        </p>
       </div>
     </div>
   </div>
 </div>
 
+<!-- Modale recettes exceptionnelles -->
+<div class="modal fade" id="modalRecettesExceptionnelles" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel"><strong>Recettes de fonctionnement exceptionnelles</strong></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      <p>
+        Ce poste inclut les éléments exceptionnels et les cessions d'immobilisations (ventes d'immeubles et de terrains).
+        <br>
+        <br>
+        Lorsqu'il est anormalement important une année, il est d'usage de ne pas en tenir en compte dans l'analyse financière.
+      </p>
+      </div>
+    </div>
+  </div>
+</div>
 
+<!-- Modale charges personnel -->
+<div class="modal fade" id="modalChargesPersonnel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel"><strong>Charges de personnel</strong></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      <p>
+        Les dépenses de personnel regroupent !'ensemble des rémunérations versées par la collectivité et les charges sociales associées.
+        <br>
+        <br>
+        Deux facteurs jouent sur son évolution : l'évolution des effectifs et l'évolution des rémunérations (liées à des mesures individuelles ou à des évolutions collectives comme le relèvement du point d'indice).
+        <br>
+        <br>
+        Certaines collectivités ont tendance à externaliser certains services, c'est-à-dire à utiliser des entreprises extérieures plutôt que des employés municipaux. Une collectivité pratiquant l'externalisation devrait avoir des "charges de personnel" en baisse et des "achats et charges externes" en hausse.
+        <br>
+        <br>
+        Les dépenses de personnel représentent 37% des dépenses de fonctionnement des collectivités locales, 54% pour les communes et EPCI, 20% pour les départements et 18% pour les régions en 2016.
+      </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modale charges achats -->
+<div class="modal fade" id="modalChargesAchats" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel"><strong>Achats et charges externes</strong></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      <p>
+        Les achats et charges externes regroupent !'ensemble des biens et services achetés à des prestataires extérieurs.
+        <br>
+        <br>
+        On peut citer à titre d'exemple: les fournitures, le mobilier, l'électricité, la téléphonie, les prestations externalisées de transport public ou de travaux de maintenance.
+        <br>
+        <br>
+        Les achats et charges externes représentent 24% des dépenses de fonctionnement des communes et EPCI en 2016.
+      </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modale charges subventions -->
+<div class="modal fade" id="modalChargesSubventions" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel"><strong>Charges - subventions et interventions</strong></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      <p>
+        Il s'agit d'une part des contributions versées à titre obligatoire à d'autres organismes publics et d'autre part des subventions versées à la discrétion de la collectivité.
+        <br>
+        <br>
+        Les contributions obligatoires sont fixées par la loi et comprennent par exemple, des participations à différents services comme le service incendie ou la police.
+        <br>
+        <br>
+        Les subventions à la discrétion de la collectivité peuvent être destinées à d'autres organismes publics (caisse des écoles, Centre Communal d'Action Sociale, …) ou à des associations et acteurs privés.
+        <br>
+        <br>
+        Ces dépenses représentent 14% des dépenses de fonctionnement des communes et EPCI en 2016.
+      </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modale charges exceptionnelles-->
+<div class="modal fade" id="modalChargesExceptionnelles" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel"><strong>Charges exceptionnelles</strong></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      <p>
+        Les charges exceptionnelles sont des dépenses liées à la réalisation d'un événement exceptionnel durant l'année. Elles ne sont pas caractéristiques de l'activité "normale" de la collectivité.
+        <br>
+        <br>
+        Il s'agit par exemple des intérêts moratoires que la collectivité peut avoir à payer pour avoir dépassé un délai de paiement à un prestataire ou de subventions octroyées à titre exceptionnel.
+      </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modale investissements-->
+<div class="modal fade" id="modalInvestissements" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel"><strong>Les investissements</strong></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      <p>
+        Les investissements ont un caractère durable et modifient le patrimoine de la collectivité.
+        <br>
+        <br>
+        A titre d'exemple, l’achat de bâtiments, de véhicules municipaux ou la création d'un parc sont des investissements.
+        <br>
+        <br>
+        L'attention doit être portée sur leur évolution pluri-annuelle et sur l'adéquation entre le niveau de dépenses et la qualité et quantité des équipements de la collectivité.
+        <br>
+        <br>
+        Ils représentent en 2016 89% des dépenses d'équipement des communes et EPCI.
+      </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modale autres investissements-->
+<div class="modal fade" id="modalAutresInvestissements" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel"><strong>Autres dépenses d'équipement</strong></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      <p>
+        Les dépenses d'équipement hors investissements sont principalement constituées de subventions à l'achat d'équipements par des organismes publics extérieurs à la collectivité.
+        <br>
+        <br>
+        Cette catégorie représente en 2016 11% des dépenses d'équipement des communes et EPCI.
+      </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modale subventions et FCTVA-->
+<div class="modal fade" id="modalFCTVA" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel"><strong>Subventions et FCTVA</strong></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      <p>
+        Cette catégorie regroupe les subventions versées par d'autres collectivités (départements, régions par exemple) ou l'Etat à l'acquisition de biens d'équipement.
+        <br>
+        <br>
+        Cette catégorie comprend également le remboursement par l'Etat de la Taxe sur la Valeur Ajoutée (TVA) payée par la collectivité lors d'acquisition d'équipements. Ce mécanisme est appelé FCTVA.
+      </p>
+      </div>
+    </div>
+  </div>
+</div>
