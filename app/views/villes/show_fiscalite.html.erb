@@ -204,7 +204,7 @@
               Les données fiscales et financières par habitant peuvent donc sembler artificiellement élevées.
               </p>
             <% end %>
-            <% if @ville[:metropole] == "MGP" %>
+            <% if (@ville[:metropole] == "MGP") && (@comptes_2016[:th_produit_epci]+@comptes_2016[:th_produit_syndicat]+@comptes_2016[:tfb_produit_epci]+@comptes_2016[:tfb_produit_syndicat]  > 0) %>
             <br>
               <p>
                 <strong>Attention, depuis 2016, <%= @ville[:nom_propre] %> reçoit la taxe d'habitation auparavant prélevée par son groupement de commune et la reverse à la Métropole du Grand Paris, son nouveau groupement.</strong>

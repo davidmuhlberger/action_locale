@@ -118,19 +118,27 @@
             <strong>1.</strong> La part de l'épargne brute dans le budget de fonctionnement indique la capacité
             de la commune à financer elle-même ses investissements et à faire face à des imprévus.
             A <%= @ville[:nom_propre] %> en 2016 elle était de <%= number_with_precision(100*(@produits_fonctionnement_2016 + @charges_fonctionnement_2016)/@produits_fonctionnement_2016, options = {delimiter: " ", precision: 0}) %>%
-            contre 11% en moyenne en France.
+            contre 14% en moyenne en France.
             <br>
             <br>
             <strong>2.</strong> Le niveau d'endettement par rapport à l'épargne brute indique la soutenabilité de la
              dette de la commune et donc sa capacité à emprunter à nouveau pour financer ses investissements.
-             A <%= @ville[:nom_propre] %> l'endettement représentait <%= number_with_precision(@comptes_2016[:endettement_16].to_i / (@produits_fonctionnement_2016 + @charges_fonctionnement_2016), options = {delimiter: " ", precision: 0}) %>
-             fois l'épargne brute annuelle en 2015, contre 7 fois en moyenne en France
+             A <%= @ville[:nom_propre] %>
+             <% if @comptes_2016[:endettement_16] / (@produits_fonctionnement_2016 + @charges_fonctionnement_2016) < 0 %>
+              l'épargne brute était trop faible en 2016 pour que ce ratio puisse être significatif.
+              <% elsif @comptes_2016[:endettement_16] / (@produits_fonctionnement_2016 + @charges_fonctionnement_2016) >=30 %>
+              l'épargne brute était trop faible en 2016 pour que ce ratio puisse être significatif.
+              <% else %>
+              représentait <%= number_with_precision(@comptes_2016[:endettement_16] / (@produits_fonctionnement_2016 + @charges_fonctionnement_2016), options = {delimiter: " ", precision: 0}) %> fois l'épargne brute annuelle en 2015, contre 7 fois en moyenne en France
+              <% end %>
             <br>
             <br>
             <strong>3.</strong> L 'évolution de ces ratios permet d'évaluer l'action des élus sur la santé financière de la commune.
             <br>
             <br>
             Pour aller plus loin, une grille d' <%= link_to "analyse des comptes des collectivités locales", pages_notice_analyse_path %> est proposée.
+            <br>
+            Les comptes synthétiques présentés ici ne sont pas directement disponibles sur internet. Nous expliquons comment ils ont été établis dans <%= link_to "notre méthodologie", pages_notice_methodologie_path %>.
             <br>
             <br>
             <table class="table table-hover">
@@ -773,20 +781,20 @@
         <br>
         Le budget d'une commune se compose de deux parties :
         <br>
-        - le <strong>budget de fonctionnement</strong> correspond aux recettes (taxes et impôts locaux, dotation de l'Etat)
-        et dépenses (personnel, fournitures...) récurrentes d'une commune,
-        <br>
-        - le <strong>budget d'investissement</strong> correspond à des dépenses d'équipement et à leur financement (subventions, emprunt). 
+        - le <strong>budget de fonctionnement</strong> correspond aux recettes (taxes et impôts locaux, dotation de l'Etat)
+            et dépenses (personnel, fournitures...) récurrentes d'une commune,
+            <br>
+        - le <strong>budget d'investissement</strong> correspond aux subventions reçues pour l'investissement (recettes) et aux dépenses d'équipement.
         <br>
         <br>
         <strong>Le solde du budget de fonctionnement (recettes - dépenses) est appelé épargne brute en comptabilité publique.</strong>
         <br>
         <br>
-        La capacité d'autofinancement d'une commune est ici mesurée par le ratio: Epargne brute / Recette de fonctionnement.
+        La capacité d'autofinancement d'une commune est ici mesurée par le ratio: Epargne brute / Recettes de fonctionnement.
         Plus ce ratio est élevé, plus la commune dégage par son fonctionnement un excédent capable de financer
         ses investissements.
         <br>
-        En France en 2015, ce ratio était de 11% en moyenne.
+        En France, en 2016, ce ratio était de 14% en moyenne.
       </p>
       </div>
       <div class="modal-footer">
@@ -811,19 +819,19 @@
       <div class="modal-body">
       <p>
         La capacité à rembourser la dette d'une commune est une information clé :
-        une commune qui est en voie de surendettement devra en effet consacrer des sommes
-        importantes au remboursement du capital de l'emprunt ce qui grèvera sa capacité
-        d'investissement et payer d'importants frais financiers ce qui impactera son budget de fonctionnement.
+        une commune qui est en voie de surendettement devra d'une part consacrer des sommes
+        importantes au remboursement du capital de l'emprunt, ce qui grèvera sa capacité
+        d'investissement, et d'autre part payer d'importants frais financiers, ce qui impactera son budget de fonctionnement.
         <br>
         Elle détermine d'autre part le risque que prend l'investisseur en accordant un nouveau prêt à la collectivité,
         et donc le taux d'intérêt qui va être appliqué.
         <br>
         <br>
-        On peut la mesurer par le ratio: Encours de dette / Epargne brute qui mesure le nombre d'années
+        On peut la mesurer par le ratio : Encours de dette / Epargne brute qui mesure le nombre d'années
         théorique que la collectivité mettrait à rembourser la dette contractée au niveau actuel d'excédent de fonctionnement.
         <br>
         <br>
-        En France en 2015, ce ratio était de 7x en moyenne.
+        En France en 2016, ce ratio était de 7x en moyenne.
       </p>
       </div>
       <div class="modal-footer">
@@ -895,7 +903,7 @@
         Ce poste inclut les éléments exceptionnels et les cessions d'immobilisations (ventes d'immeubles et de terrains).
         <br>
         <br>
-        Lorsqu'il est anormalement important au cours d'une année, il est d'usage de ne pas en tenir en compte dans l'analyse financière.
+        Lorsqu'il est anormalement important au cours d'une année, il est d'usage de ne pas en tenir compte dans l'analyse financière.
       </p>
       </div>
     </div>
@@ -917,7 +925,7 @@
         Les dépenses de personnel regroupent l'ensemble des rémunérations versées par la collectivité et les charges sociales associées.
         <br>
         <br>
-        Deux facteurs jouent sur son évolution : l'évolution des effectifs et l'évolution des rémunérations (liées à des mesures individuelles ou à des évolutions collectives comme le relèvement du point d'indice).
+        Deux facteurs jouent sur son évolution : l'évolution des effectifs et l'évolution des rémunérations (liées à des mesures individuelles ou à des évolutions nationales comme le relèvement du point d'indice).
         <br>
         <br>
         Certaines collectivités ont tendance à externaliser certains services, c'est-à-dire à utiliser des entreprises extérieures plutôt que des employés municipaux. Une collectivité pratiquant l'externalisation devrait avoir des "charges de personnel" en baisse et des "achats et charges externes" en hausse.
@@ -1024,6 +1032,11 @@
         <br>
         <br>
         L'attention doit être portée sur leur évolution pluri-annuelle et sur l'adéquation entre le niveau de dépenses et la qualité et quantité des équipements de la collectivité.
+        <br>
+        <br>
+        Lorsqu'un investissement finance un nouvel équipement, il faut généralement s'attendre à une hausse des charges de fonctionnement
+        de la commune les années suivantes, puisqu'il faudra payer l'entretien et le personnel nécessaires au bon fonctionnement de cet équipement.
+        Les chercheurs Guy Gilbert et Alain Guengant ont estimé ce coût récurrent à environ 15-20% de l'investissement, chaque année.
         <br>
         <br>
         Ils représentent en 2016 89% des dépenses d'équipement des communes et EPCI.
