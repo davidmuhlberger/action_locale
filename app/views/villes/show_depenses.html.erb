@@ -8,7 +8,7 @@
 
       function drawFonctionnement() {
         var data = google.visualization.arrayToDataTable([
-          ['', "Dépenses réelles de fonctionnement commune", "Dépenses réelles de fonctionnement moyenne"],
+          ['', "Dépenses réelles de fonctionnement (commune)", "Dépenses réelles de fonctionnement (moyenne)"],
           ["2011", <%= -@charges_fonctionnement_2011 / @comptes_2011[:population] %>, <%= -@charges_fonctionnement_moy_2011 / @comptes_moy_2011[:population] %>],
           ["2012", <%= -@charges_fonctionnement_2012 / @comptes_2012[:population] %>, <%= -@charges_fonctionnement_moy_2012 / @comptes_moy_2012[:population] %>],
           ["2013", <%= -@charges_fonctionnement_2013 / @comptes_2013[:population] %>, <%= -@charges_fonctionnement_moy_2013 / @comptes_moy_2013[:population] %>],
@@ -37,7 +37,7 @@
 
       function drawInvestissement() {
         var data = google.visualization.arrayToDataTable([
-          ['', "Dépenses réelles d'investissement commune", "Dépenses réelles d'investissement moyenne"],
+          ['', "Dépenses réelles d'investissement (commune)", "Dépenses réelles d'investissement (moyenne)"],
           ["2011", <%= -@charges_investissement_2011 / @comptes_2011[:population] %>, <%= -@charges_investissement_moy_2011 / @comptes_moy_2011[:population] %>],
           ["2012", <%= -@charges_investissement_2012 / @comptes_2012[:population] %>, <%= -@charges_investissement_moy_2012 / @comptes_moy_2012[:population] %>],
           ["2013", <%= -@charges_investissement_2013 / @comptes_2013[:population] %>, <%= -@charges_investissement_moy_2013 / @comptes_moy_2013[:population] %>],
