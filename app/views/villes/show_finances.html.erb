@@ -95,52 +95,7 @@
             </table>
           </div>
           <% end %>
-          <p>
-            Le budget d'une commune se compose de deux parties :
-            <br>
-            <br>
-            - le <strong>budget de fonctionnement</strong> correspond aux recettes (taxes et impôts locaux, dotation de l'Etat)
-            et dépenses (personnel, fournitures...) récurrentes d'une commune,
-            <br>
-            - le <strong>budget d'investissement</strong> correspond aux subventions reçues pour l'investissement (recettes) et aux dépenses d'équipement.
-            <br>
-            <br>
-            <strong>Le solde du budget de fonctionnement (recettes - dépenses) est appelé épargne brute en comptabilité publique.</strong>
-            <br>
-            L'épargne brute finance les investissements de la commune. Si elle est insuffisante, la
-            commune peut avoir recours à l'emprunt ou demander des subventions à d'autres institutions
-            (département, région, Union Européenne)
-            <br>
-            <br>
-            Plusieurs indicateurs permettent d'évaluer la santé financière d'une commune :
-            <br>
-            <br>
-            <strong>1.</strong> La part de l'épargne brute dans le budget de fonctionnement indique la capacité
-            de la commune à financer elle-même ses investissements et à faire face à des imprévus.
-            A <%= @ville[:nom_propre] %> en 2016 elle était de <%= number_with_precision(100*(@produits_fonctionnement_2016 + @charges_fonctionnement_2016)/@produits_fonctionnement_2016, options = {delimiter: " ", precision: 0}) %>%
-            contre 14% en moyenne en France.
-            <br>
-            <br>
-            <strong>2.</strong> Le niveau d'endettement par rapport à l'épargne brute indique la soutenabilité de la
-             dette de la commune et donc sa capacité à emprunter à nouveau pour financer ses investissements.
-             A <%= @ville[:nom_propre] %>
-             <% if @comptes_2016[:endettement_16] / (@produits_fonctionnement_2016 + @charges_fonctionnement_2016) < 0 %>
-              l'épargne brute était trop faible en 2016 pour que ce ratio puisse être significatif.
-              <% elsif @comptes_2016[:endettement_16] / (@produits_fonctionnement_2016 + @charges_fonctionnement_2016) >=30 %>
-              l'épargne brute était trop faible en 2016 pour que ce ratio puisse être significatif.
-              <% else %>
-              représentait <%= number_with_precision(@comptes_2016[:endettement_16] / (@produits_fonctionnement_2016 + @charges_fonctionnement_2016), options = {delimiter: " ", precision: 0}) %> fois l'épargne brute annuelle en 2015, contre 7 fois en moyenne en France
-              <% end %>
-            <br>
-            <br>
-            <strong>3.</strong> L 'évolution de ces ratios permet d'évaluer l'action des élus sur la santé financière de la commune.
-            <br>
-            <br>
-            Pour aller plus loin, une grille d' <%= link_to "analyse des comptes des collectivités locales", pages_notice_analyse_path %> est proposée.
-            <br>
-            Les comptes synthétiques présentés ici ne sont pas directement disponibles sur internet. Nous expliquons comment ils ont été établis dans <%= link_to "notre méthodologie", pages_notice_methodologie_path %>.
-            <br>
-            <br>
+          <br>
             <% if @produits_fonctionnement_2016 >= 20000000 %>
             <table class="table table-hover">
               <thead>
@@ -1318,7 +1273,48 @@
               </tbody>
             </table>
             <% end %>
-          </p>
+          <p>
+            Le budget d'une commune se compose de deux parties :
+            <br>
+            <br>
+            - le <strong>budget de fonctionnement</strong> correspond aux recettes (taxes et impôts locaux, dotation de l'Etat)
+            et dépenses (personnel, fournitures...) récurrentes d'une commune,
+            <br>
+            - le <strong>budget d'investissement</strong> correspond aux subventions reçues pour l'investissement (recettes) et aux dépenses d'équipement.
+            <br>
+            <br>
+            <strong>Le solde du budget de fonctionnement (recettes - dépenses) est appelé épargne brute en comptabilité publique.</strong>
+            <br>
+            L'épargne brute finance les investissements de la commune. Si elle est insuffisante, la
+            commune peut avoir recours à l'emprunt ou demander des subventions à d'autres institutions
+            (département, région, Union Européenne)
+            <br>
+            <br>
+            Plusieurs indicateurs permettent d'évaluer la santé financière d'une commune :
+            <br>
+            <br>
+            <strong>1.</strong> La part de l'épargne brute dans le budget de fonctionnement indique la capacité
+            de la commune à financer elle-même ses investissements et à faire face à des imprévus.
+            A <%= @ville[:nom_propre] %> en 2016 elle était de <%= number_with_precision(100*(@produits_fonctionnement_2016 + @charges_fonctionnement_2016)/@produits_fonctionnement_2016, options = {delimiter: " ", precision: 0}) %>%
+            contre 14% en moyenne en France.
+            <br>
+            <br>
+            <strong>2.</strong> Le niveau d'endettement par rapport à l'épargne brute indique la soutenabilité de la
+             dette de la commune et donc sa capacité à emprunter à nouveau pour financer ses investissements.
+             A <%= @ville[:nom_propre] %>
+             <% if @comptes_2016[:endettement_16] / (@produits_fonctionnement_2016 + @charges_fonctionnement_2016) < 0 %>
+              l'épargne brute était trop faible en 2016 pour que ce ratio puisse être significatif.
+              <% elsif @comptes_2016[:endettement_16] / (@produits_fonctionnement_2016 + @charges_fonctionnement_2016) >=30 %>
+              l'épargne brute était trop faible en 2016 pour que ce ratio puisse être significatif.
+              <% else %>
+              ce ratio représentait <%= number_with_precision(@comptes_2016[:endettement_16] / (@produits_fonctionnement_2016 + @charges_fonctionnement_2016), options = {delimiter: " ", precision: 0}) %> fois l'épargne brute annuelle en 2015, contre 7 fois en moyenne en France
+              <% end %>
+            <br>
+            <br>
+            <strong>3.</strong> L 'évolution de ces ratios permet d'évaluer l'action des élus sur la santé financière de la commune.
+            <br>
+            <br>
+            </p>
           <p>
             Pour bien appréhender l’évolution des finances de votre commune, il faut être
             attentif aux tendances dans le temps. Un taux d’épargne brute qui se dégrade
@@ -1341,6 +1337,12 @@
             trop élevée par rapport aux équipements disponibles. En effet, à la différence
             d’un ménage, une commune n’épargne généralement pas, ses investissements sont
             financés par des emprunts qui sont remboursés par son épargne brute.
+          <br>
+          <br>
+          <br>
+          Pour aller plus loin, une grille d' <%= link_to "analyse des comptes des collectivités locales", pages_notice_analyse_path %> est proposée.
+          <br>
+          Les comptes synthétiques présentés ici ne sont pas directement disponibles sur internet. Nous expliquons comment ils ont été établis dans <%= link_to "notre méthodologie", pages_notice_methodologie_path %>.
           </p>
           <br>
           <br>

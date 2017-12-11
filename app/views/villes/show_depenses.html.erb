@@ -14,7 +14,7 @@
           ["2013", <%= -@charges_fonctionnement_2013 / @comptes_2013[:population] %>, <%= -@charges_fonctionnement_moy_2013 / @comptes_moy_2013[:population] %>],
           ["2014", <%= -@charges_fonctionnement_2014 / @comptes_2014[:population] %>, <%= -@charges_fonctionnement_moy_2014 / @comptes_moy_2014[:population] %>],
           ["2015", <%= -@charges_fonctionnement_2015 / @comptes_2015[:population] %>, <%= -@charges_fonctionnement_moy_2015 / @comptes_moy_2015[:population] %>],
-          ["2015", <%= -@charges_fonctionnement_2016 / @comptes_2016[:population] %>, <%= -@charges_fonctionnement_moy_2016 / @comptes_moy_2016[:population] %>],
+          ["2016", <%= -@charges_fonctionnement_2016 / @comptes_2016[:population] %>, <%= -@charges_fonctionnement_moy_2016 / @comptes_moy_2016[:population] %>],
         ]);
 
 
@@ -43,7 +43,7 @@
           ["2013", <%= -@charges_investissement_2013 / @comptes_2013[:population] %>, <%= -@charges_investissement_moy_2013 / @comptes_moy_2013[:population] %>],
           ["2014", <%= -@charges_investissement_2014 / @comptes_2014[:population] %>, <%= -@charges_investissement_moy_2014 / @comptes_moy_2014[:population] %>],
           ["2015", <%= -@charges_investissement_2015 / @comptes_2015[:population] %>, <%= -@charges_investissement_moy_2015 / @comptes_moy_2015[:population] %>],
-          ["2015", <%= -@charges_investissement_2016 / @comptes_2016[:population] %>, <%= -@charges_investissement_moy_2016 / @comptes_moy_2016[:population] %>],
+          ["2016", <%= -@charges_investissement_2016 / @comptes_2016[:population] %>, <%= -@charges_investissement_moy_2016 / @comptes_moy_2016[:population] %>],
         ]);
 
 
@@ -117,9 +117,9 @@
             notice traitant des <%= link_to "compétences des collectivités locales", pages_notice_competences_path %>.
             <br>
             <br>
-            <strong>Une commune doit donc fournir un certain niveau de services au meilleur coût
+            Une commune doit donc fournir un certain niveau de services au meilleur coût
             pour les habitants.
-            Ce niveau de services peut être variable selon la politique de chaque ville.</strong>
+            Ce niveau de services peut être variable selon la politique de chaque ville.
             <br>
             <br>
             Les dépenses d’une commune se classent en deux catégories :
@@ -134,8 +134,8 @@
             <br>
             Le premir graphique compare le niveau de dépenses réelles de fonctionnement
             par habitant pour <%= @ville[:nom_propre] %> avec la moyenne des villes de même taille.
-            Un montant de dépenses élevé devrait correspondre à une qualité de services
-            municipaux supérieure à la moyenne.
+            <strong>Un montant de dépenses élevé devrait correspondre à une qualité de services
+            municipaux supérieure à la moyenne.</strong>
             <% if @ville[:nb_res_secondaires] / @comptes_2016[:population] >= 0.5 %>
               <p>
               <br>
