@@ -99,7 +99,13 @@
       <div class="card">
         <div class="card-title">
           <br>
-          <h4><strong>Niveau des dépenses de la commune</strong></h4>
+          <h4><strong>Les dépenses de la commune</strong></h4>
+          <br>
+          <div id="fonctionnement_chart_div"></div>
+          <br>
+          <br>
+          <div id="investissement_chart_div"></div>
+          <br>
           <br>
           <p>
             Les communes ont un nombre important de compétences à assumer :
@@ -126,7 +132,7 @@
             (bâtiments, véhicules municipaux, création de parcs…)
             <br>
             <br>
-            Le graphique ci-dessous compare le niveau de dépenses réelles de fonctionnement
+            Le premir graphique compare le niveau de dépenses réelles de fonctionnement
             par habitant pour <%= @ville[:nom_propre] %> avec la moyenne des villes de même taille.
             Un montant de dépenses élevé devrait correspondre à une qualité de services
             municipaux supérieure à la moyenne.
@@ -141,27 +147,19 @@
             <% end %>
           </p>
           <br>
-        </div>
-        <div class="card-tab">
-          <div id="fonctionnement_chart_div"></div>
-          <br>
-          <br>
           <p>
-          Le graphique ci-dessous compare le niveau des dépenses réelles d’investissement par habitant
+          Le deuxième graphique compare le niveau des dépenses réelles d’investissement par habitant
           à <%= @ville[:nom_propre] %> avec la moyenne des villes de même taille.
           Dans les petites communes, ces dépenses peuvent fortement varier d’une année sur
           l’autre, car il n’y a pas forcément d’investissements importants à réaliser chaque année.
           Des équipements peuvent aussi être mutualisés avec d’autres communes.
+          <br>
           <br>
           Dans les communes de plus grande taille, des dépenses beaucoup plus faibles que
           la moyenne ne sont pas forcément vertueuses. Si la ville est dotée de peu d’équipements
           (gymnase, conservatoires, salles d’associations…) les habitants devront payer des
           abonnements plus importants dans les villes voisines, en plus des impôts locaux de leur ville.
           </p>
-        </div>
-        <div class="card-tab">
-          <div id="investissement_chart_div"></div>
-        </div>
         <br>
         <p class="text-center">
           <%= image_tag "end_text_symbol.png" %>
