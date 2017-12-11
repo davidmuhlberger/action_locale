@@ -190,19 +190,19 @@
                 <td class="text-center"></td>
               </tr>
               <tr>
-                <th scope="row" class="indent main-row">Dépenses de fonctionnement
+                <th scope="row" class="indent sub-row">Dépenses de fonctionnement
                 <a data-toggle="modal" data-target="#modalFonctionnement">
                   <i class="fa fa-question-circle no-indent" aria-hidden="true"></i>
                 </a>
                  / habitant (€)
                 </th>
-                <td class="text-center main-row">
+                <td class="text-center sub-row">
                   <%= number_with_precision(-@charges_fonctionnement_2016 / @comptes_2016[:population], options = {delimiter: " ", precision: 0})%>
                 </td>
-                <td class="text-center main-row">
+                <td class="text-center sub-row">
                   <%= number_with_precision(-@charges_fonctionnement_moy_2016 / @comptes_moy_2016[:population], options = {delimiter: " ", precision: 0})%>
                 </td>
-                <td class="text-center main-row">
+                <td class="text-center sub-row">
                   <% if -@charges_fonctionnement_2016 / @comptes_2016[:population] < -@charges_fonctionnement_moy_2016 / @comptes_moy_2016[:population] * 0.75 %>
                     <%= image_tag "gauge_min.png" %>
                   <% elsif -@charges_fonctionnement_2016 / @comptes_2016[:population] < -@charges_fonctionnement_moy_2016 / @comptes_moy_2016[:population] %>
