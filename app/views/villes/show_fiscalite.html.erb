@@ -53,7 +53,7 @@
 
       function drawtf() {
         var data = google.visualization.arrayToDataTable([
-          ['', "Taxe d'habitation (part commune)", "Taxe d'habitation (part communauté)", "Taxe d'habitation (part commune moyenne)", "Taxe d'habitation (part communauté moyenne)"],
+          ['', "Taxe foncière (part commune)", "Taxe foncière (part communauté)", "Taxe foncière (part commune moyenne)", "Taxe foncière (part communauté moyenne)"],
           ["2011", <%= @comptes_2011[:tfb_produit_commune] / @comptes_2011[:population] %>, <%= (@comptes_2011[:tfb_produit_epci]+@comptes_2011[:tfb_produit_syndicat]) / @comptes_2011[:population] %>, <%= @comptes_moy_2011[:tfb_produit_commune] / @comptes_moy_2011[:population] %>, <%= (@comptes_moy_2011[:tfb_produit_epci]+@comptes_moy_2011[:tfb_produit_syndicat]) / @comptes_moy_2011[:population] %>],
           ["2012", <%= @comptes_2012[:tfb_produit_commune] / @comptes_2012[:population] %>, <%= (@comptes_2012[:tfb_produit_epci]+@comptes_2012[:tfb_produit_syndicat]) / @comptes_2012[:population] %>, <%= @comptes_moy_2012[:tfb_produit_commune] / @comptes_moy_2012[:population] %>, <%= (@comptes_moy_2012[:tfb_produit_epci]+@comptes_moy_2012[:tfb_produit_syndicat]) / @comptes_moy_2012[:population] %>],
           ["2013", <%= @comptes_2013[:tfb_produit_commune] / @comptes_2013[:population] %>, <%= (@comptes_2013[:tfb_produit_epci]+@comptes_2013[:tfb_produit_syndicat]) / @comptes_2013[:population] %>, <%= @comptes_moy_2013[:tfb_produit_commune] / @comptes_moy_2013[:population] %>, <%= (@comptes_moy_2013[:tfb_produit_epci]+@comptes_moy_2013[:tfb_produit_syndicat]) / @comptes_moy_2013[:population] %>],
