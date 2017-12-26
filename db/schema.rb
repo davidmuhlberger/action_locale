@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171124181751) do
+ActiveRecord::Schema.define(version: 20171226191452) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -80,6 +80,8 @@ ActiveRecord::Schema.define(version: 20171124181751) do
     t.datetime "created_at",         null: false
     t.datetime "updated_at",         null: false
     t.string   "metropole"
+    t.string   "code_postal"
+    t.string   "nom_et_cp"
   end
 
   add_foreign_key "annees", "villes"

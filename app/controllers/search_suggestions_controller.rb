@@ -1,6 +1,10 @@
 class SearchSuggestionsController < ApplicationController
   def index
-    @search_suggestions = Ville.order(:nom_propre_et_dep).where("nom_propre_et_dep ilike ?", "#{params[:term]}%")[0..8]
-    render json: @search_suggestions.map(&:nom_propre_et_dep)
+    if params[:term] =~ /\d/
+    @search_suggestions = Ville.order(:nom_et_cp).where("nom_et_cp ilike ?", "#{params[:term]}%")[0..8]
+    else
+    @search_suggestions = Ville.order(:nom_et_cp).where("nom_propre ilike ?", "#{params[:term]}%")[0..8]
+    end
+    render json: @search_suggestions.map(&:nom_et_cp)
   end
 end

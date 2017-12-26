@@ -20,7 +20,7 @@ class VillesController < ApplicationController
   end
 
   def search
-   @ville = Ville.where(nom_propre_et_dep: params[:search]).first
+   @ville = Ville.where(nom_et_cp: params[:search]).first
    find_years
 
     if @ville[:decile_revenu] == 1
