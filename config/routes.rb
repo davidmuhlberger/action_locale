@@ -18,6 +18,7 @@ Rails.application.routes.draw do
   get "/notice-analyse" => "pages#notice_analyse", as: 'pages_notice_analyse'
   get "/notice-competences" => "pages#notice_competences", as: 'pages_notice_competences'
   get "/notice-methodologie" => "pages#notice_methodologie", as: 'pages_notice_methodologie'
+  get "/donnees_principales_communes" => "pages#donnees_principales_communes", as: 'pages_donnees_principales_communes'
 
   get "/404", :to => "errors#not_found"
   get "/422", :to => "errors#unacceptable"
