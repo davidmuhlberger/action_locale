@@ -18,12 +18,12 @@
       function drawFonctionnement() {
         var data = google.visualization.arrayToDataTable([
           ['', "Dépenses réelles de fonctionnement (commune)", "Dépenses réelles de fonctionnement (moyenne)"],
-          ["2011", <%= -@charges_fonctionnement_2011 / @comptes_2011[:population] %>, <%= -@charges_fonctionnement_moy_2011 / @comptes_moy_2011[:population] %>],
           ["2012", <%= -@charges_fonctionnement_2012 / @comptes_2012[:population] %>, <%= -@charges_fonctionnement_moy_2012 / @comptes_moy_2012[:population] %>],
           ["2013", <%= -@charges_fonctionnement_2013 / @comptes_2013[:population] %>, <%= -@charges_fonctionnement_moy_2013 / @comptes_moy_2013[:population] %>],
           ["2014", <%= -@charges_fonctionnement_2014 / @comptes_2014[:population] %>, <%= -@charges_fonctionnement_moy_2014 / @comptes_moy_2014[:population] %>],
           ["2015", <%= -@charges_fonctionnement_2015 / @comptes_2015[:population] %>, <%= -@charges_fonctionnement_moy_2015 / @comptes_moy_2015[:population] %>],
           ["2016", <%= -@charges_fonctionnement_2016 / @comptes_2016[:population] %>, <%= -@charges_fonctionnement_moy_2016 / @comptes_moy_2016[:population] %>],
+          ["2017", <%= -@charges_fonctionnement_2017 / @comptes_2017[:population] %>, <%= -@charges_fonctionnement_moy_2017 / @comptes_moy_2017[:population] %>],
         ]);
 
 
@@ -47,12 +47,12 @@
       function drawInvestissement() {
         var data = google.visualization.arrayToDataTable([
           ['', "Dépenses réelles d'investissement (commune)", "Dépenses réelles d'investissement (moyenne)"],
-          ["2011", <%= -@charges_investissement_2011 / @comptes_2011[:population] %>, <%= -@charges_investissement_moy_2011 / @comptes_moy_2011[:population] %>],
           ["2012", <%= -@charges_investissement_2012 / @comptes_2012[:population] %>, <%= -@charges_investissement_moy_2012 / @comptes_moy_2012[:population] %>],
           ["2013", <%= -@charges_investissement_2013 / @comptes_2013[:population] %>, <%= -@charges_investissement_moy_2013 / @comptes_moy_2013[:population] %>],
           ["2014", <%= -@charges_investissement_2014 / @comptes_2014[:population] %>, <%= -@charges_investissement_moy_2014 / @comptes_moy_2014[:population] %>],
           ["2015", <%= -@charges_investissement_2015 / @comptes_2015[:population] %>, <%= -@charges_investissement_moy_2015 / @comptes_moy_2015[:population] %>],
           ["2016", <%= -@charges_investissement_2016 / @comptes_2016[:population] %>, <%= -@charges_investissement_moy_2016 / @comptes_moy_2016[:population] %>],
+          ["2017", <%= -@charges_investissement_2017 / @comptes_2017[:population] %>, <%= -@charges_investissement_moy_2017 / @comptes_moy_2017[:population] %>],
         ]);
 
 
@@ -145,12 +145,12 @@
             par habitant pour <%= @ville[:nom_propre] %> avec la moyenne des villes de même taille.
             <strong>Un montant de dépenses élevé devrait correspondre à une qualité de services
             municipaux supérieure à la moyenne.</strong>
-            <% if @ville[:nb_res_secondaires] / @comptes_2016[:population] >= 0.5 %>
+            <% if @ville[:nb_res_secondaires] / @comptes_2017[:population] >= 0.5 %>
               <p>
               <br>
               <br>
               Attention. Il y a dans cette commune une part importante de résidences secondaires :
-              <%= @ville[:nb_res_secondaires] %> résidences secondaires pour une population de <%= @comptes_2016[:population] %> habitants.
+              <%= @ville[:nb_res_secondaires] %> résidences secondaires pour une population de <%= @comptes_2017[:population] %> habitants.
               Les données fiscales et financières par habitant peuvent donc sembler artificiellement élevées.
               </p>
             <% end %>
