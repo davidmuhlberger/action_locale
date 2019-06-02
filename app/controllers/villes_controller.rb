@@ -14,8 +14,8 @@ class VillesController < ApplicationController
       @decile_comp = "entre les #{(@ville[:decile_revenu] - 1) * 10}% et #{@ville[:decile_revenu] * 10}% des revenus médians les plus élevés du pays"
     end
 
-    @charges_fonctionnement_2016 = @comptes_2016[:achats_charges_externes_6].to_i+@comptes_2016[:autres_6].to_i+@comptes_2016[:exceptionnel_6].to_i+@comptes_2016[:frais_elus_6].to_i+@comptes_2016[:frais_financiers_6].to_i+@comptes_2016[:impots_6].to_i+@comptes_2016[:intervention_hors_subventions_6].to_i+@comptes_2016[:personnel_6].to_i+@comptes_2016[:subventions_versees_6]
-    @charges_fonctionnement_moy_2016 = @comptes_moy_2016[:achats_charges_externes_6].to_i+@comptes_moy_2016[:autres_6].to_i+@comptes_moy_2016[:exceptionnel_6].to_i+@comptes_moy_2016[:frais_elus_6].to_i+@comptes_moy_2016[:frais_financiers_6].to_i+@comptes_moy_2016[:impots_6].to_i+@comptes_moy_2016[:intervention_hors_subventions_6].to_i+@comptes_moy_2016[:personnel_6].to_i+@comptes_moy_2016[:subventions_versees_6]
+    @charges_fonctionnement_2017 = @comptes_2017[:achats_charges_externes_6].to_i+@comptes_2017[:autres_6].to_i+@comptes_2017[:exceptionnel_6].to_i+@comptes_2017[:frais_elus_6].to_i+@comptes_2017[:frais_financiers_6].to_i+@comptes_2017[:impots_6].to_i+@comptes_2017[:intervention_hors_subventions_6].to_i+@comptes_2017[:personnel_6].to_i+@comptes_2017[:subventions_versees_6]
+    @charges_fonctionnement_moy_2017 = @comptes_moy_2017[:achats_charges_externes_6].to_i+@comptes_moy_2017[:autres_6].to_i+@comptes_moy_2017[:exceptionnel_6].to_i+@comptes_moy_2017[:frais_elus_6].to_i+@comptes_moy_2017[:frais_financiers_6].to_i+@comptes_moy_2017[:impots_6].to_i+@comptes_moy_2017[:intervention_hors_subventions_6].to_i+@comptes_moy_2017[:personnel_6].to_i+@comptes_moy_2017[:subventions_versees_6]
 
   end
 
@@ -33,8 +33,8 @@ class VillesController < ApplicationController
       @decile_comp = "entre les #{(@ville[:decile_revenu] - 1) * 10}% et #{@ville[:decile_revenu] * 10}% des revenus médians les plus élevés du pays"
     end
 
-    @charges_fonctionnement_2016 = @comptes_2016[:achats_charges_externes_6].to_i+@comptes_2016[:autres_6].to_i+@comptes_2016[:exceptionnel_6].to_i+@comptes_2016[:frais_elus_6].to_i+@comptes_2016[:frais_financiers_6].to_i+@comptes_2016[:impots_6].to_i+@comptes_2016[:intervention_hors_subventions_6].to_i+@comptes_2016[:personnel_6].to_i+@comptes_2016[:subventions_versees_6]
-    @charges_fonctionnement_moy_2016 = @comptes_moy_2016[:achats_charges_externes_6].to_i+@comptes_moy_2016[:autres_6].to_i+@comptes_moy_2016[:exceptionnel_6].to_i+@comptes_moy_2016[:frais_elus_6].to_i+@comptes_moy_2016[:frais_financiers_6].to_i+@comptes_moy_2016[:impots_6].to_i+@comptes_moy_2016[:intervention_hors_subventions_6].to_i+@comptes_moy_2016[:personnel_6].to_i+@comptes_moy_2016[:subventions_versees_6]
+    @charges_fonctionnement_2017 = @comptes_2017[:achats_charges_externes_6].to_i+@comptes_2017[:autres_6].to_i+@comptes_2017[:exceptionnel_6].to_i+@comptes_2017[:frais_elus_6].to_i+@comptes_2017[:frais_financiers_6].to_i+@comptes_2017[:impots_6].to_i+@comptes_2017[:intervention_hors_subventions_6].to_i+@comptes_2017[:personnel_6].to_i+@comptes_2017[:subventions_versees_6]
+    @charges_fonctionnement_moy_2017 = @comptes_moy_2017[:achats_charges_externes_6].to_i+@comptes_moy_2017[:autres_6].to_i+@comptes_moy_2017[:exceptionnel_6].to_i+@comptes_moy_2017[:frais_elus_6].to_i+@comptes_moy_2017[:frais_financiers_6].to_i+@comptes_moy_2017[:impots_6].to_i+@comptes_moy_2017[:intervention_hors_subventions_6].to_i+@comptes_moy_2017[:personnel_6].to_i+@comptes_moy_2017[:subventions_versees_6]
 
    render action: 'show_indicateurs'
 

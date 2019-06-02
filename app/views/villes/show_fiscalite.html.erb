@@ -18,12 +18,12 @@
       function drawth() {
         var data = google.visualization.arrayToDataTable([
           ['', "Taxe d'habitation (part commune)", "Taxe d'habitation (part communauté)", "Taxe d'habitation (part commune moyenne)", "Taxe d'habitation (part communauté moyenne)"],
-          ["2011", <%= @comptes_2011[:th_produit_commune] / @comptes_2011[:population] %>, <%= (@comptes_2011[:th_produit_epci]+@comptes_2011[:th_produit_syndicat]) / @comptes_2011[:population] %>, <%= @comptes_moy_2011[:th_produit_commune] / @comptes_moy_2011[:population] %>, <%= (@comptes_moy_2011[:th_produit_epci]+@comptes_moy_2011[:th_produit_syndicat]) / @comptes_moy_2011[:population] %>],
           ["2012", <%= @comptes_2012[:th_produit_commune] / @comptes_2012[:population] %>, <%= (@comptes_2012[:th_produit_epci]+@comptes_2012[:th_produit_syndicat]) / @comptes_2012[:population] %>, <%= @comptes_moy_2012[:th_produit_commune] / @comptes_moy_2012[:population] %>, <%= (@comptes_moy_2012[:th_produit_epci]+@comptes_moy_2012[:th_produit_syndicat]) / @comptes_moy_2012[:population] %>],
           ["2013", <%= @comptes_2013[:th_produit_commune] / @comptes_2013[:population] %>, <%= (@comptes_2013[:th_produit_epci]+@comptes_2013[:th_produit_syndicat]) / @comptes_2013[:population] %>, <%= @comptes_moy_2013[:th_produit_commune] / @comptes_moy_2013[:population] %>, <%= (@comptes_moy_2013[:th_produit_epci]+@comptes_moy_2013[:th_produit_syndicat]) / @comptes_moy_2013[:population] %>],
           ["2014", <%= @comptes_2014[:th_produit_commune] / @comptes_2014[:population] %>, <%= (@comptes_2014[:th_produit_epci]+@comptes_2014[:th_produit_syndicat]) / @comptes_2014[:population] %>, <%= @comptes_moy_2014[:th_produit_commune] / @comptes_moy_2014[:population] %>, <%= (@comptes_moy_2014[:th_produit_epci]+@comptes_moy_2014[:th_produit_syndicat]) / @comptes_moy_2014[:population] %>],
           ["2015", <%= @comptes_2015[:th_produit_commune] / @comptes_2015[:population] %>, <%= (@comptes_2015[:th_produit_epci]+@comptes_2015[:th_produit_syndicat]) / @comptes_2015[:population] %>, <%= @comptes_moy_2015[:th_produit_commune] / @comptes_moy_2015[:population] %>, <%= (@comptes_moy_2015[:th_produit_epci]+@comptes_moy_2015[:th_produit_syndicat]) / @comptes_moy_2015[:population] %>],
-          ["2016", <%= @comptes_2016[:th_produit_commune] / @comptes_2016[:population] %>, <%= (@comptes_2016[:th_produit_epci]+@comptes_2016[:th_produit_syndicat]) / @comptes_2016[:population] %>, <%= @comptes_moy_2016[:th_produit_commune] / @comptes_moy_2016[:population] %>, <%= (@comptes_moy_2016[:th_produit_epci]+@comptes_moy_2016[:th_produit_syndicat]) / @comptes_moy_2016[:population] %>]
+          ["2016", <%= @comptes_2016[:th_produit_commune] / @comptes_2016[:population] %>, <%= (@comptes_2016[:th_produit_epci]+@comptes_2016[:th_produit_syndicat]) / @comptes_2016[:population] %>, <%= @comptes_moy_2016[:th_produit_commune] / @comptes_moy_2016[:population] %>, <%= (@comptes_moy_2016[:th_produit_epci]+@comptes_moy_2016[:th_produit_syndicat]) / @comptes_moy_2016[:population] %>],
+          ["2017", <%= @comptes_2017[:th_produit_commune] / @comptes_2017[:population] %>, <%= (@comptes_2017[:th_produit_epci]+@comptes_2017[:th_produit_syndicat]) / @comptes_2017[:population] %>, <%= @comptes_moy_2017[:th_produit_commune] / @comptes_moy_2017[:population] %>, <%= (@comptes_moy_2017[:th_produit_epci]+@comptes_moy_2017[:th_produit_syndicat]) / @comptes_moy_2017[:population] %>]
         ]);
         var options = {
           'width' : 750,
@@ -63,12 +63,12 @@
       function drawtf() {
         var data = google.visualization.arrayToDataTable([
           ['', "Taxe foncière (part commune)", "Taxe foncière (part communauté)", "Taxe foncière (part commune moyenne)", "Taxe foncière (part communauté moyenne)"],
-          ["2011", <%= @comptes_2011[:tfb_produit_commune] / @comptes_2011[:population] %>, <%= (@comptes_2011[:tfb_produit_epci]+@comptes_2011[:tfb_produit_syndicat]) / @comptes_2011[:population] %>, <%= @comptes_moy_2011[:tfb_produit_commune] / @comptes_moy_2011[:population] %>, <%= (@comptes_moy_2011[:tfb_produit_epci]+@comptes_moy_2011[:tfb_produit_syndicat]) / @comptes_moy_2011[:population] %>],
           ["2012", <%= @comptes_2012[:tfb_produit_commune] / @comptes_2012[:population] %>, <%= (@comptes_2012[:tfb_produit_epci]+@comptes_2012[:tfb_produit_syndicat]) / @comptes_2012[:population] %>, <%= @comptes_moy_2012[:tfb_produit_commune] / @comptes_moy_2012[:population] %>, <%= (@comptes_moy_2012[:tfb_produit_epci]+@comptes_moy_2012[:tfb_produit_syndicat]) / @comptes_moy_2012[:population] %>],
           ["2013", <%= @comptes_2013[:tfb_produit_commune] / @comptes_2013[:population] %>, <%= (@comptes_2013[:tfb_produit_epci]+@comptes_2013[:tfb_produit_syndicat]) / @comptes_2013[:population] %>, <%= @comptes_moy_2013[:tfb_produit_commune] / @comptes_moy_2013[:population] %>, <%= (@comptes_moy_2013[:tfb_produit_epci]+@comptes_moy_2013[:tfb_produit_syndicat]) / @comptes_moy_2013[:population] %>],
           ["2014", <%= @comptes_2014[:tfb_produit_commune] / @comptes_2014[:population] %>, <%= (@comptes_2014[:tfb_produit_epci]+@comptes_2014[:tfb_produit_syndicat]) / @comptes_2014[:population] %>, <%= @comptes_moy_2014[:tfb_produit_commune] / @comptes_moy_2014[:population] %>, <%= (@comptes_moy_2014[:tfb_produit_epci]+@comptes_moy_2014[:tfb_produit_syndicat]) / @comptes_moy_2014[:population] %>],
           ["2015", <%= @comptes_2015[:tfb_produit_commune] / @comptes_2015[:population] %>, <%= (@comptes_2015[:tfb_produit_epci]+@comptes_2015[:tfb_produit_syndicat]) / @comptes_2015[:population] %>, <%= @comptes_moy_2015[:tfb_produit_commune] / @comptes_moy_2015[:population] %>, <%= (@comptes_moy_2015[:tfb_produit_epci]+@comptes_moy_2015[:tfb_produit_syndicat]) / @comptes_moy_2015[:population] %>],
-          ["2016", <%= @comptes_2016[:tfb_produit_commune] / @comptes_2016[:population] %>, <%= (@comptes_2016[:tfb_produit_epci]+@comptes_2016[:tfb_produit_syndicat]) / @comptes_2016[:population] %>, <%= @comptes_moy_2016[:tfb_produit_commune] / @comptes_moy_2016[:population] %>, <%= (@comptes_moy_2016[:tfb_produit_epci]+@comptes_moy_2016[:tfb_produit_syndicat]) / @comptes_moy_2016[:population] %>]
+          ["2016", <%= @comptes_2016[:tfb_produit_commune] / @comptes_2016[:population] %>, <%= (@comptes_2016[:tfb_produit_epci]+@comptes_2016[:tfb_produit_syndicat]) / @comptes_2016[:population] %>, <%= @comptes_moy_2016[:tfb_produit_commune] / @comptes_moy_2016[:population] %>, <%= (@comptes_moy_2016[:tfb_produit_epci]+@comptes_moy_2016[:tfb_produit_syndicat]) / @comptes_moy_2016[:population] %>],
+          ["2017", <%= @comptes_2017[:tfb_produit_commune] / @comptes_2017[:population] %>, <%= (@comptes_2017[:tfb_produit_epci]+@comptes_2017[:tfb_produit_syndicat]) / @comptes_2017[:population] %>, <%= @comptes_moy_2017[:tfb_produit_commune] / @comptes_moy_2017[:population] %>, <%= (@comptes_moy_2017[:tfb_produit_epci]+@comptes_moy_2017[:tfb_produit_syndicat]) / @comptes_moy_2017[:population] %>]
         ]);
         var options = {
           'width' : 750,
@@ -107,12 +107,12 @@
       function drawautres() {
         var data = google.visualization.arrayToDataTable([
           ['', "Autres taxes (commune)", "Autres taxes (moyenne)"],
-          ["2011", <%= @comptes_2011[:autres_impots_taxes_7] / @comptes_2011[:population] %>, <%= @comptes_moy_2011[:autres_impots_taxes_7] / @comptes_moy_2011[:population] %>],
           ["2012", <%= @comptes_2012[:autres_impots_taxes_7] / @comptes_2012[:population] %>, <%= @comptes_moy_2012[:autres_impots_taxes_7] / @comptes_moy_2012[:population] %>],
           ["2013", <%= @comptes_2013[:autres_impots_taxes_7] / @comptes_2013[:population] %>, <%= @comptes_moy_2013[:autres_impots_taxes_7] / @comptes_moy_2013[:population] %>],
           ["2014", <%= @comptes_2014[:autres_impots_taxes_7] / @comptes_2014[:population] %>, <%= @comptes_moy_2014[:autres_impots_taxes_7] / @comptes_moy_2014[:population] %>],
           ["2015", <%= @comptes_2015[:autres_impots_taxes_7] / @comptes_2015[:population] %>, <%= @comptes_moy_2015[:autres_impots_taxes_7] / @comptes_moy_2015[:population] %>],
           ["2016", <%= @comptes_2016[:autres_impots_taxes_7] / @comptes_2016[:population] %>, <%= @comptes_moy_2016[:autres_impots_taxes_7] / @comptes_moy_2016[:population] %>],
+          ["2017", <%= @comptes_2017[:autres_impots_taxes_7] / @comptes_2017[:population] %>, <%= @comptes_moy_2017[:autres_impots_taxes_7] / @comptes_moy_2017[:population] %>],
         ]);
 
         var options = {
@@ -178,7 +178,7 @@
           <br>
           <p>
             Ces graphiques présentent l'évolution des deux principaux impôts locaux,
-            c'est-à-dire la taxe d'habitation et la taxe foncière, entre les années 2011 et 2016,
+            c'est-à-dire la taxe d'habitation et la taxe foncière, entre les années 2012 et 2017,
             et la compare, sur la même période, à l'évolution de ces impôts en moyenne pour
             l'ensemble des communes de taille comparable en France.
             <br>
@@ -195,7 +195,7 @@
             notice traitant de la <%= link_to "fiscalité locale", pages_notice_fiscalite_path %>.
             <br>
             <br>
-            <% if @comptes_2016[:th_produit_epci]+@comptes_2016[:th_produit_syndicat]+@comptes_2016[:tfb_produit_epci]+@comptes_2016[:tfb_produit_syndicat]  == 0 %>
+            <% if @comptes_2017[:th_produit_epci]+@comptes_2017[:th_produit_syndicat]+@comptes_2017[:tfb_produit_epci]+@comptes_2017[:tfb_produit_syndicat]  == 0 %>
               <p>
               <br>
               <br>
@@ -204,19 +204,19 @@
               groupements pour les villes de taille comparable.
               </p>
             <% end %>
-            <% if @ville[:nb_res_secondaires] / @comptes_2016[:population] >= 0.5 %>
+            <% if @ville[:nb_res_secondaires] / @comptes_2017[:population] >= 0.5 %>
               <p>
               <br>
               <br>
               Attention. Il y a dans cette commune une part importante de résidences secondaires :
-              <%= @ville[:nb_res_secondaires] %> résidences secondaires pour une population de <%= @comptes_2016[:population] %> habitants.
+              <%= @ville[:nb_res_secondaires] %> résidences secondaires pour une population de <%= @comptes_2017[:population] %> habitants.
               Les données fiscales et financières par habitant peuvent donc sembler artificiellement élevées.
               </p>
             <% end %>
-            <% if (@ville[:metropole] == "MGP") && (@comptes_2016[:th_produit_epci]+@comptes_2016[:th_produit_syndicat]+@comptes_2016[:tfb_produit_epci]+@comptes_2016[:tfb_produit_syndicat]  > 0) %>
+            <% if (@ville[:metropole] == "MGP") && (@comptes_2017[:th_produit_epci]+@comptes_2017[:th_produit_syndicat]+@comptes_2017[:tfb_produit_epci]+@comptes_2017[:tfb_produit_syndicat]  > 0) %>
             <br>
               <p>
-                <strong>Attention, depuis 2016, <%= @ville[:nom_propre] %> reçoit la taxe d'habitation auparavant prélevée par son groupement de commune et la reverse à la Métropole du Grand Paris, son nouveau groupement.</strong>
+                <strong>Attention, depuis 2017, <%= @ville[:nom_propre] %> reçoit la taxe d'habitation auparavant prélevée par son groupement de commune et la reverse à la Métropole du Grand Paris, son nouveau groupement.</strong>
               </p>
             <br>
             <% end %>
@@ -227,7 +227,7 @@
             <% if @ville[:metropole] == "MGL" %>
             <br>
               <p>
-                <strong>Attention, depuis 2015, la Métropole du Grand Lyon prélève la part départementale de la taxe d'habitation à <%= @ville[:nom_propre] %></strong>
+                <strong>Attention, depuis 2016, la Métropole du Grand Lyon prélève la part départementale de la taxe d'habitation à <%= @ville[:nom_propre] %></strong>
               </p>
             <br>
             <% end %>
@@ -288,7 +288,7 @@
       </div>
       <div class="modal-footer">
         <p>
-        Source : Les Collectivités locales en chiffres, DGCL, 2016
+        Source : Les Collectivités locales en chiffres, DGCL, 2017
         </p>
       </div>
     </div>
@@ -320,13 +320,13 @@
         Les foyers avec de faibles revenus ou âgés peuvent bénéficier d'un abattement.
         <br>
         <br>
-        La taxe sur le foncier bâti a rapporté 31,9 Md€ en 2016, et la taxe sur le foncier non bâti 1 Md€. Leur produit
+        La taxe sur le foncier bâti a rapporté 31,9 Md€ en 2017, et la taxe sur le foncier non bâti 1 Md€. Leur produit
         finance pour un peu plus de la moitié les communes et intercommunalités et pour le reste les départements.
       </p>
       </div>
       <div class="modal-footer">
         <p>
-        Source : Les Collectivités locales en chiffres, DGCL, 2016
+        Source : Les Collectivités locales en chiffres, DGCL, 2017
         </p>
       </div>
     </div>
